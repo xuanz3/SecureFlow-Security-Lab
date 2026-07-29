@@ -2,33 +2,27 @@
 
 ## Current phase
 
-**Phase 0 — Security design and repository foundation**
+**Phase 1 — Secure application foundation complete**
 
 ## Completed
 
-- Repository structure and safety boundary
-- Project scope and success criteria
-- Local-first architecture and data flow
-- STRIDE threat model
-- Security requirements
-- Rules of Engagement and test plan
-- Contribution, Issue and PR templates
-- Six-day delivery roadmap
-- Portfolio evidence standard
-- Local-first architecture decision record
+- Phase 0 repository governance, architecture, threat model and security requirements
+- ASP.NET Core 10 application and PostgreSQL persistence
+- Fictional development identities, authentication and role model
+- Ticket ownership and administrator authorisation
+- Protected file uploads and downloads
+- Structured audit events, rate limiting, security headers and health checks
+- Negative unit tests for authorisation and upload controls
+- Local Docker Compose environment and development documentation
 
 ## Next phase
 
-Phase 1 will implement the minimum secure application vertical slice:
+Phase 2 adds GitHub Actions build/test gates, CodeQL, Gitleaks, dependency checks,
+Trivy, SBOM generation, OWASP ZAP and GHCR publishing.
 
-1. ASP.NET Core application
-2. PostgreSQL with migrations and synthetic seed data
-3. Authentication and two roles
-4. Ticket ownership authorisation
-5. Secure upload validation
-6. Structured security audit logging
-7. Minimum negative integration tests
+## Limitations
 
-## Known limitations
-
-No application code or automated workflow exists at the end of Phase 0. All risk ratings remain provisional until implementation and assessment evidence is available.
+- Local ASP.NET Core Identity is used instead of a production identity provider.
+- MFA and federated SSO are not implemented in the six-day compressed scope.
+- Security testing remains restricted to project-owned local containers.
+- Phase 1 validation evidence must reflect actual local results, not assumed outcomes.
