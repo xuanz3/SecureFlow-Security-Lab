@@ -61,6 +61,7 @@ builder.Services.AddRateLimiter(options =>
 });
 
 builder.Services.AddScoped<ITicketAccessService, TicketAccessService>();
+builder.Services.AddSingleton<IFileUploadValidator, FileUploadValidator>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
