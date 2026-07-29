@@ -1,0 +1,15 @@
+@model SecureFlow.Web.Models.Ticket
+@{
+    ViewData["Title"] = Model.Title;
+}
+<div class="panel">
+    <p class="eyebrow">@Model.Status</p>
+    <h1>@Model.Title</h1>
+    <p>@Model.Description</p>
+    <dl>
+        <dt>Ticket ID</dt>
+        <dd><code>@Model.Id</code></dd>
+        <dt>Created</dt>
+        <dd>@Model.CreatedAtUtc.ToString("u")</dd>
+    </dl>
+</div>

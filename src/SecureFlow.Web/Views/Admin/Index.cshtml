@@ -1,0 +1,20 @@
+@model IReadOnlyCollection<SecureFlow.Web.Models.Ticket>
+@{
+    ViewData["Title"] = "Administration";
+}
+<h1>Administrator ticket view</h1>
+<p>This server-authorised view includes all fictional tickets.</p>
+<table>
+    <thead><tr><th>Title</th><th>Owner</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+    @foreach (var ticket in Model)
+    {
+        <tr>
+            <td>@ticket.Title</td>
+            <td><code>@ticket.OwnerId</code></td>
+            <td>@ticket.Status</td>
+            <td><a asp-controller="Tickets" asp-action="Details" asp-route-id="@ticket.Id">Open</a></td>
+        </tr>
+    }
+    </tbody>
+</table>
