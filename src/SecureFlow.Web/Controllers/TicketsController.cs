@@ -13,13 +13,13 @@ public sealed class TicketsController(
     ApplicationDbContext dbContext,
     UserManager<IdentityUser> userManager,
     ITicketAccessService accessService,
-    ILogger<TicketsController> logger) : Controller
+    IFileUploadValidator fileValidator,
+    ISecurityAuditService auditService,
+    IWebHostEnvironment environment) : Controller
 {
     public async Task<IActionResult> Index()
     {
-        var userId = userManager.GetUserId(User)
-            ?? throw new InvalidOperationException("Authenticated user identifier is unavailable.");
-
+        var userId = RequireUserId();
         var query = dbContext.Tickets.AsNoTracking();
 
         if (!User.IsInRole(AppRoles.Admin))
@@ -46,9 +46,7 @@ public sealed class TicketsController(
             return View(model);
         }
 
-        var userId = userManager.GetUserId(User)
-            ?? throw new InvalidOperationException("Authenticated user identifier is unavailable.");
-
+        var userId = RequireUserId();
         var ticket = new Ticket
         {
             Title = model.Title.Trim(),
@@ -59,11 +57,13 @@ public sealed class TicketsController(
         dbContext.Tickets.Add(ticket);
         await dbContext.SaveChangesAsync();
 
-        logger.LogInformation(
-            "SecurityAudit TicketCreated UserId={UserId} TicketId={TicketId} CorrelationId={CorrelationId}",
+        await auditService.RecordAsync(
+            HttpContext,
+            "TicketCreated",
+            "Success",
             userId,
-            ticket.Id,
-            HttpContext.TraceIdentifier);
+            "Ticket",
+            ticket.Id.ToString());
 
         return RedirectToAction(nameof(Details), new { id = ticket.Id });
     }
@@ -78,19 +78,136 @@ public sealed class TicketsController(
             return NotFound();
         }
 
-        var userId = userManager.GetUserId(User)
-            ?? throw new InvalidOperationException("Authenticated user identifier is unavailable.");
-
+        var userId = RequireUserId();
         if (!accessService.CanRead(ticket, userId, User.IsInRole(AppRoles.Admin)))
         {
-            logger.LogWarning(
-                "SecurityAudit TicketAccessDenied UserId={UserId} TicketId={TicketId} CorrelationId={CorrelationId}",
-                userId,
-                ticket.Id,
-                HttpContext.TraceIdentifier);
+            await RecordAccessDeniedAsync(userId, ticket.Id);
             return Forbid();
         }
 
+        ViewBag.Attachments = await dbContext.TicketAttachments
+            .AsNoTracking()
+            .Where(attachment => attachment.TicketId == id)
+            .OrderByDescending(attachment => attachment.UploadedAtUtc)
+            .ToListAsync();
+
         return View(ticket);
     }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> UploadAttachment(Guid id, IFormFile file)
+    {
+        var ticket = await dbContext.Tickets.SingleOrDefaultAsync(candidate => candidate.Id == id);
+        if (ticket is null)
+        {
+            return NotFound();
+        }
+
+        var userId = RequireUserId();
+        if (!accessService.CanModify(ticket, userId, User.IsInRole(AppRoles.Admin)))
+        {
+            await RecordAccessDeniedAsync(userId, ticket.Id);
+            return Forbid();
+        }
+
+        var validation = fileValidator.Validate(file.FileName, file.ContentType, file.Length);
+        if (!validation.IsValid)
+        {
+            await auditService.RecordAsync(
+                HttpContext,
+                "AttachmentUpload",
+                "Rejected",
+                userId,
+                "Ticket",
+                ticket.Id.ToString());
+            TempData["UploadError"] = validation.Error;
+            return RedirectToAction(nameof(Details), new { id });
+        }
+
+        var storedName = $"{Guid.NewGuid():N}{validation.Extension}";
+        var uploadRoot = Path.Combine(environment.ContentRootPath, "App_Data", "uploads");
+        Directory.CreateDirectory(uploadRoot);
+        var destination = Path.Combine(uploadRoot, storedName);
+
+        await using (var stream = System.IO.File.Create(destination))
+        {
+            await file.CopyToAsync(stream);
+        }
+
+        dbContext.TicketAttachments.Add(new TicketAttachment
+        {
+            TicketId = ticket.Id,
+            OriginalName = validation.SafeOriginalName,
+            StoredName = storedName,
+            ContentType = file.ContentType,
+            SizeBytes = file.Length,
+            UploadedByUserId = userId
+        });
+        await dbContext.SaveChangesAsync();
+
+        await auditService.RecordAsync(
+            HttpContext,
+            "AttachmentUpload",
+            "Success",
+            userId,
+            "Ticket",
+            ticket.Id.ToString());
+
+        return RedirectToAction(nameof(Details), new { id });
+    }
+
+    public async Task<IActionResult> DownloadAttachment(Guid id)
+    {
+        var attachment = await dbContext.TicketAttachments
+            .AsNoTracking()
+            .Include(candidate => candidate.Ticket)
+            .SingleOrDefaultAsync(candidate => candidate.Id == id);
+
+        if (attachment is null)
+        {
+            return NotFound();
+        }
+
+        var userId = RequireUserId();
+        if (!accessService.CanRead(attachment.Ticket, userId, User.IsInRole(AppRoles.Admin)))
+        {
+            await RecordAccessDeniedAsync(userId, attachment.TicketId);
+            return Forbid();
+        }
+
+        var path = Path.Combine(
+            environment.ContentRootPath,
+            "App_Data",
+            "uploads",
+            attachment.StoredName);
+
+        if (!System.IO.File.Exists(path))
+        {
+            return NotFound();
+        }
+
+        await auditService.RecordAsync(
+            HttpContext,
+            "AttachmentDownload",
+            "Success",
+            userId,
+            "Attachment",
+            attachment.Id.ToString());
+
+        return PhysicalFile(path, attachment.ContentType, attachment.OriginalName);
+    }
+
+    private string RequireUserId() =>
+        userManager.GetUserId(User)
+        ?? throw new InvalidOperationException("Authenticated user identifier is unavailable.");
+
+    private Task RecordAccessDeniedAsync(string userId, Guid ticketId) =>
+        auditService.RecordAsync(
+            HttpContext,
+            "TicketAccess",
+            "Denied",
+            userId,
+            "Ticket",
+            ticketId.ToString());
 }

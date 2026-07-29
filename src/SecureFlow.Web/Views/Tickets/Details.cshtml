@@ -1,6 +1,9 @@
+@using SecureFlow.Web.Models
 @model SecureFlow.Web.Models.Ticket
 @{
     ViewData["Title"] = Model.Title;
+    var attachments = ViewBag.Attachments as IReadOnlyCollection<TicketAttachment>
+        ?? Array.Empty<TicketAttachment>();
 }
 <div class="panel">
     <p class="eyebrow">@Model.Status</p>
@@ -13,3 +16,29 @@
         <dd>@Model.CreatedAtUtc.ToString("u")</dd>
     </dl>
 </div>
+
+<section class="panel">
+    <h2>Protected attachments</h2>
+    @if (TempData["UploadError"] is string error)
+    {
+        <p class="field-validation-error">@error</p>
+    }
+    <form asp-action="UploadAttachment" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data">
+        <label for="file">PDF, PNG, JPEG or text; maximum 2 MB</label>
+        <input id="file" name="file" type="file" required />
+        <button type="submit">Upload</button>
+    </form>
+
+    @if (attachments.Count > 0)
+    {
+        <ul>
+        @foreach (var attachment in attachments)
+        {
+            <li>
+                <a asp-action="DownloadAttachment" asp-route-id="@attachment.Id">@attachment.OriginalName</a>
+                — @attachment.SizeBytes bytes
+            </li>
+        }
+        </ul>
+    }
+</section>

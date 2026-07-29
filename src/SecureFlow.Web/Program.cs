@@ -1,8 +1,11 @@
 using System.Threading.RateLimiting;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using SecureFlow.Web.Data;
+using SecureFlow.Web.Health;
 using SecureFlow.Web.Security;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -61,6 +64,10 @@ builder.Services.AddRateLimiter(options =>
 });
 
 builder.Services.AddScoped<ITicketAccessService, TicketAccessService>();
+builder.Services.AddSingleton<IFileUploadValidator, FileUploadValidator>();
+builder.Services.AddScoped<ISecurityAuditService, SecurityAuditService>();
+builder.Services.AddHealthChecks()
+    .AddCheck<DatabaseHealthCheck>("postgresql", tags: ["ready"]);
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -73,11 +80,27 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseMiddleware<SecurityHeadersMiddleware>();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseRateLimiter();
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapHealthChecks("/health/live", new HealthCheckOptions
+{
+    Predicate = _ => false
+});
+app.MapHealthChecks("/health/ready", new HealthCheckOptions
+{
+    Predicate = registration => registration.Tags.Contains("ready"),
+    ResultStatusCodes =
+    {
+        [HealthStatus.Healthy] = StatusCodes.Status200OK,
+        [HealthStatus.Degraded] = StatusCodes.Status503ServiceUnavailable,
+        [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
+    }
+});
 
 app.MapControllerRoute(
     name: "default",

@@ -2,31 +2,51 @@
 
 A local-first enterprise security engineering and assurance portfolio project covering secure application development, DevSecOps, application security testing, vulnerability management, detection engineering, governance and recovery.
 
-**Project status:** Phase 0 — Security design and repository foundation.
+**Project status:** Phase 1 — Secure application foundation completed.
 
 ## Intended workflow
 
 **Design → Build → Test → Assess → Remediate → Detect → Assure → Recover**
 
-## Planned capabilities
+## Implemented in Phase 1
 
-- ASP.NET Core application with PostgreSQL
-- Authentication, role-based access control and object-level authorisation
-- Secure file upload and structured audit logging
-- GitHub Actions security gates
-- SAST, SCA, secret, container, IaC and DAST scanning
-- Authorised Web/API security assessment
-- Vulnerability register, remediation PRs and retesting
-- Sigma and Microsoft Sentinel KQL examples
-- NIST CSF 2.0 and Essential Eight gap assessment
-- Backup, restore and application rollback exercises
+- ASP.NET Core 10 MVC application
+- PostgreSQL 17 and EF Core migrations
+- ASP.NET Core Identity with fictional local accounts
+- `Admin` and `User` role boundaries
+- Server-side ticket ownership authorisation
+- Protected file storage outside the web root
+- File extension, MIME and size validation
+- Structured security audit events and correlation identifiers
+- Login lockout, rate limiting and secure cookie configuration
+- Security response headers
+- Liveness and PostgreSQL readiness health checks
+- Automated negative authorisation and upload tests
+- Reproducible Docker Compose environment
+
+## Local start
+
+```bash
+./scripts/generate-local-secrets.sh
+docker compose --env-file .env -f infrastructure/docker/compose.yml up --build
+```
+
+Open `http://localhost:8080`.
+
+The setup generates local-only credentials for:
+
+- `admin@example.test`
+- `alice@example.test`
+- `bob@example.test`
+
+No passwords are committed.
 
 ## Repository map
 
-- `docs/` — scope, architecture, threat model and decisions
-- `src/` — application source code, added in Phase 1
+- `src/` — ASP.NET Core application
 - `tests/` — automated security and application tests
-- `security-assessment/` — scope, rules of engagement, findings and retests
+- `docs/` — scope, architecture, threat model, decisions and validation
+- `security-assessment/` — authorised test rules, findings and retests
 - `detections/` — Sigma and KQL detection content
 - `infrastructure/` — Docker and Terraform reference material
 - `governance/` — risk and control-assurance artefacts
@@ -35,7 +55,12 @@ A local-first enterprise security engineering and assurance portfolio project co
 
 ## Safety boundary
 
-All testing is restricted to project-owned local containers and deliberately created test fixtures. No public or third-party systems are in scope.
+All testing is restricted to project-owned local containers and deliberately created fictional data. No public or third-party systems are in scope.
+
+## Known limitations
+
+The compressed implementation uses local ASP.NET Core Identity. MFA, federation,
+automated access reviews and production cloud deployment are not claimed.
 
 ## Author
 
