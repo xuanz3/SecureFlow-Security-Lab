@@ -1,3 +1,7 @@
+@using Microsoft.AspNetCore.Identity
+@using SecureFlow.Web.Security
+@inject SignInManager<IdentityUser> SignInManager
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +14,23 @@
     <header>
         <nav>
             <a class="brand" asp-controller="Home" asp-action="Index">SecureFlow</a>
+            <div class="actions">
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <a asp-controller="Tickets" asp-action="Index">Tickets</a>
+                    @if (User.IsInRole(AppRoles.Admin))
+                    {
+                        <a asp-controller="Admin" asp-action="Index">Admin</a>
+                    }
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="button secondary">Sign out</button>
+                    </form>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Login">Sign in</a>
+                }
+            </div>
         </nav>
     </header>
     <main class="container">
