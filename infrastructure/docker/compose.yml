@@ -1,0 +1,44 @@
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: secureflow
+      POSTGRES_USER: secureflow
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - secureflow-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U secureflow -d secureflow"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+  app:
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=secureflow;Username=secureflow;Password=${POSTGRES_PASSWORD}
+      SeedUsers__AdminEmail: ${SEED_ADMIN_EMAIL}
+      SeedUsers__AdminPassword: ${SEED_ADMIN_PASSWORD}
+      SeedUsers__AliceEmail: ${SEED_ALICE_EMAIL}
+      SeedUsers__AlicePassword: ${SEED_ALICE_PASSWORD}
+      SeedUsers__BobEmail: ${SEED_BOB_EMAIL}
+      SeedUsers__BobPassword: ${SEED_BOB_PASSWORD}
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - secureflow-uploads:/app/App_Data/uploads
+
+volumes:
+  secureflow-postgres:
+  secureflow-uploads:
