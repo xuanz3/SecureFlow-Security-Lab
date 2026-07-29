@@ -1,0 +1,13 @@
+.git
+.github
+**/.DS_Store
+**/bin
+**/obj
+**/TestResults
+.env
+.env.*
+!.env.example
+*.user
+*.suo
+*.log
+SecureFlow-Day2-Workspace
