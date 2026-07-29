@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SecureFlow.Web.Data;
-using SecureFlow.Web.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,6 +48,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+await DbInitializer.InitializeAsync(app.Services, app.Configuration);
 
 if (!app.Environment.IsDevelopment())
 {
