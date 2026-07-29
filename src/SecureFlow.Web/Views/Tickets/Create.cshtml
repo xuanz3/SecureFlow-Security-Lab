@@ -1,0 +1,19 @@
+@model SecureFlow.Web.Models.Ticket
+@{
+    ViewData["Title"] = "Create ticket";
+}
+<h1>Create ticket</h1>
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label asp-for="Title"></label>
+        <input asp-for="Title" />
+        <span asp-validation-for="Title"></span>
+    </div>
+    <div>
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" rows="8"></textarea>
+        <span asp-validation-for="Description"></span>
+    </div>
+    <button type="submit">Create</button>
+</form>
