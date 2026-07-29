@@ -35,11 +35,11 @@ public sealed class TicketsController(
     }
 
     [HttpGet]
-    public IActionResult Create() => View(new Ticket());
+    public IActionResult Create() => View(new CreateTicketViewModel());
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(Ticket model)
+    public async Task<IActionResult> Create(CreateTicketViewModel model)
     {
         if (!ModelState.IsValid)
         {
