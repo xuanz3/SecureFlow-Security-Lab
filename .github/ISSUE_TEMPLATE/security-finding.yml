@@ -1,0 +1,23 @@
+name: Security finding
+about: Track validation, remediation and retesting of a finding
+title: "[Finding] "
+labels: []
+body:
+  - type: textarea
+    attributes:
+      label: Affected asset and evidence
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Risk and business impact
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Remediation acceptance criteria
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Retest method
