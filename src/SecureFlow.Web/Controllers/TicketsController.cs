@@ -14,8 +14,8 @@ public sealed class TicketsController(
     UserManager<IdentityUser> userManager,
     ITicketAccessService accessService,
     IFileUploadValidator fileValidator,
-    IWebHostEnvironment environment,
-    ILogger<TicketsController> logger) : Controller
+    ISecurityAuditService auditService,
+    IWebHostEnvironment environment) : Controller
 {
     public async Task<IActionResult> Index()
     {
@@ -57,11 +57,13 @@ public sealed class TicketsController(
         dbContext.Tickets.Add(ticket);
         await dbContext.SaveChangesAsync();
 
-        logger.LogInformation(
-            "SecurityAudit TicketCreated UserId={UserId} TicketId={TicketId} CorrelationId={CorrelationId}",
+        await auditService.RecordAsync(
+            HttpContext,
+            "TicketCreated",
+            "Success",
             userId,
-            ticket.Id,
-            HttpContext.TraceIdentifier);
+            "Ticket",
+            ticket.Id.ToString());
 
         return RedirectToAction(nameof(Details), new { id = ticket.Id });
     }
@@ -76,9 +78,10 @@ public sealed class TicketsController(
             return NotFound();
         }
 
-        if (!accessService.CanRead(ticket, RequireUserId(), User.IsInRole(AppRoles.Admin)))
+        var userId = RequireUserId();
+        if (!accessService.CanRead(ticket, userId, User.IsInRole(AppRoles.Admin)))
         {
-            LogAccessDenied(ticket.Id);
+            await RecordAccessDeniedAsync(userId, ticket.Id);
             return Forbid();
         }
 
@@ -104,13 +107,20 @@ public sealed class TicketsController(
         var userId = RequireUserId();
         if (!accessService.CanModify(ticket, userId, User.IsInRole(AppRoles.Admin)))
         {
-            LogAccessDenied(ticket.Id);
+            await RecordAccessDeniedAsync(userId, ticket.Id);
             return Forbid();
         }
 
         var validation = fileValidator.Validate(file.FileName, file.ContentType, file.Length);
         if (!validation.IsValid)
         {
+            await auditService.RecordAsync(
+                HttpContext,
+                "AttachmentUpload",
+                "Rejected",
+                userId,
+                "Ticket",
+                ticket.Id.ToString());
             TempData["UploadError"] = validation.Error;
             return RedirectToAction(nameof(Details), new { id });
         }
@@ -136,13 +146,13 @@ public sealed class TicketsController(
         });
         await dbContext.SaveChangesAsync();
 
-        logger.LogInformation(
-            "SecurityAudit AttachmentUploaded UserId={UserId} TicketId={TicketId} StoredName={StoredName} SizeBytes={SizeBytes} CorrelationId={CorrelationId}",
+        await auditService.RecordAsync(
+            HttpContext,
+            "AttachmentUpload",
+            "Success",
             userId,
-            ticket.Id,
-            storedName,
-            file.Length,
-            HttpContext.TraceIdentifier);
+            "Ticket",
+            ticket.Id.ToString());
 
         return RedirectToAction(nameof(Details), new { id });
     }
@@ -162,7 +172,7 @@ public sealed class TicketsController(
         var userId = RequireUserId();
         if (!accessService.CanRead(attachment.Ticket, userId, User.IsInRole(AppRoles.Admin)))
         {
-            LogAccessDenied(attachment.TicketId);
+            await RecordAccessDeniedAsync(userId, attachment.TicketId);
             return Forbid();
         }
 
@@ -177,12 +187,13 @@ public sealed class TicketsController(
             return NotFound();
         }
 
-        logger.LogInformation(
-            "SecurityAudit AttachmentDownloaded UserId={UserId} TicketId={TicketId} AttachmentId={AttachmentId} CorrelationId={CorrelationId}",
+        await auditService.RecordAsync(
+            HttpContext,
+            "AttachmentDownload",
+            "Success",
             userId,
-            attachment.TicketId,
-            attachment.Id,
-            HttpContext.TraceIdentifier);
+            "Attachment",
+            attachment.Id.ToString());
 
         return PhysicalFile(path, attachment.ContentType, attachment.OriginalName);
     }
@@ -191,10 +202,12 @@ public sealed class TicketsController(
         userManager.GetUserId(User)
         ?? throw new InvalidOperationException("Authenticated user identifier is unavailable.");
 
-    private void LogAccessDenied(Guid ticketId) =>
-        logger.LogWarning(
-            "SecurityAudit TicketAccessDenied UserId={UserId} TicketId={TicketId} CorrelationId={CorrelationId}",
-            userManager.GetUserId(User),
-            ticketId,
-            HttpContext.TraceIdentifier);
+    private Task RecordAccessDeniedAsync(string userId, Guid ticketId) =>
+        auditService.RecordAsync(
+            HttpContext,
+            "TicketAccess",
+            "Denied",
+            userId,
+            "Ticket",
+            ticketId.ToString());
 }

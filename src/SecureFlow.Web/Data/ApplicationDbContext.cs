@@ -9,6 +9,7 @@ public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> 
 {
     public DbSet<Ticket> Tickets => Set<Ticket>();
     public DbSet<TicketAttachment> TicketAttachments => Set<TicketAttachment>();
+    public DbSet<SecurityAuditEvent> SecurityAuditEvents => Set<SecurityAuditEvent>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -35,6 +36,13 @@ public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> 
                 .WithMany()
                 .HasForeignKey(attachment => attachment.TicketId)
                 .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        builder.Entity<SecurityAuditEvent>(entity =>
+        {
+            entity.HasKey(auditEvent => auditEvent.Id);
+            entity.HasIndex(auditEvent => auditEvent.OccurredAtUtc);
+            entity.HasIndex(auditEvent => new { auditEvent.EventType, auditEvent.Outcome });
         });
     }
 }

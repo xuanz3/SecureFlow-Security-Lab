@@ -3,13 +3,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using SecureFlow.Web.Models;
+using SecureFlow.Web.Security;
 
 namespace SecureFlow.Web.Controllers;
 
 public sealed class AccountController(
     SignInManager<IdentityUser> signInManager,
     UserManager<IdentityUser> userManager,
-    ILogger<AccountController> logger) : Controller
+    ISecurityAuditService auditService) : Controller
 {
     [AllowAnonymous]
     [HttpGet]
@@ -30,10 +31,11 @@ public sealed class AccountController(
         var user = await userManager.FindByEmailAsync(model.Email);
         if (user is null)
         {
-            logger.LogWarning(
-                "SecurityAudit LoginFailure EmailHash={EmailHash} CorrelationId={CorrelationId}",
-                model.Email.ToUpperInvariant().GetHashCode(),
-                HttpContext.TraceIdentifier);
+            await auditService.RecordAsync(
+                HttpContext,
+                "Login",
+                "Failure",
+                userId: null);
             ModelState.AddModelError(string.Empty, "Invalid sign-in attempt.");
             return View(model);
         }
@@ -46,19 +48,20 @@ public sealed class AccountController(
 
         if (!result.Succeeded)
         {
-            logger.LogWarning(
-                "SecurityAudit LoginFailure UserId={UserId} LockedOut={LockedOut} CorrelationId={CorrelationId}",
-                user.Id,
-                result.IsLockedOut,
-                HttpContext.TraceIdentifier);
+            await auditService.RecordAsync(
+                HttpContext,
+                "Login",
+                result.IsLockedOut ? "LockedOut" : "Failure",
+                user.Id);
             ModelState.AddModelError(string.Empty, "Invalid sign-in attempt.");
             return View(model);
         }
 
-        logger.LogInformation(
-            "SecurityAudit LoginSuccess UserId={UserId} CorrelationId={CorrelationId}",
-            user.Id,
-            HttpContext.TraceIdentifier);
+        await auditService.RecordAsync(
+            HttpContext,
+            "Login",
+            "Success",
+            user.Id);
 
         if (!string.IsNullOrWhiteSpace(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
         {
@@ -75,10 +78,11 @@ public sealed class AccountController(
     {
         var userId = userManager.GetUserId(User);
         await signInManager.SignOutAsync();
-        logger.LogInformation(
-            "SecurityAudit Logout UserId={UserId} CorrelationId={CorrelationId}",
-            userId,
-            HttpContext.TraceIdentifier);
+        await auditService.RecordAsync(
+            HttpContext,
+            "Logout",
+            "Success",
+            userId);
         return RedirectToAction("Index", "Home");
     }
 
