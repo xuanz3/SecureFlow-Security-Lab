@@ -1,0 +1,29 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+
+# Test and scan output
+TestResults/
+coverage/
+reports/generated/
+security-reports/generated/
+
+# Containers and local data
+.local/
+postgres-data/
+azurite-data/
