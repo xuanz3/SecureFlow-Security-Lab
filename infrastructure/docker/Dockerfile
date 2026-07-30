@@ -4,7 +4,8 @@ WORKDIR /src
 COPY SecureFlow.sln ./
 COPY Directory.Build.props ./
 COPY src/SecureFlow.Web/SecureFlow.Web.csproj src/SecureFlow.Web/
-RUN dotnet restore src/SecureFlow.Web/SecureFlow.Web.csproj
+COPY src/SecureFlow.Web/packages.lock.json src/SecureFlow.Web/
+RUN dotnet restore src/SecureFlow.Web/SecureFlow.Web.csproj --locked-mode
 
 COPY src/SecureFlow.Web/ src/SecureFlow.Web/
 RUN dotnet publish src/SecureFlow.Web/SecureFlow.Web.csproj \
