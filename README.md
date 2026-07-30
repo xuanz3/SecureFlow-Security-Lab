@@ -2,13 +2,13 @@
 
 A local-first enterprise security engineering and assurance portfolio project covering secure application development, DevSecOps, application security testing, vulnerability management, detection engineering, governance and recovery.
 
-**Project status:** Phase 2 — DevSecOps security gates implemented.
+**Project status:** Phase 3 — DevSecOps security gates implemented.
 
 ## Intended workflow
 
 **Design → Build → Test → Assess → Remediate → Detect → Assure → Recover**
 
-## Implemented in Phase 1
+## Implemented in Phase 2
 
 - ASP.NET Core 10 MVC application
 - PostgreSQL 17 and EF Core migrations
@@ -30,6 +30,19 @@ Pull requests run locked dependency restore, Release build and tests, Docker bui
 dependency review, CodeQL, Gitleaks, Trivy container/configuration scanning and an
 isolated OWASP ZAP baseline scan. Published releases produce versioned GHCR images,
 CycloneDX SBOM evidence and provenance attestations.
+
+## Delivery phases
+
+| Phase | Focus |
+|---|---|
+| Phase 1 | Security design and repository governance |
+| Phase 2 | Secure application foundation |
+| Phase 3 | DevSecOps automation and supply-chain assurance |
+| Phase 4 | Authorised security assessment |
+| Phase 5 | Remediation and detection engineering |
+| Phase 6 | Governance, recovery and final reporting |
+
+Detailed naming rules are recorded in `docs/PHASE_NUMBERING.md`.
 
 ## Local start
 

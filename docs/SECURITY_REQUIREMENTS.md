@@ -38,7 +38,7 @@
 - SR-19: A prior application image must be available for rollback.
 - SR-20: Recovery evidence must record actual results and limitations.
 
-## Minimum Phase 1 acceptance tests
+## Minimum Phase 2 acceptance tests
 
 1. Alice cannot retrieve Bob's ticket.
 2. A standard user cannot access an administrator endpoint.
