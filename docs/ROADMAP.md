@@ -1,7 +1,7 @@
-# six-phase Delivery Roadmap
+# Six-Phase Delivery Roadmap
 
-| Day | Phase | Primary output |
-|---|---|---|
+| Phase | Primary output |
+|---|---|
 | 1 | Security design | Repository, scope, architecture, threat model, ROE and backlog |
 | 2 | Secure application | ASP.NET Core, PostgreSQL, identity, RBAC, tickets, upload and audit |
 | 3 | DevSecOps | Tests, CodeQL, Gitleaks, Trivy, SBOM, ZAP and GHCR release |
