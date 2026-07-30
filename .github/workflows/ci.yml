@@ -1,0 +1,93 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-test:
+    name: Build and test
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          persist-credentials: false
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68
+        with:
+          dotnet-version: 10.0.302
+          cache: true
+          cache-dependency-path: |
+            src/**/packages.lock.json
+            tests/**/packages.lock.json
+
+      - name: Restore locked dependencies
+        run: dotnet restore SecureFlow.sln --locked-mode
+
+      - name: Build release configuration
+        run: dotnet build SecureFlow.sln --configuration Release --no-restore
+
+      - name: Run automated tests
+        run: |
+          dotnet test SecureFlow.sln \
+            --configuration Release \
+            --no-build \
+            --logger "trx;LogFileName=secureflow-tests.trx" \
+            --results-directory TestResults
+
+      - name: Audit NuGet dependencies
+        run: |
+          mkdir -p artifacts
+          dotnet list SecureFlow.sln package \
+            --vulnerable \
+            --include-transitive \
+            | tee artifacts/nuget-vulnerability-audit.txt
+
+      - name: Upload test and dependency evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: ci-test-and-dependency-evidence
+          path: |
+            TestResults/**
+            artifacts/nuget-vulnerability-audit.txt
+          if-no-files-found: warn
+          retention-days: 30
+
+  docker-build:
+    name: Docker build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          persist-credentials: false
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@bb05f3f5519dd87d3ba754cc423b652a5edd6d2c
+
+      - name: Build the application image
+        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a
+        with:
+          context: .
+          file: infrastructure/docker/Dockerfile
+          push: false
+          tags: secureflow:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
