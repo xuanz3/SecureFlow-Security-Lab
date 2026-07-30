@@ -2,7 +2,7 @@
 
 A local-first enterprise security engineering and assurance portfolio project covering secure application development, DevSecOps, application security testing, vulnerability management, detection engineering, governance and recovery.
 
-**Project status:** Phase 1 — Secure application foundation completed.
+**Project status:** Phase 2 — DevSecOps security gates implemented.
 
 ## Intended workflow
 
@@ -23,6 +23,13 @@ A local-first enterprise security engineering and assurance portfolio project co
 - Liveness and PostgreSQL readiness health checks
 - Automated negative authorisation and upload tests
 - Reproducible Docker Compose environment
+
+## DevSecOps automation
+
+Pull requests run locked dependency restore, Release build and tests, Docker build,
+dependency review, CodeQL, Gitleaks, Trivy container/configuration scanning and an
+isolated OWASP ZAP baseline scan. Published releases produce versioned GHCR images,
+CycloneDX SBOM evidence and provenance attestations.
 
 ## Local start
 
