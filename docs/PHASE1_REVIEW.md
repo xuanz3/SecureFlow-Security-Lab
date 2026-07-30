@@ -1,4 +1,4 @@
-# Day 1 Review
+# Phase 1 Review
 
 ## Completed
 
@@ -15,14 +15,14 @@
 ## GitHub evidence
 
 - Meaningful commit history retained from project creation
-- Two Phase 0 Pull Requests with focused commits
-- One completed Phase 0 Issue and structured future backlog
+- Two Phase 1 Pull Requests with focused commits
+- One completed Phase 1 Issue and structured future backlog
 - Foundation release marking the transition to implementation
 
 ## Next phase
 
-Phase 1 builds the smallest useful application surface: ASP.NET Core, PostgreSQL, authentication, role-based access, object-level authorisation, secure file handling and structured security logging.
+Phase 2 builds the smallest useful application surface: ASP.NET Core, PostgreSQL, authentication, role-based access, object-level authorisation, secure file handling and structured security logging.
 
 ## Known limitation
 
-No application code or measured security result is claimed at the end of Day 1. Those outcomes belong to later milestones.
+No application code or measured security result is claimed at the end of Phase 1. Those outcomes belong to later milestones.

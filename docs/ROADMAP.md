@@ -1,4 +1,4 @@
-# Six-Day Delivery Roadmap
+# six-phase Delivery Roadmap
 
 | Day | Phase | Primary output |
 |---|---|---|

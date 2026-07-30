@@ -22,7 +22,7 @@ This initial threat model applies STRIDE to the local-first ticket application, 
 ## Assumptions
 
 - All identities and records are synthetic.
-- The application is not publicly hosted during the six-day project.
+- The application is not publicly hosted during the six-phase project.
 - Availability tests must remain low-volume and non-destructive.
 - KQL content will be documented as portable examples unless validated in Sentinel.
 

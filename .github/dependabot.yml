@@ -18,7 +18,7 @@ updates:
           - patch
     labels:
       - dependencies
-      - phase-2
+      - phase-3
 
   - package-ecosystem: github-actions
     directory: /
@@ -30,7 +30,7 @@ updates:
     open-pull-requests-limit: 5
     labels:
       - dependencies
-      - phase-2
+      - phase-3
 
   - package-ecosystem: docker
     directory: /infrastructure/docker
@@ -42,4 +42,4 @@ updates:
     open-pull-requests-limit: 5
     labels:
       - dependencies
-      - phase-2
+      - phase-3

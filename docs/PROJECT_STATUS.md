@@ -2,11 +2,11 @@
 
 ## Current phase
 
-**Phase 2 — DevSecOps security gates complete**
+**Phase 3 — DevSecOps security gates complete**
 
 ## Completed
 
-- Phase 0 repository governance, architecture, threat model and security requirements
+- Phase 1 repository governance, architecture, threat model and security requirements
 - ASP.NET Core 10 application and PostgreSQL persistence
 - Fictional development identities, authentication and role model
 - Ticket ownership and administrator authorisation
@@ -15,7 +15,7 @@
 - Negative unit tests for authorisation and upload controls
 - Local Docker Compose environment and development documentation
 
-## Phase 2 controls
+## Phase 3 controls
 
 - Locked NuGet restore and automated Release build/test
 - Dependency review and Dependabot
@@ -28,12 +28,12 @@
 
 ## Next phase
 
-Phase 3 executes the authorised application-security assessment, vulnerability
+Phase 4 executes the authorised application-security assessment, vulnerability
 register, manual authorisation tests, IaC review and network exposure analysis.
 
 ## Limitations
 
 - Local ASP.NET Core Identity is used instead of a production identity provider.
-- MFA and federated SSO are not implemented in the six-day compressed scope.
+- MFA and federated SSO are not implemented in the six-phase compressed scope.
 - Security testing remains restricted to project-owned local containers.
-- Phase 1 validation evidence must reflect actual local results, not assumed outcomes.
+- Phase 2 validation evidence must reflect actual local results, not assumed outcomes.

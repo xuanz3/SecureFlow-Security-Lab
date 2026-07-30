@@ -1,4 +1,4 @@
-# Phase 0 Acceptance Record
+# Phase 1 Acceptance Record
 
 ## Accepted foundation
 
@@ -17,4 +17,4 @@ The project does not require additional Azure virtual machines, paid security pr
 
 ## Acceptance decision
 
-Phase 0 is accepted as the foundation for Phase 1 implementation. Technical metrics will only be reported after they are measured in the stated environment.
+Phase 1 is accepted as the foundation for Phase 2 implementation. Technical metrics will only be reported after they are measured in the stated environment.

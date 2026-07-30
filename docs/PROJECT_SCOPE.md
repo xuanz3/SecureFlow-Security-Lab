@@ -36,7 +36,7 @@ The reference application models a small internal ticket-management service. Sta
 - No additional Azure virtual machines
 - Local-first execution on a personal Mac
 - Free and open-source tools wherever possible
-- One six-day implementation cycle
+- One six-phase implementation cycle
 - Documentation and evidence must be reproducible and safe to publish
 
 ## Success definition

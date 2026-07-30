@@ -1,4 +1,4 @@
-# Day 3 Archived Workflow Artifacts
+# Phase 3 Archived Workflow Artifacts
 
 - `container-security-evidence.zip`
   - Source workflow run: 30552242061
