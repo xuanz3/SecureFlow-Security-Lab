@@ -54,6 +54,7 @@ jobs:
         run: |
           set -euo pipefail
           for attempt in {1..90}; do
+            echo "Readiness probe ${attempt}/90"
             if curl --fail --silent http://localhost:8080/health/ready >/dev/null; then
               exit 0
             fi
