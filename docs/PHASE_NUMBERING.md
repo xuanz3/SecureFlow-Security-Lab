@@ -20,4 +20,4 @@ Future work continues with Phase 7, Phase 8 and subsequent sequential numbers.
 - Use `phase-N` in branch names and labels.
 - Use `phaseN` for evidence directories.
 - Use `PN-XX` for screenshot evidence identifiers.
-- Do not use calendar-day labels as delivery stages.
+- Use only sequential phase labels for delivery stages.

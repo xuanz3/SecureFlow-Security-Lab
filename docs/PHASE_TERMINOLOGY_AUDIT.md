@@ -1,6 +1,6 @@
 # Phase Terminology Audit
 
-SecureFlow uses sequential delivery phases rather than calendar-day labels.
+SecureFlow uses sequential delivery phases for every project stage.
 
 ## Canonical sequence
 
