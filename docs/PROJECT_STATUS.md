@@ -2,7 +2,7 @@
 
 ## Current phase
 
-**Phase 1 — Secure application foundation complete**
+**Phase 2 — DevSecOps security gates complete**
 
 ## Completed
 
@@ -15,10 +15,21 @@
 - Negative unit tests for authorisation and upload controls
 - Local Docker Compose environment and development documentation
 
+## Phase 2 controls
+
+- Locked NuGet restore and automated Release build/test
+- Dependency review and Dependabot
+- CodeQL security-extended C# analysis
+- Full-history Gitleaks scanning
+- Trivy container and configuration analysis
+- CycloneDX SBOM generation
+- Isolated OWASP ZAP baseline DAST
+- Versioned GHCR publication with provenance
+
 ## Next phase
 
-Phase 2 adds GitHub Actions build/test gates, CodeQL, Gitleaks, dependency checks,
-Trivy, SBOM generation, OWASP ZAP and GHCR publishing.
+Phase 3 executes the authorised application-security assessment, vulnerability
+register, manual authorisation tests, IaC review and network exposure analysis.
 
 ## Limitations
 
