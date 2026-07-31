@@ -63,6 +63,7 @@ jobs:
           format: sarif
           output: artifacts/trivy-config.sarif
           severity: HIGH,CRITICAL
+          skip-dirs: infrastructure/terraform/azure/insecure-fixture
           exit-code: "0"
 
       - name: Upload image findings to code scanning

@@ -1,0 +1,9 @@
+# Nmap 7.99 scan initiated Sat Aug  1 01:24:04 2026 as: nmap -sT -Pn -p 5432,8080 -oN /Users/moyan/SecureFlow-Workspace/SecureFlow-Security-Lab/evidence/archive/artifacts/phase4/nmap-loopback.txt -oX /Users/moyan/SecureFlow-Workspace/SecureFlow-Security-Lab/evidence/archive/artifacts/phase4/nmap-loopback.xml 127.0.0.1
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00011s latency).
+
+PORT     STATE SERVICE
+5432/tcp open  postgresql
+8080/tcp open  http-proxy
+
+# Nmap done at Sat Aug  1 01:24:04 2026 -- 1 IP address (1 host up) scanned in 0.02 seconds

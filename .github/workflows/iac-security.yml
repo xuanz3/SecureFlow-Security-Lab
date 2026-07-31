@@ -1,0 +1,91 @@
+name: IaC Security
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: iac-security-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checkov:
+    name: Checkov Azure Terraform
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          persist-credentials: false
+
+      - name: Create artifact directory
+        run: mkdir -p artifacts
+
+      - name: Scan the secure reference
+        shell: bash
+        run: |
+          docker run --rm \
+            --volume "$PWD:/repo:ro" \
+            bridgecrew/checkov@sha256:c64ffb6d6fc8087c896341a2c697770a04a1cf558db04fa7b8129d8ca6bce336 \
+            --directory /repo/infrastructure/terraform/azure/reference \
+            --framework terraform \
+            --output json \
+            --skip-download \
+            --soft-fail \
+            > artifacts/checkov-reference.json
+
+      - name: Verify the insecure fixture is detected
+        shell: bash
+        run: |
+          set +e
+          docker run --rm \
+            --volume "$PWD:/repo:ro" \
+            bridgecrew/checkov@sha256:c64ffb6d6fc8087c896341a2c697770a04a1cf558db04fa7b8129d8ca6bce336 \
+            --directory /repo/infrastructure/terraform/azure/insecure-fixture \
+            --framework terraform \
+            --output json \
+            --skip-download \
+            > artifacts/checkov-insecure-fixture.json
+          scan_status=$?
+          set -e
+
+          if [ "$scan_status" -eq 0 ]; then
+            echo "The deliberately insecure fixture unexpectedly passed."
+            exit 1
+          fi
+
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          document = json.loads(
+              Path("artifacts/checkov-insecure-fixture.json").read_text()
+          )
+          runners = document if isinstance(document, list) else [document]
+          failures = sum(
+              len(runner.get("results", {}).get("failed_checks", []) or [])
+              for runner in runners
+          )
+          if failures < 1:
+              raise SystemExit("No failed Checkov checks were recorded.")
+          print("Expected fixture findings:", failures)
+          PY
+
+      - name: Upload IaC assessment evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: phase4-checkov-evidence
+          path: |
+            artifacts/checkov-reference.json
+            artifacts/checkov-insecure-fixture.json
+          if-no-files-found: error
+          retention-days: 30

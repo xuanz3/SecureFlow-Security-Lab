@@ -1,0 +1,4702 @@
+{
+    "check_type": "terraform",
+    "results": {
+        "passed_checks": [
+            {
+                "check_id": "CKV_AZURE_36",
+                "bc_check_id": null,
+                "check_name": "Ensure 'Trusted Microsoft Services' is enabled for Storage Account access",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "network_rules/[0]/bypass"
+                    ]
+                },
+                "code_block": [
+                    [
+                        12,
+                        "resource \"azurerm_storage_account\" \"evidence\" {\n"
+                    ],
+                    [
+                        13,
+                        "  name                            = var.storage_account_name\n"
+                    ],
+                    [
+                        14,
+                        "  resource_group_name             = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        15,
+                        "  location                        = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        16,
+                        "  account_tier                    = \"Standard\"\n"
+                    ],
+                    [
+                        17,
+                        "  account_replication_type        = \"GRS\"\n"
+                    ],
+                    [
+                        18,
+                        "  min_tls_version                 = \"TLS1_2\"\n"
+                    ],
+                    [
+                        19,
+                        "  allow_nested_items_to_be_public = false\n"
+                    ],
+                    [
+                        20,
+                        "  public_network_access_enabled   = false\n"
+                    ],
+                    [
+                        21,
+                        "  shared_access_key_enabled       = false\n"
+                    ],
+                    [
+                        22,
+                        "  infrastructure_encryption_enabled = true\n"
+                    ],
+                    [
+                        23,
+                        "  cross_tenant_replication_enabled  = false\n"
+                    ],
+                    [
+                        24,
+                        "  local_user_enabled                = false\n"
+                    ],
+                    [
+                        25,
+                        "\n"
+                    ],
+                    [
+                        26,
+                        "  blob_properties {\n"
+                    ],
+                    [
+                        27,
+                        "    versioning_enabled = true\n"
+                    ],
+                    [
+                        28,
+                        "\n"
+                    ],
+                    [
+                        29,
+                        "    delete_retention_policy {\n"
+                    ],
+                    [
+                        30,
+                        "      days = 30\n"
+                    ],
+                    [
+                        31,
+                        "    }\n"
+                    ],
+                    [
+                        32,
+                        "\n"
+                    ],
+                    [
+                        33,
+                        "    container_delete_retention_policy {\n"
+                    ],
+                    [
+                        34,
+                        "      days = 30\n"
+                    ],
+                    [
+                        35,
+                        "    }\n"
+                    ],
+                    [
+                        36,
+                        "  }\n"
+                    ],
+                    [
+                        37,
+                        "\n"
+                    ],
+                    [
+                        38,
+                        "  network_rules {\n"
+                    ],
+                    [
+                        39,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        40,
+                        "    bypass         = [\"AzureServices\"]\n"
+                    ],
+                    [
+                        41,
+                        "  }\n"
+                    ],
+                    [
+                        42,
+                        "\n"
+                    ],
+                    [
+                        43,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        44,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    12,
+                    44
+                ],
+                "resource": "azurerm_storage_account.evidence",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.StorageAccountAzureServicesAccessEnabled",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AZURE_206",
+                "bc_check_id": null,
+                "check_name": "Ensure that Storage Accounts use replication",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "account_replication_type"
+                    ]
+                },
+                "code_block": [
+                    [
+                        12,
+                        "resource \"azurerm_storage_account\" \"evidence\" {\n"
+                    ],
+                    [
+                        13,
+                        "  name                            = var.storage_account_name\n"
+                    ],
+                    [
+                        14,
+                        "  resource_group_name             = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        15,
+                        "  location                        = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        16,
+                        "  account_tier                    = \"Standard\"\n"
+                    ],
+                    [
+                        17,
+                        "  account_replication_type        = \"GRS\"\n"
+                    ],
+                    [
+                        18,
+                        "  min_tls_version                 = \"TLS1_2\"\n"
+                    ],
+                    [
+                        19,
+                        "  allow_nested_items_to_be_public = false\n"
+                    ],
+                    [
+                        20,
+                        "  public_network_access_enabled   = false\n"
+                    ],
+                    [
+                        21,
+                        "  shared_access_key_enabled       = false\n"
+                    ],
+                    [
+                        22,
+                        "  infrastructure_encryption_enabled = true\n"
+                    ],
+                    [
+                        23,
+                        "  cross_tenant_replication_enabled  = false\n"
+                    ],
+                    [
+                        24,
+                        "  local_user_enabled                = false\n"
+                    ],
+                    [
+                        25,
+                        "\n"
+                    ],
+                    [
+                        26,
+                        "  blob_properties {\n"
+                    ],
+                    [
+                        27,
+                        "    versioning_enabled = true\n"
+                    ],
+                    [
+                        28,
+                        "\n"
+                    ],
+                    [
+                        29,
+                        "    delete_retention_policy {\n"
+                    ],
+                    [
+                        30,
+                        "      days = 30\n"
+                    ],
+                    [
+                        31,
+                        "    }\n"
+                    ],
+                    [
+                        32,
+                        "\n"
+                    ],
+                    [
+                        33,
+                        "    container_delete_retention_policy {\n"
+                    ],
+                    [
+                        34,
+                        "      days = 30\n"
+                    ],
+                    [
+                        35,
+                        "    }\n"
+                    ],
+                    [
+                        36,
+                        "  }\n"
+                    ],
+                    [
+                        37,
+                        "\n"
+                    ],
+                    [
+                        38,
+                        "  network_rules {\n"
+                    ],
+                    [
+                        39,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        40,
+                        "    bypass         = [\"AzureServices\"]\n"
+                    ],
+                    [
+                        41,
+                        "  }\n"
+                    ],
+                    [
+                        42,
+                        "\n"
+                    ],
+                    [
+                        43,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        44,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    12,
+                    44
+                ],
+                "resource": "azurerm_storage_account.evidence",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.StorageAccountsUseReplication",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AZURE_190",
+                "bc_check_id": null,
+                "check_name": "Ensure that Storage blobs restrict public access",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "allow_nested_items_to_be_public"
+                    ]
+                },
+                "code_block": [
+                    [
+                        12,
+                        "resource \"azurerm_storage_account\" \"evidence\" {\n"
+                    ],
+                    [
+                        13,
+                        "  name                            = var.storage_account_name\n"
+                    ],
+                    [
+                        14,
+                        "  resource_group_name             = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        15,
+                        "  location                        = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        16,
+                        "  account_tier                    = \"Standard\"\n"
+                    ],
+                    [
+                        17,
+                        "  account_replication_type        = \"GRS\"\n"
+                    ],
+                    [
+                        18,
+                        "  min_tls_version                 = \"TLS1_2\"\n"
+                    ],
+                    [
+                        19,
+                        "  allow_nested_items_to_be_public = false\n"
+                    ],
+                    [
+                        20,
+                        "  public_network_access_enabled   = false\n"
+                    ],
+                    [
+                        21,
+                        "  shared_access_key_enabled       = false\n"
+                    ],
+                    [
+                        22,
+                        "  infrastructure_encryption_enabled = true\n"
+                    ],
+                    [
+                        23,
+                        "  cross_tenant_replication_enabled  = false\n"
+                    ],
+                    [
+                        24,
+                        "  local_user_enabled                = false\n"
+                    ],
+                    [
+                        25,
+                        "\n"
+                    ],
+                    [
+                        26,
+                        "  blob_properties {\n"
+                    ],
+                    [
+                        27,
+                        "    versioning_enabled = true\n"
+                    ],
+                    [
+                        28,
+                        "\n"
+                    ],
+                    [
+                        29,
+                        "    delete_retention_policy {\n"
+                    ],
+                    [
+                        30,
+                        "      days = 30\n"
+                    ],
+                    [
+                        31,
+                        "    }\n"
+                    ],
+                    [
+                        32,
+                        "\n"
+                    ],
+                    [
+                        33,
+                        "    container_delete_retention_policy {\n"
+                    ],
+                    [
+                        34,
+                        "      days = 30\n"
+                    ],
+                    [
+                        35,
+                        "    }\n"
+                    ],
+                    [
+                        36,
+                        "  }\n"
+                    ],
+                    [
+                        37,
+                        "\n"
+                    ],
+                    [
+                        38,
+                        "  network_rules {\n"
+                    ],
+                    [
+                        39,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        40,
+                        "    bypass         = [\"AzureServices\"]\n"
+                    ],
+                    [
+                        41,
+                        "  }\n"
+                    ],
+                    [
+                        42,
+                        "\n"
+                    ],
+                    [
+                        43,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        44,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    12,
+                    44
+                ],
+                "resource": "azurerm_storage_account.evidence",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.StorageBlobRestrictPublicAccess",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AZURE_59",
+                "bc_check_id": null,
+                "check_name": "Ensure that Storage accounts disallow public access",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "public_network_access_enabled"
+                    ]
+                },
+                "code_block": [
+                    [
+                        12,
+                        "resource \"azurerm_storage_account\" \"evidence\" {\n"
+                    ],
+                    [
+                        13,
+                        "  name                            = var.storage_account_name\n"
+                    ],
+                    [
+                        14,
+                        "  resource_group_name             = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        15,
+                        "  location                        = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        16,
+                        "  account_tier                    = \"Standard\"\n"
+                    ],
+                    [
+                        17,
+                        "  account_replication_type        = \"GRS\"\n"
+                    ],
+                    [
+                        18,
+                        "  min_tls_version                 = \"TLS1_2\"\n"
+                    ],
+                    [
+                        19,
+                        "  allow_nested_items_to_be_public = false\n"
+                    ],
+                    [
+                        20,
+                        "  public_network_access_enabled   = false\n"
+                    ],
+                    [
+                        21,
+                        "  shared_access_key_enabled       = false\n"
+                    ],
+                    [
+                        22,
+                        "  infrastructure_encryption_enabled = true\n"
+                    ],
+                    [
+                        23,
+                        "  cross_tenant_replication_enabled  = false\n"
+                    ],
+                    [
+                        24,
+                        "  local_user_enabled                = false\n"
+                    ],
+                    [
+                        25,
+                        "\n"
+                    ],
+                    [
+                        26,
+                        "  blob_properties {\n"
+                    ],
+                    [
+                        27,
+                        "    versioning_enabled = true\n"
+                    ],
+                    [
+                        28,
+                        "\n"
+                    ],
+                    [
+                        29,
+                        "    delete_retention_policy {\n"
+                    ],
+                    [
+                        30,
+                        "      days = 30\n"
+                    ],
+                    [
+                        31,
+                        "    }\n"
+                    ],
+                    [
+                        32,
+                        "\n"
+                    ],
+                    [
+                        33,
+                        "    container_delete_retention_policy {\n"
+                    ],
+                    [
+                        34,
+                        "      days = 30\n"
+                    ],
+                    [
+                        35,
+                        "    }\n"
+                    ],
+                    [
+                        36,
+                        "  }\n"
+                    ],
+                    [
+                        37,
+                        "\n"
+                    ],
+                    [
+                        38,
+                        "  network_rules {\n"
+                    ],
+                    [
+                        39,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        40,
+                        "    bypass         = [\"AzureServices\"]\n"
+                    ],
+                    [
+                        41,
+                        "  }\n"
+                    ],
+                    [
+                        42,
+                        "\n"
+                    ],
+                    [
+                        43,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        44,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    12,
+                    44
+                ],
+                "resource": "azurerm_storage_account.evidence",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.StorageAccountDisablePublicAccess",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AZURE_3",
+                "bc_check_id": null,
+                "check_name": "Ensure that 'enable_https_traffic_only' is enabled",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "enable_https_traffic_only"
+                    ]
+                },
+                "code_block": [
+                    [
+                        12,
+                        "resource \"azurerm_storage_account\" \"evidence\" {\n"
+                    ],
+                    [
+                        13,
+                        "  name                            = var.storage_account_name\n"
+                    ],
+                    [
+                        14,
+                        "  resource_group_name             = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        15,
+                        "  location                        = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        16,
+                        "  account_tier                    = \"Standard\"\n"
+                    ],
+                    [
+                        17,
+                        "  account_replication_type        = \"GRS\"\n"
+                    ],
+                    [
+                        18,
+                        "  min_tls_version                 = \"TLS1_2\"\n"
+                    ],
+                    [
+                        19,
+                        "  allow_nested_items_to_be_public = false\n"
+                    ],
+                    [
+                        20,
+                        "  public_network_access_enabled   = false\n"
+                    ],
+                    [
+                        21,
+                        "  shared_access_key_enabled       = false\n"
+                    ],
+                    [
+                        22,
+                        "  infrastructure_encryption_enabled = true\n"
+                    ],
+                    [
+                        23,
+                        "  cross_tenant_replication_enabled  = false\n"
+                    ],
+                    [
+                        24,
+                        "  local_user_enabled                = false\n"
+                    ],
+                    [
+                        25,
+                        "\n"
+                    ],
+                    [
+                        26,
+                        "  blob_properties {\n"
+                    ],
+                    [
+                        27,
+                        "    versioning_enabled = true\n"
+                    ],
+                    [
+                        28,
+                        "\n"
+                    ],
+                    [
+                        29,
+                        "    delete_retention_policy {\n"
+                    ],
+                    [
+                        30,
+                        "      days = 30\n"
+                    ],
+                    [
+                        31,
+                        "    }\n"
+                    ],
+                    [
+                        32,
+                        "\n"
+                    ],
+                    [
+                        33,
+                        "    container_delete_retention_policy {\n"
+                    ],
+                    [
+                        34,
+                        "      days = 30\n"
+                    ],
+                    [
+                        35,
+                        "    }\n"
+                    ],
+                    [
+                        36,
+                        "  }\n"
+                    ],
+                    [
+                        37,
+                        "\n"
+                    ],
+                    [
+                        38,
+                        "  network_rules {\n"
+                    ],
+                    [
+                        39,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        40,
+                        "    bypass         = [\"AzureServices\"]\n"
+                    ],
+                    [
+                        41,
+                        "  }\n"
+                    ],
+                    [
+                        42,
+                        "\n"
+                    ],
+                    [
+                        43,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        44,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    12,
+                    44
+                ],
+                "resource": "azurerm_storage_account.evidence",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.StorageAccountsTransportEncryption",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AZURE_35",
+                "bc_check_id": null,
+                "check_name": "Ensure default network access rule for Storage Accounts is set to deny",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "network_rules/[0]/default_action"
+                    ]
+                },
+                "code_block": [
+                    [
+                        12,
+                        "resource \"azurerm_storage_account\" \"evidence\" {\n"
+                    ],
+                    [
+                        13,
+                        "  name                            = var.storage_account_name\n"
+                    ],
+                    [
+                        14,
+                        "  resource_group_name             = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        15,
+                        "  location                        = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        16,
+                        "  account_tier                    = \"Standard\"\n"
+                    ],
+                    [
+                        17,
+                        "  account_replication_type        = \"GRS\"\n"
+                    ],
+                    [
+                        18,
+                        "  min_tls_version                 = \"TLS1_2\"\n"
+                    ],
+                    [
+                        19,
+                        "  allow_nested_items_to_be_public = false\n"
+                    ],
+                    [
+                        20,
+                        "  public_network_access_enabled   = false\n"
+                    ],
+                    [
+                        21,
+                        "  shared_access_key_enabled       = false\n"
+                    ],
+                    [
+                        22,
+                        "  infrastructure_encryption_enabled = true\n"
+                    ],
+                    [
+                        23,
+                        "  cross_tenant_replication_enabled  = false\n"
+                    ],
+                    [
+                        24,
+                        "  local_user_enabled                = false\n"
+                    ],
+                    [
+                        25,
+                        "\n"
+                    ],
+                    [
+                        26,
+                        "  blob_properties {\n"
+                    ],
+                    [
+                        27,
+                        "    versioning_enabled = true\n"
+                    ],
+                    [
+                        28,
+                        "\n"
+                    ],
+                    [
+                        29,
+                        "    delete_retention_policy {\n"
+                    ],
+                    [
+                        30,
+                        "      days = 30\n"
+                    ],
+                    [
+                        31,
+                        "    }\n"
+                    ],
+                    [
+                        32,
+                        "\n"
+                    ],
+                    [
+                        33,
+                        "    container_delete_retention_policy {\n"
+                    ],
+                    [
+                        34,
+                        "      days = 30\n"
+                    ],
+                    [
+                        35,
+                        "    }\n"
+                    ],
+                    [
+                        36,
+                        "  }\n"
+                    ],
+                    [
+                        37,
+                        "\n"
+                    ],
+                    [
+                        38,
+                        "  network_rules {\n"
+                    ],
+                    [
+                        39,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        40,
+                        "    bypass         = [\"AzureServices\"]\n"
+                    ],
+                    [
+                        41,
+                        "  }\n"
+                    ],
+                    [
+                        42,
+                        "\n"
+                    ],
+                    [
+                        43,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        44,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    12,
+                    44
+                ],
+                "resource": "azurerm_storage_account.evidence",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.StorageAccountDefaultNetworkAccessDeny",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AZURE_44",
+                "bc_check_id": null,
+                "check_name": "Ensure Storage Account is using the latest version of TLS encryption",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "min_tls_version"
+                    ]
+                },
+                "code_block": [
+                    [
+                        12,
+                        "resource \"azurerm_storage_account\" \"evidence\" {\n"
+                    ],
+                    [
+                        13,
+                        "  name                            = var.storage_account_name\n"
+                    ],
+                    [
+                        14,
+                        "  resource_group_name             = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        15,
+                        "  location                        = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        16,
+                        "  account_tier                    = \"Standard\"\n"
+                    ],
+                    [
+                        17,
+                        "  account_replication_type        = \"GRS\"\n"
+                    ],
+                    [
+                        18,
+                        "  min_tls_version                 = \"TLS1_2\"\n"
+                    ],
+                    [
+                        19,
+                        "  allow_nested_items_to_be_public = false\n"
+                    ],
+                    [
+                        20,
+                        "  public_network_access_enabled   = false\n"
+                    ],
+                    [
+                        21,
+                        "  shared_access_key_enabled       = false\n"
+                    ],
+                    [
+                        22,
+                        "  infrastructure_encryption_enabled = true\n"
+                    ],
+                    [
+                        23,
+                        "  cross_tenant_replication_enabled  = false\n"
+                    ],
+                    [
+                        24,
+                        "  local_user_enabled                = false\n"
+                    ],
+                    [
+                        25,
+                        "\n"
+                    ],
+                    [
+                        26,
+                        "  blob_properties {\n"
+                    ],
+                    [
+                        27,
+                        "    versioning_enabled = true\n"
+                    ],
+                    [
+                        28,
+                        "\n"
+                    ],
+                    [
+                        29,
+                        "    delete_retention_policy {\n"
+                    ],
+                    [
+                        30,
+                        "      days = 30\n"
+                    ],
+                    [
+                        31,
+                        "    }\n"
+                    ],
+                    [
+                        32,
+                        "\n"
+                    ],
+                    [
+                        33,
+                        "    container_delete_retention_policy {\n"
+                    ],
+                    [
+                        34,
+                        "      days = 30\n"
+                    ],
+                    [
+                        35,
+                        "    }\n"
+                    ],
+                    [
+                        36,
+                        "  }\n"
+                    ],
+                    [
+                        37,
+                        "\n"
+                    ],
+                    [
+                        38,
+                        "  network_rules {\n"
+                    ],
+                    [
+                        39,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        40,
+                        "    bypass         = [\"AzureServices\"]\n"
+                    ],
+                    [
+                        41,
+                        "  }\n"
+                    ],
+                    [
+                        42,
+                        "\n"
+                    ],
+                    [
+                        43,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        44,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    12,
+                    44
+                ],
+                "resource": "azurerm_storage_account.evidence",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.StorageAccountMinimumTlsVersion",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AZURE_244",
+                "bc_check_id": null,
+                "check_name": "Avoid the use of local users for Azure Storage unless necessary",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "local_user_enabled"
+                    ]
+                },
+                "code_block": [
+                    [
+                        12,
+                        "resource \"azurerm_storage_account\" \"evidence\" {\n"
+                    ],
+                    [
+                        13,
+                        "  name                            = var.storage_account_name\n"
+                    ],
+                    [
+                        14,
+                        "  resource_group_name             = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        15,
+                        "  location                        = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        16,
+                        "  account_tier                    = \"Standard\"\n"
+                    ],
+                    [
+                        17,
+                        "  account_replication_type        = \"GRS\"\n"
+                    ],
+                    [
+                        18,
+                        "  min_tls_version                 = \"TLS1_2\"\n"
+                    ],
+                    [
+                        19,
+                        "  allow_nested_items_to_be_public = false\n"
+                    ],
+                    [
+                        20,
+                        "  public_network_access_enabled   = false\n"
+                    ],
+                    [
+                        21,
+                        "  shared_access_key_enabled       = false\n"
+                    ],
+                    [
+                        22,
+                        "  infrastructure_encryption_enabled = true\n"
+                    ],
+                    [
+                        23,
+                        "  cross_tenant_replication_enabled  = false\n"
+                    ],
+                    [
+                        24,
+                        "  local_user_enabled                = false\n"
+                    ],
+                    [
+                        25,
+                        "\n"
+                    ],
+                    [
+                        26,
+                        "  blob_properties {\n"
+                    ],
+                    [
+                        27,
+                        "    versioning_enabled = true\n"
+                    ],
+                    [
+                        28,
+                        "\n"
+                    ],
+                    [
+                        29,
+                        "    delete_retention_policy {\n"
+                    ],
+                    [
+                        30,
+                        "      days = 30\n"
+                    ],
+                    [
+                        31,
+                        "    }\n"
+                    ],
+                    [
+                        32,
+                        "\n"
+                    ],
+                    [
+                        33,
+                        "    container_delete_retention_policy {\n"
+                    ],
+                    [
+                        34,
+                        "      days = 30\n"
+                    ],
+                    [
+                        35,
+                        "    }\n"
+                    ],
+                    [
+                        36,
+                        "  }\n"
+                    ],
+                    [
+                        37,
+                        "\n"
+                    ],
+                    [
+                        38,
+                        "  network_rules {\n"
+                    ],
+                    [
+                        39,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        40,
+                        "    bypass         = [\"AzureServices\"]\n"
+                    ],
+                    [
+                        41,
+                        "  }\n"
+                    ],
+                    [
+                        42,
+                        "\n"
+                    ],
+                    [
+                        43,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        44,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    12,
+                    44
+                ],
+                "resource": "azurerm_storage_account.evidence",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.StorageLocalUsers",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AZURE_111",
+                "bc_check_id": null,
+                "check_name": "Ensure that key vault enables soft delete",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "soft_delete_enabled"
+                    ]
+                },
+                "code_block": [
+                    [
+                        46,
+                        "resource \"azurerm_key_vault\" \"reference\" {\n"
+                    ],
+                    [
+                        47,
+                        "  name                          = var.key_vault_name\n"
+                    ],
+                    [
+                        48,
+                        "  location                      = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        49,
+                        "  resource_group_name           = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        50,
+                        "  tenant_id                     = var.tenant_id\n"
+                    ],
+                    [
+                        51,
+                        "  sku_name                      = \"standard\"\n"
+                    ],
+                    [
+                        52,
+                        "  enable_rbac_authorization     = true\n"
+                    ],
+                    [
+                        53,
+                        "  purge_protection_enabled      = true\n"
+                    ],
+                    [
+                        54,
+                        "  soft_delete_retention_days    = 90\n"
+                    ],
+                    [
+                        55,
+                        "  public_network_access_enabled = false\n"
+                    ],
+                    [
+                        56,
+                        "\n"
+                    ],
+                    [
+                        57,
+                        "  network_acls {\n"
+                    ],
+                    [
+                        58,
+                        "    bypass         = \"AzureServices\"\n"
+                    ],
+                    [
+                        59,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        60,
+                        "  }\n"
+                    ],
+                    [
+                        61,
+                        "\n"
+                    ],
+                    [
+                        62,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        63,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    46,
+                    63
+                ],
+                "resource": "azurerm_key_vault.reference",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.KeyVaultEnablesSoftDelete",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AZURE_109",
+                "bc_check_id": null,
+                "check_name": "Ensure that key vault allows firewall rules settings",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "network_acls/[0]/default_action"
+                    ]
+                },
+                "code_block": [
+                    [
+                        46,
+                        "resource \"azurerm_key_vault\" \"reference\" {\n"
+                    ],
+                    [
+                        47,
+                        "  name                          = var.key_vault_name\n"
+                    ],
+                    [
+                        48,
+                        "  location                      = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        49,
+                        "  resource_group_name           = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        50,
+                        "  tenant_id                     = var.tenant_id\n"
+                    ],
+                    [
+                        51,
+                        "  sku_name                      = \"standard\"\n"
+                    ],
+                    [
+                        52,
+                        "  enable_rbac_authorization     = true\n"
+                    ],
+                    [
+                        53,
+                        "  purge_protection_enabled      = true\n"
+                    ],
+                    [
+                        54,
+                        "  soft_delete_retention_days    = 90\n"
+                    ],
+                    [
+                        55,
+                        "  public_network_access_enabled = false\n"
+                    ],
+                    [
+                        56,
+                        "\n"
+                    ],
+                    [
+                        57,
+                        "  network_acls {\n"
+                    ],
+                    [
+                        58,
+                        "    bypass         = \"AzureServices\"\n"
+                    ],
+                    [
+                        59,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        60,
+                        "  }\n"
+                    ],
+                    [
+                        61,
+                        "\n"
+                    ],
+                    [
+                        62,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        63,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    46,
+                    63
+                ],
+                "resource": "azurerm_key_vault.reference",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.KeyVaultEnablesFirewallRulesSettings",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AZURE_42",
+                "bc_check_id": null,
+                "check_name": "Ensure the key vault is recoverable",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "purge_protection_enabled",
+                        "soft_delete_enabled"
+                    ]
+                },
+                "code_block": [
+                    [
+                        46,
+                        "resource \"azurerm_key_vault\" \"reference\" {\n"
+                    ],
+                    [
+                        47,
+                        "  name                          = var.key_vault_name\n"
+                    ],
+                    [
+                        48,
+                        "  location                      = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        49,
+                        "  resource_group_name           = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        50,
+                        "  tenant_id                     = var.tenant_id\n"
+                    ],
+                    [
+                        51,
+                        "  sku_name                      = \"standard\"\n"
+                    ],
+                    [
+                        52,
+                        "  enable_rbac_authorization     = true\n"
+                    ],
+                    [
+                        53,
+                        "  purge_protection_enabled      = true\n"
+                    ],
+                    [
+                        54,
+                        "  soft_delete_retention_days    = 90\n"
+                    ],
+                    [
+                        55,
+                        "  public_network_access_enabled = false\n"
+                    ],
+                    [
+                        56,
+                        "\n"
+                    ],
+                    [
+                        57,
+                        "  network_acls {\n"
+                    ],
+                    [
+                        58,
+                        "    bypass         = \"AzureServices\"\n"
+                    ],
+                    [
+                        59,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        60,
+                        "  }\n"
+                    ],
+                    [
+                        61,
+                        "\n"
+                    ],
+                    [
+                        62,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        63,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    46,
+                    63
+                ],
+                "resource": "azurerm_key_vault.reference",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.KeyvaultRecoveryEnabled",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AZURE_110",
+                "bc_check_id": null,
+                "check_name": "Ensure that key vault enables purge protection",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "purge_protection_enabled"
+                    ]
+                },
+                "code_block": [
+                    [
+                        46,
+                        "resource \"azurerm_key_vault\" \"reference\" {\n"
+                    ],
+                    [
+                        47,
+                        "  name                          = var.key_vault_name\n"
+                    ],
+                    [
+                        48,
+                        "  location                      = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        49,
+                        "  resource_group_name           = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        50,
+                        "  tenant_id                     = var.tenant_id\n"
+                    ],
+                    [
+                        51,
+                        "  sku_name                      = \"standard\"\n"
+                    ],
+                    [
+                        52,
+                        "  enable_rbac_authorization     = true\n"
+                    ],
+                    [
+                        53,
+                        "  purge_protection_enabled      = true\n"
+                    ],
+                    [
+                        54,
+                        "  soft_delete_retention_days    = 90\n"
+                    ],
+                    [
+                        55,
+                        "  public_network_access_enabled = false\n"
+                    ],
+                    [
+                        56,
+                        "\n"
+                    ],
+                    [
+                        57,
+                        "  network_acls {\n"
+                    ],
+                    [
+                        58,
+                        "    bypass         = \"AzureServices\"\n"
+                    ],
+                    [
+                        59,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        60,
+                        "  }\n"
+                    ],
+                    [
+                        61,
+                        "\n"
+                    ],
+                    [
+                        62,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        63,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    46,
+                    63
+                ],
+                "resource": "azurerm_key_vault.reference",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.KeyVaultEnablesPurgeProtection",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AZURE_189",
+                "bc_check_id": null,
+                "check_name": "Ensure that Azure Key Vault disables public network access",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "public_network_access_enabled"
+                    ]
+                },
+                "code_block": [
+                    [
+                        46,
+                        "resource \"azurerm_key_vault\" \"reference\" {\n"
+                    ],
+                    [
+                        47,
+                        "  name                          = var.key_vault_name\n"
+                    ],
+                    [
+                        48,
+                        "  location                      = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        49,
+                        "  resource_group_name           = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        50,
+                        "  tenant_id                     = var.tenant_id\n"
+                    ],
+                    [
+                        51,
+                        "  sku_name                      = \"standard\"\n"
+                    ],
+                    [
+                        52,
+                        "  enable_rbac_authorization     = true\n"
+                    ],
+                    [
+                        53,
+                        "  purge_protection_enabled      = true\n"
+                    ],
+                    [
+                        54,
+                        "  soft_delete_retention_days    = 90\n"
+                    ],
+                    [
+                        55,
+                        "  public_network_access_enabled = false\n"
+                    ],
+                    [
+                        56,
+                        "\n"
+                    ],
+                    [
+                        57,
+                        "  network_acls {\n"
+                    ],
+                    [
+                        58,
+                        "    bypass         = \"AzureServices\"\n"
+                    ],
+                    [
+                        59,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        60,
+                        "  }\n"
+                    ],
+                    [
+                        61,
+                        "\n"
+                    ],
+                    [
+                        62,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        63,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    46,
+                    63
+                ],
+                "resource": "azurerm_key_vault.reference",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.KeyVaultDisablesPublicNetworkAccess",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV2_AZURE_47",
+                "bc_check_id": null,
+                "check_name": "Ensure storage account is configured without blob anonymous access",
+                "check_result": {
+                    "result": "PASSED",
+                    "entity": {
+                        "azurerm_storage_account": {
+                            "evidence": {
+                                "__end_line__": 44,
+                                "__start_line__": 12,
+                                "account_replication_type": [
+                                    "GRS"
+                                ],
+                                "account_tier": [
+                                    "Standard"
+                                ],
+                                "allow_nested_items_to_be_public": [
+                                    false
+                                ],
+                                "blob_properties": [
+                                    {
+                                        "container_delete_retention_policy": [
+                                            {
+                                                "days": [
+                                                    30
+                                                ]
+                                            }
+                                        ],
+                                        "delete_retention_policy": [
+                                            {
+                                                "days": [
+                                                    30
+                                                ]
+                                            }
+                                        ],
+                                        "versioning_enabled": [
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "cross_tenant_replication_enabled": [
+                                    false
+                                ],
+                                "infrastructure_encryption_enabled": [
+                                    true
+                                ],
+                                "local_user_enabled": [
+                                    false
+                                ],
+                                "location": [
+                                    "australiaeast"
+                                ],
+                                "min_tls_version": [
+                                    "TLS1_2"
+                                ],
+                                "name": [
+                                    "var.storage_account_name"
+                                ],
+                                "network_rules": [
+                                    {
+                                        "bypass": [
+                                            [
+                                                "AzureServices"
+                                            ]
+                                        ],
+                                        "default_action": [
+                                            "Deny"
+                                        ]
+                                    }
+                                ],
+                                "public_network_access_enabled": [
+                                    false
+                                ],
+                                "resource_group_name": [
+                                    "rg-secureflow-reference"
+                                ],
+                                "shared_access_key_enabled": [
+                                    false
+                                ],
+                                "tags": [
+                                    {
+                                        "environment": "reference-only",
+                                        "managed_by": "terraform",
+                                        "project": "secureflow"
+                                    }
+                                ],
+                                "__address__": "azurerm_storage_account.evidence"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "allow_nested_items_to_be_public"
+                    ]
+                },
+                "code_block": [
+                    [
+                        12,
+                        "resource \"azurerm_storage_account\" \"evidence\" {\n"
+                    ],
+                    [
+                        13,
+                        "  name                            = var.storage_account_name\n"
+                    ],
+                    [
+                        14,
+                        "  resource_group_name             = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        15,
+                        "  location                        = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        16,
+                        "  account_tier                    = \"Standard\"\n"
+                    ],
+                    [
+                        17,
+                        "  account_replication_type        = \"GRS\"\n"
+                    ],
+                    [
+                        18,
+                        "  min_tls_version                 = \"TLS1_2\"\n"
+                    ],
+                    [
+                        19,
+                        "  allow_nested_items_to_be_public = false\n"
+                    ],
+                    [
+                        20,
+                        "  public_network_access_enabled   = false\n"
+                    ],
+                    [
+                        21,
+                        "  shared_access_key_enabled       = false\n"
+                    ],
+                    [
+                        22,
+                        "  infrastructure_encryption_enabled = true\n"
+                    ],
+                    [
+                        23,
+                        "  cross_tenant_replication_enabled  = false\n"
+                    ],
+                    [
+                        24,
+                        "  local_user_enabled                = false\n"
+                    ],
+                    [
+                        25,
+                        "\n"
+                    ],
+                    [
+                        26,
+                        "  blob_properties {\n"
+                    ],
+                    [
+                        27,
+                        "    versioning_enabled = true\n"
+                    ],
+                    [
+                        28,
+                        "\n"
+                    ],
+                    [
+                        29,
+                        "    delete_retention_policy {\n"
+                    ],
+                    [
+                        30,
+                        "      days = 30\n"
+                    ],
+                    [
+                        31,
+                        "    }\n"
+                    ],
+                    [
+                        32,
+                        "\n"
+                    ],
+                    [
+                        33,
+                        "    container_delete_retention_policy {\n"
+                    ],
+                    [
+                        34,
+                        "      days = 30\n"
+                    ],
+                    [
+                        35,
+                        "    }\n"
+                    ],
+                    [
+                        36,
+                        "  }\n"
+                    ],
+                    [
+                        37,
+                        "\n"
+                    ],
+                    [
+                        38,
+                        "  network_rules {\n"
+                    ],
+                    [
+                        39,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        40,
+                        "    bypass         = [\"AzureServices\"]\n"
+                    ],
+                    [
+                        41,
+                        "  }\n"
+                    ],
+                    [
+                        42,
+                        "\n"
+                    ],
+                    [
+                        43,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        44,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    12,
+                    44
+                ],
+                "resource": "azurerm_storage_account.evidence",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV2_AZURE_41",
+                "bc_check_id": null,
+                "check_name": "Ensure storage account is configured with SAS expiration policy",
+                "check_result": {
+                    "result": "PASSED",
+                    "entity": {
+                        "azurerm_storage_account": {
+                            "evidence": {
+                                "__end_line__": 44,
+                                "__start_line__": 12,
+                                "account_replication_type": [
+                                    "GRS"
+                                ],
+                                "account_tier": [
+                                    "Standard"
+                                ],
+                                "allow_nested_items_to_be_public": [
+                                    false
+                                ],
+                                "blob_properties": [
+                                    {
+                                        "container_delete_retention_policy": [
+                                            {
+                                                "days": [
+                                                    30
+                                                ]
+                                            }
+                                        ],
+                                        "delete_retention_policy": [
+                                            {
+                                                "days": [
+                                                    30
+                                                ]
+                                            }
+                                        ],
+                                        "versioning_enabled": [
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "cross_tenant_replication_enabled": [
+                                    false
+                                ],
+                                "infrastructure_encryption_enabled": [
+                                    true
+                                ],
+                                "local_user_enabled": [
+                                    false
+                                ],
+                                "location": [
+                                    "australiaeast"
+                                ],
+                                "min_tls_version": [
+                                    "TLS1_2"
+                                ],
+                                "name": [
+                                    "var.storage_account_name"
+                                ],
+                                "network_rules": [
+                                    {
+                                        "bypass": [
+                                            [
+                                                "AzureServices"
+                                            ]
+                                        ],
+                                        "default_action": [
+                                            "Deny"
+                                        ]
+                                    }
+                                ],
+                                "public_network_access_enabled": [
+                                    false
+                                ],
+                                "resource_group_name": [
+                                    "rg-secureflow-reference"
+                                ],
+                                "shared_access_key_enabled": [
+                                    false
+                                ],
+                                "tags": [
+                                    {
+                                        "environment": "reference-only",
+                                        "managed_by": "terraform",
+                                        "project": "secureflow"
+                                    }
+                                ],
+                                "__address__": "azurerm_storage_account.evidence"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "sas_policy/expiration_period",
+                        "sas_policy",
+                        "shared_access_key_enabled"
+                    ]
+                },
+                "code_block": [
+                    [
+                        12,
+                        "resource \"azurerm_storage_account\" \"evidence\" {\n"
+                    ],
+                    [
+                        13,
+                        "  name                            = var.storage_account_name\n"
+                    ],
+                    [
+                        14,
+                        "  resource_group_name             = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        15,
+                        "  location                        = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        16,
+                        "  account_tier                    = \"Standard\"\n"
+                    ],
+                    [
+                        17,
+                        "  account_replication_type        = \"GRS\"\n"
+                    ],
+                    [
+                        18,
+                        "  min_tls_version                 = \"TLS1_2\"\n"
+                    ],
+                    [
+                        19,
+                        "  allow_nested_items_to_be_public = false\n"
+                    ],
+                    [
+                        20,
+                        "  public_network_access_enabled   = false\n"
+                    ],
+                    [
+                        21,
+                        "  shared_access_key_enabled       = false\n"
+                    ],
+                    [
+                        22,
+                        "  infrastructure_encryption_enabled = true\n"
+                    ],
+                    [
+                        23,
+                        "  cross_tenant_replication_enabled  = false\n"
+                    ],
+                    [
+                        24,
+                        "  local_user_enabled                = false\n"
+                    ],
+                    [
+                        25,
+                        "\n"
+                    ],
+                    [
+                        26,
+                        "  blob_properties {\n"
+                    ],
+                    [
+                        27,
+                        "    versioning_enabled = true\n"
+                    ],
+                    [
+                        28,
+                        "\n"
+                    ],
+                    [
+                        29,
+                        "    delete_retention_policy {\n"
+                    ],
+                    [
+                        30,
+                        "      days = 30\n"
+                    ],
+                    [
+                        31,
+                        "    }\n"
+                    ],
+                    [
+                        32,
+                        "\n"
+                    ],
+                    [
+                        33,
+                        "    container_delete_retention_policy {\n"
+                    ],
+                    [
+                        34,
+                        "      days = 30\n"
+                    ],
+                    [
+                        35,
+                        "    }\n"
+                    ],
+                    [
+                        36,
+                        "  }\n"
+                    ],
+                    [
+                        37,
+                        "\n"
+                    ],
+                    [
+                        38,
+                        "  network_rules {\n"
+                    ],
+                    [
+                        39,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        40,
+                        "    bypass         = [\"AzureServices\"]\n"
+                    ],
+                    [
+                        41,
+                        "  }\n"
+                    ],
+                    [
+                        42,
+                        "\n"
+                    ],
+                    [
+                        43,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        44,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    12,
+                    44
+                ],
+                "resource": "azurerm_storage_account.evidence",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV2_AZURE_40",
+                "bc_check_id": null,
+                "check_name": "Ensure storage account is not configured with Shared Key authorization",
+                "check_result": {
+                    "result": "PASSED",
+                    "entity": {
+                        "azurerm_storage_account": {
+                            "evidence": {
+                                "__end_line__": 44,
+                                "__start_line__": 12,
+                                "account_replication_type": [
+                                    "GRS"
+                                ],
+                                "account_tier": [
+                                    "Standard"
+                                ],
+                                "allow_nested_items_to_be_public": [
+                                    false
+                                ],
+                                "blob_properties": [
+                                    {
+                                        "container_delete_retention_policy": [
+                                            {
+                                                "days": [
+                                                    30
+                                                ]
+                                            }
+                                        ],
+                                        "delete_retention_policy": [
+                                            {
+                                                "days": [
+                                                    30
+                                                ]
+                                            }
+                                        ],
+                                        "versioning_enabled": [
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "cross_tenant_replication_enabled": [
+                                    false
+                                ],
+                                "infrastructure_encryption_enabled": [
+                                    true
+                                ],
+                                "local_user_enabled": [
+                                    false
+                                ],
+                                "location": [
+                                    "australiaeast"
+                                ],
+                                "min_tls_version": [
+                                    "TLS1_2"
+                                ],
+                                "name": [
+                                    "var.storage_account_name"
+                                ],
+                                "network_rules": [
+                                    {
+                                        "bypass": [
+                                            [
+                                                "AzureServices"
+                                            ]
+                                        ],
+                                        "default_action": [
+                                            "Deny"
+                                        ]
+                                    }
+                                ],
+                                "public_network_access_enabled": [
+                                    false
+                                ],
+                                "resource_group_name": [
+                                    "rg-secureflow-reference"
+                                ],
+                                "shared_access_key_enabled": [
+                                    false
+                                ],
+                                "tags": [
+                                    {
+                                        "environment": "reference-only",
+                                        "managed_by": "terraform",
+                                        "project": "secureflow"
+                                    }
+                                ],
+                                "__address__": "azurerm_storage_account.evidence"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "shared_access_key_enabled"
+                    ]
+                },
+                "code_block": [
+                    [
+                        12,
+                        "resource \"azurerm_storage_account\" \"evidence\" {\n"
+                    ],
+                    [
+                        13,
+                        "  name                            = var.storage_account_name\n"
+                    ],
+                    [
+                        14,
+                        "  resource_group_name             = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        15,
+                        "  location                        = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        16,
+                        "  account_tier                    = \"Standard\"\n"
+                    ],
+                    [
+                        17,
+                        "  account_replication_type        = \"GRS\"\n"
+                    ],
+                    [
+                        18,
+                        "  min_tls_version                 = \"TLS1_2\"\n"
+                    ],
+                    [
+                        19,
+                        "  allow_nested_items_to_be_public = false\n"
+                    ],
+                    [
+                        20,
+                        "  public_network_access_enabled   = false\n"
+                    ],
+                    [
+                        21,
+                        "  shared_access_key_enabled       = false\n"
+                    ],
+                    [
+                        22,
+                        "  infrastructure_encryption_enabled = true\n"
+                    ],
+                    [
+                        23,
+                        "  cross_tenant_replication_enabled  = false\n"
+                    ],
+                    [
+                        24,
+                        "  local_user_enabled                = false\n"
+                    ],
+                    [
+                        25,
+                        "\n"
+                    ],
+                    [
+                        26,
+                        "  blob_properties {\n"
+                    ],
+                    [
+                        27,
+                        "    versioning_enabled = true\n"
+                    ],
+                    [
+                        28,
+                        "\n"
+                    ],
+                    [
+                        29,
+                        "    delete_retention_policy {\n"
+                    ],
+                    [
+                        30,
+                        "      days = 30\n"
+                    ],
+                    [
+                        31,
+                        "    }\n"
+                    ],
+                    [
+                        32,
+                        "\n"
+                    ],
+                    [
+                        33,
+                        "    container_delete_retention_policy {\n"
+                    ],
+                    [
+                        34,
+                        "      days = 30\n"
+                    ],
+                    [
+                        35,
+                        "    }\n"
+                    ],
+                    [
+                        36,
+                        "  }\n"
+                    ],
+                    [
+                        37,
+                        "\n"
+                    ],
+                    [
+                        38,
+                        "  network_rules {\n"
+                    ],
+                    [
+                        39,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        40,
+                        "    bypass         = [\"AzureServices\"]\n"
+                    ],
+                    [
+                        41,
+                        "  }\n"
+                    ],
+                    [
+                        42,
+                        "\n"
+                    ],
+                    [
+                        43,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        44,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    12,
+                    44
+                ],
+                "resource": "azurerm_storage_account.evidence",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV2_AZURE_38",
+                "bc_check_id": null,
+                "check_name": "Ensure soft-delete is enabled on Azure storage account",
+                "check_result": {
+                    "result": "PASSED",
+                    "entity": {
+                        "azurerm_storage_account": {
+                            "evidence": {
+                                "__end_line__": 44,
+                                "__start_line__": 12,
+                                "account_replication_type": [
+                                    "GRS"
+                                ],
+                                "account_tier": [
+                                    "Standard"
+                                ],
+                                "allow_nested_items_to_be_public": [
+                                    false
+                                ],
+                                "blob_properties": [
+                                    {
+                                        "container_delete_retention_policy": [
+                                            {
+                                                "days": [
+                                                    30
+                                                ]
+                                            }
+                                        ],
+                                        "delete_retention_policy": [
+                                            {
+                                                "days": [
+                                                    30
+                                                ]
+                                            }
+                                        ],
+                                        "versioning_enabled": [
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "cross_tenant_replication_enabled": [
+                                    false
+                                ],
+                                "infrastructure_encryption_enabled": [
+                                    true
+                                ],
+                                "local_user_enabled": [
+                                    false
+                                ],
+                                "location": [
+                                    "australiaeast"
+                                ],
+                                "min_tls_version": [
+                                    "TLS1_2"
+                                ],
+                                "name": [
+                                    "var.storage_account_name"
+                                ],
+                                "network_rules": [
+                                    {
+                                        "bypass": [
+                                            [
+                                                "AzureServices"
+                                            ]
+                                        ],
+                                        "default_action": [
+                                            "Deny"
+                                        ]
+                                    }
+                                ],
+                                "public_network_access_enabled": [
+                                    false
+                                ],
+                                "resource_group_name": [
+                                    "rg-secureflow-reference"
+                                ],
+                                "shared_access_key_enabled": [
+                                    false
+                                ],
+                                "tags": [
+                                    {
+                                        "environment": "reference-only",
+                                        "managed_by": "terraform",
+                                        "project": "secureflow"
+                                    }
+                                ],
+                                "__address__": "azurerm_storage_account.evidence"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "account_kind",
+                        "blob_properties/delete_retention_policy/days",
+                        "blob_properties/delete_retention_policy"
+                    ]
+                },
+                "code_block": [
+                    [
+                        12,
+                        "resource \"azurerm_storage_account\" \"evidence\" {\n"
+                    ],
+                    [
+                        13,
+                        "  name                            = var.storage_account_name\n"
+                    ],
+                    [
+                        14,
+                        "  resource_group_name             = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        15,
+                        "  location                        = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        16,
+                        "  account_tier                    = \"Standard\"\n"
+                    ],
+                    [
+                        17,
+                        "  account_replication_type        = \"GRS\"\n"
+                    ],
+                    [
+                        18,
+                        "  min_tls_version                 = \"TLS1_2\"\n"
+                    ],
+                    [
+                        19,
+                        "  allow_nested_items_to_be_public = false\n"
+                    ],
+                    [
+                        20,
+                        "  public_network_access_enabled   = false\n"
+                    ],
+                    [
+                        21,
+                        "  shared_access_key_enabled       = false\n"
+                    ],
+                    [
+                        22,
+                        "  infrastructure_encryption_enabled = true\n"
+                    ],
+                    [
+                        23,
+                        "  cross_tenant_replication_enabled  = false\n"
+                    ],
+                    [
+                        24,
+                        "  local_user_enabled                = false\n"
+                    ],
+                    [
+                        25,
+                        "\n"
+                    ],
+                    [
+                        26,
+                        "  blob_properties {\n"
+                    ],
+                    [
+                        27,
+                        "    versioning_enabled = true\n"
+                    ],
+                    [
+                        28,
+                        "\n"
+                    ],
+                    [
+                        29,
+                        "    delete_retention_policy {\n"
+                    ],
+                    [
+                        30,
+                        "      days = 30\n"
+                    ],
+                    [
+                        31,
+                        "    }\n"
+                    ],
+                    [
+                        32,
+                        "\n"
+                    ],
+                    [
+                        33,
+                        "    container_delete_retention_policy {\n"
+                    ],
+                    [
+                        34,
+                        "      days = 30\n"
+                    ],
+                    [
+                        35,
+                        "    }\n"
+                    ],
+                    [
+                        36,
+                        "  }\n"
+                    ],
+                    [
+                        37,
+                        "\n"
+                    ],
+                    [
+                        38,
+                        "  network_rules {\n"
+                    ],
+                    [
+                        39,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        40,
+                        "    bypass         = [\"AzureServices\"]\n"
+                    ],
+                    [
+                        41,
+                        "  }\n"
+                    ],
+                    [
+                        42,
+                        "\n"
+                    ],
+                    [
+                        43,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        44,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    12,
+                    44
+                ],
+                "resource": "azurerm_storage_account.evidence",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            }
+        ],
+        "failed_checks": [
+            {
+                "check_id": "CKV_AZURE_33",
+                "bc_check_id": null,
+                "check_name": "Ensure Storage logging is enabled for Queue service for read, write and delete requests",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "account_kind"
+                    ]
+                },
+                "code_block": [
+                    [
+                        12,
+                        "resource \"azurerm_storage_account\" \"evidence\" {\n"
+                    ],
+                    [
+                        13,
+                        "  name                            = var.storage_account_name\n"
+                    ],
+                    [
+                        14,
+                        "  resource_group_name             = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        15,
+                        "  location                        = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        16,
+                        "  account_tier                    = \"Standard\"\n"
+                    ],
+                    [
+                        17,
+                        "  account_replication_type        = \"GRS\"\n"
+                    ],
+                    [
+                        18,
+                        "  min_tls_version                 = \"TLS1_2\"\n"
+                    ],
+                    [
+                        19,
+                        "  allow_nested_items_to_be_public = false\n"
+                    ],
+                    [
+                        20,
+                        "  public_network_access_enabled   = false\n"
+                    ],
+                    [
+                        21,
+                        "  shared_access_key_enabled       = false\n"
+                    ],
+                    [
+                        22,
+                        "  infrastructure_encryption_enabled = true\n"
+                    ],
+                    [
+                        23,
+                        "  cross_tenant_replication_enabled  = false\n"
+                    ],
+                    [
+                        24,
+                        "  local_user_enabled                = false\n"
+                    ],
+                    [
+                        25,
+                        "\n"
+                    ],
+                    [
+                        26,
+                        "  blob_properties {\n"
+                    ],
+                    [
+                        27,
+                        "    versioning_enabled = true\n"
+                    ],
+                    [
+                        28,
+                        "\n"
+                    ],
+                    [
+                        29,
+                        "    delete_retention_policy {\n"
+                    ],
+                    [
+                        30,
+                        "      days = 30\n"
+                    ],
+                    [
+                        31,
+                        "    }\n"
+                    ],
+                    [
+                        32,
+                        "\n"
+                    ],
+                    [
+                        33,
+                        "    container_delete_retention_policy {\n"
+                    ],
+                    [
+                        34,
+                        "      days = 30\n"
+                    ],
+                    [
+                        35,
+                        "    }\n"
+                    ],
+                    [
+                        36,
+                        "  }\n"
+                    ],
+                    [
+                        37,
+                        "\n"
+                    ],
+                    [
+                        38,
+                        "  network_rules {\n"
+                    ],
+                    [
+                        39,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        40,
+                        "    bypass         = [\"AzureServices\"]\n"
+                    ],
+                    [
+                        41,
+                        "  }\n"
+                    ],
+                    [
+                        42,
+                        "\n"
+                    ],
+                    [
+                        43,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        44,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    12,
+                    44
+                ],
+                "resource": "azurerm_storage_account.evidence",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.StorageAccountLoggingQueueServiceEnabled",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV2_AZURE_33",
+                "bc_check_id": null,
+                "check_name": "Ensure storage account is configured with private endpoint",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "azurerm_storage_account": {
+                            "evidence": {
+                                "__end_line__": 44,
+                                "__start_line__": 12,
+                                "account_replication_type": [
+                                    "GRS"
+                                ],
+                                "account_tier": [
+                                    "Standard"
+                                ],
+                                "allow_nested_items_to_be_public": [
+                                    false
+                                ],
+                                "blob_properties": [
+                                    {
+                                        "container_delete_retention_policy": [
+                                            {
+                                                "days": [
+                                                    30
+                                                ]
+                                            }
+                                        ],
+                                        "delete_retention_policy": [
+                                            {
+                                                "days": [
+                                                    30
+                                                ]
+                                            }
+                                        ],
+                                        "versioning_enabled": [
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "cross_tenant_replication_enabled": [
+                                    false
+                                ],
+                                "infrastructure_encryption_enabled": [
+                                    true
+                                ],
+                                "local_user_enabled": [
+                                    false
+                                ],
+                                "location": [
+                                    "australiaeast"
+                                ],
+                                "min_tls_version": [
+                                    "TLS1_2"
+                                ],
+                                "name": [
+                                    "var.storage_account_name"
+                                ],
+                                "network_rules": [
+                                    {
+                                        "bypass": [
+                                            [
+                                                "AzureServices"
+                                            ]
+                                        ],
+                                        "default_action": [
+                                            "Deny"
+                                        ]
+                                    }
+                                ],
+                                "public_network_access_enabled": [
+                                    false
+                                ],
+                                "resource_group_name": [
+                                    "rg-secureflow-reference"
+                                ],
+                                "shared_access_key_enabled": [
+                                    false
+                                ],
+                                "tags": [
+                                    {
+                                        "environment": "reference-only",
+                                        "managed_by": "terraform",
+                                        "project": "secureflow"
+                                    }
+                                ],
+                                "__address__": "azurerm_storage_account.evidence"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "resource_type"
+                    ]
+                },
+                "code_block": [
+                    [
+                        12,
+                        "resource \"azurerm_storage_account\" \"evidence\" {\n"
+                    ],
+                    [
+                        13,
+                        "  name                            = var.storage_account_name\n"
+                    ],
+                    [
+                        14,
+                        "  resource_group_name             = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        15,
+                        "  location                        = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        16,
+                        "  account_tier                    = \"Standard\"\n"
+                    ],
+                    [
+                        17,
+                        "  account_replication_type        = \"GRS\"\n"
+                    ],
+                    [
+                        18,
+                        "  min_tls_version                 = \"TLS1_2\"\n"
+                    ],
+                    [
+                        19,
+                        "  allow_nested_items_to_be_public = false\n"
+                    ],
+                    [
+                        20,
+                        "  public_network_access_enabled   = false\n"
+                    ],
+                    [
+                        21,
+                        "  shared_access_key_enabled       = false\n"
+                    ],
+                    [
+                        22,
+                        "  infrastructure_encryption_enabled = true\n"
+                    ],
+                    [
+                        23,
+                        "  cross_tenant_replication_enabled  = false\n"
+                    ],
+                    [
+                        24,
+                        "  local_user_enabled                = false\n"
+                    ],
+                    [
+                        25,
+                        "\n"
+                    ],
+                    [
+                        26,
+                        "  blob_properties {\n"
+                    ],
+                    [
+                        27,
+                        "    versioning_enabled = true\n"
+                    ],
+                    [
+                        28,
+                        "\n"
+                    ],
+                    [
+                        29,
+                        "    delete_retention_policy {\n"
+                    ],
+                    [
+                        30,
+                        "      days = 30\n"
+                    ],
+                    [
+                        31,
+                        "    }\n"
+                    ],
+                    [
+                        32,
+                        "\n"
+                    ],
+                    [
+                        33,
+                        "    container_delete_retention_policy {\n"
+                    ],
+                    [
+                        34,
+                        "      days = 30\n"
+                    ],
+                    [
+                        35,
+                        "    }\n"
+                    ],
+                    [
+                        36,
+                        "  }\n"
+                    ],
+                    [
+                        37,
+                        "\n"
+                    ],
+                    [
+                        38,
+                        "  network_rules {\n"
+                    ],
+                    [
+                        39,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        40,
+                        "    bypass         = [\"AzureServices\"]\n"
+                    ],
+                    [
+                        41,
+                        "  }\n"
+                    ],
+                    [
+                        42,
+                        "\n"
+                    ],
+                    [
+                        43,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        44,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    12,
+                    44
+                ],
+                "resource": "azurerm_storage_account.evidence",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV2_AZURE_32",
+                "bc_check_id": null,
+                "check_name": "Ensure private endpoint is configured to key vault",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "azurerm_key_vault": {
+                            "reference": {
+                                "__end_line__": 63,
+                                "__start_line__": 46,
+                                "enable_rbac_authorization": [
+                                    true
+                                ],
+                                "location": [
+                                    "australiaeast"
+                                ],
+                                "name": [
+                                    "var.key_vault_name"
+                                ],
+                                "network_acls": [
+                                    {
+                                        "bypass": [
+                                            "AzureServices"
+                                        ],
+                                        "default_action": [
+                                            "Deny"
+                                        ]
+                                    }
+                                ],
+                                "public_network_access_enabled": [
+                                    false
+                                ],
+                                "purge_protection_enabled": [
+                                    true
+                                ],
+                                "resource_group_name": [
+                                    "rg-secureflow-reference"
+                                ],
+                                "sku_name": [
+                                    "standard"
+                                ],
+                                "soft_delete_retention_days": [
+                                    90
+                                ],
+                                "tags": [
+                                    {
+                                        "environment": "reference-only",
+                                        "managed_by": "terraform",
+                                        "project": "secureflow"
+                                    }
+                                ],
+                                "tenant_id": [
+                                    "var.tenant_id"
+                                ],
+                                "__address__": "azurerm_key_vault.reference"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "resource_type"
+                    ]
+                },
+                "code_block": [
+                    [
+                        46,
+                        "resource \"azurerm_key_vault\" \"reference\" {\n"
+                    ],
+                    [
+                        47,
+                        "  name                          = var.key_vault_name\n"
+                    ],
+                    [
+                        48,
+                        "  location                      = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        49,
+                        "  resource_group_name           = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        50,
+                        "  tenant_id                     = var.tenant_id\n"
+                    ],
+                    [
+                        51,
+                        "  sku_name                      = \"standard\"\n"
+                    ],
+                    [
+                        52,
+                        "  enable_rbac_authorization     = true\n"
+                    ],
+                    [
+                        53,
+                        "  purge_protection_enabled      = true\n"
+                    ],
+                    [
+                        54,
+                        "  soft_delete_retention_days    = 90\n"
+                    ],
+                    [
+                        55,
+                        "  public_network_access_enabled = false\n"
+                    ],
+                    [
+                        56,
+                        "\n"
+                    ],
+                    [
+                        57,
+                        "  network_acls {\n"
+                    ],
+                    [
+                        58,
+                        "    bypass         = \"AzureServices\"\n"
+                    ],
+                    [
+                        59,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        60,
+                        "  }\n"
+                    ],
+                    [
+                        61,
+                        "\n"
+                    ],
+                    [
+                        62,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        63,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    46,
+                    63
+                ],
+                "resource": "azurerm_key_vault.reference",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV2_AZURE_1",
+                "bc_check_id": null,
+                "check_name": "Ensure storage for critical data are encrypted with Customer Managed Key",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "azurerm_storage_account": {
+                            "evidence": {
+                                "__end_line__": 44,
+                                "__start_line__": 12,
+                                "account_replication_type": [
+                                    "GRS"
+                                ],
+                                "account_tier": [
+                                    "Standard"
+                                ],
+                                "allow_nested_items_to_be_public": [
+                                    false
+                                ],
+                                "blob_properties": [
+                                    {
+                                        "container_delete_retention_policy": [
+                                            {
+                                                "days": [
+                                                    30
+                                                ]
+                                            }
+                                        ],
+                                        "delete_retention_policy": [
+                                            {
+                                                "days": [
+                                                    30
+                                                ]
+                                            }
+                                        ],
+                                        "versioning_enabled": [
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "cross_tenant_replication_enabled": [
+                                    false
+                                ],
+                                "infrastructure_encryption_enabled": [
+                                    true
+                                ],
+                                "local_user_enabled": [
+                                    false
+                                ],
+                                "location": [
+                                    "australiaeast"
+                                ],
+                                "min_tls_version": [
+                                    "TLS1_2"
+                                ],
+                                "name": [
+                                    "var.storage_account_name"
+                                ],
+                                "network_rules": [
+                                    {
+                                        "bypass": [
+                                            [
+                                                "AzureServices"
+                                            ]
+                                        ],
+                                        "default_action": [
+                                            "Deny"
+                                        ]
+                                    }
+                                ],
+                                "public_network_access_enabled": [
+                                    false
+                                ],
+                                "resource_group_name": [
+                                    "rg-secureflow-reference"
+                                ],
+                                "shared_access_key_enabled": [
+                                    false
+                                ],
+                                "tags": [
+                                    {
+                                        "environment": "reference-only",
+                                        "managed_by": "terraform",
+                                        "project": "secureflow"
+                                    }
+                                ],
+                                "__address__": "azurerm_storage_account.evidence"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "customer_managed_key/key_vault_key_id",
+                        "resource_type"
+                    ]
+                },
+                "code_block": [
+                    [
+                        12,
+                        "resource \"azurerm_storage_account\" \"evidence\" {\n"
+                    ],
+                    [
+                        13,
+                        "  name                            = var.storage_account_name\n"
+                    ],
+                    [
+                        14,
+                        "  resource_group_name             = azurerm_resource_group.reference.name\n"
+                    ],
+                    [
+                        15,
+                        "  location                        = azurerm_resource_group.reference.location\n"
+                    ],
+                    [
+                        16,
+                        "  account_tier                    = \"Standard\"\n"
+                    ],
+                    [
+                        17,
+                        "  account_replication_type        = \"GRS\"\n"
+                    ],
+                    [
+                        18,
+                        "  min_tls_version                 = \"TLS1_2\"\n"
+                    ],
+                    [
+                        19,
+                        "  allow_nested_items_to_be_public = false\n"
+                    ],
+                    [
+                        20,
+                        "  public_network_access_enabled   = false\n"
+                    ],
+                    [
+                        21,
+                        "  shared_access_key_enabled       = false\n"
+                    ],
+                    [
+                        22,
+                        "  infrastructure_encryption_enabled = true\n"
+                    ],
+                    [
+                        23,
+                        "  cross_tenant_replication_enabled  = false\n"
+                    ],
+                    [
+                        24,
+                        "  local_user_enabled                = false\n"
+                    ],
+                    [
+                        25,
+                        "\n"
+                    ],
+                    [
+                        26,
+                        "  blob_properties {\n"
+                    ],
+                    [
+                        27,
+                        "    versioning_enabled = true\n"
+                    ],
+                    [
+                        28,
+                        "\n"
+                    ],
+                    [
+                        29,
+                        "    delete_retention_policy {\n"
+                    ],
+                    [
+                        30,
+                        "      days = 30\n"
+                    ],
+                    [
+                        31,
+                        "    }\n"
+                    ],
+                    [
+                        32,
+                        "\n"
+                    ],
+                    [
+                        33,
+                        "    container_delete_retention_policy {\n"
+                    ],
+                    [
+                        34,
+                        "      days = 30\n"
+                    ],
+                    [
+                        35,
+                        "    }\n"
+                    ],
+                    [
+                        36,
+                        "  }\n"
+                    ],
+                    [
+                        37,
+                        "\n"
+                    ],
+                    [
+                        38,
+                        "  network_rules {\n"
+                    ],
+                    [
+                        39,
+                        "    default_action = \"Deny\"\n"
+                    ],
+                    [
+                        40,
+                        "    bypass         = [\"AzureServices\"]\n"
+                    ],
+                    [
+                        41,
+                        "  }\n"
+                    ],
+                    [
+                        42,
+                        "\n"
+                    ],
+                    [
+                        43,
+                        "  tags = azurerm_resource_group.reference.tags\n"
+                    ],
+                    [
+                        44,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "repo_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "file_line_range": [
+                    12,
+                    44
+                ],
+                "resource": "azurerm_storage_account.evidence",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "environment": "reference-only",
+                    "managed_by": "terraform",
+                    "project": "secureflow"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": {},
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": null,
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                "breadcrumbs": {
+                    "location": [
+                        {
+                            "type": "variable",
+                            "name": "location",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "resource_group_name": [
+                        {
+                            "type": "variable",
+                            "name": "resource_group_name",
+                            "path": "/repo/infrastructure/terraform/azure/reference/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "type": "resource",
+                            "name": "azurerm_resource_group.reference",
+                            "path": "/repo/infrastructure/terraform/azure/reference/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            }
+        ],
+        "skipped_checks": [],
+        "parsing_errors": []
+    },
+    "summary": {
+        "passed": 17,
+        "failed": 4,
+        "skipped": 0,
+        "parsing_errors": 0,
+        "resource_count": 3,
+        "checkov_version": "3.3.8"
+    },
+    "url": "Add an api key '--bc-api-key <api-key>' to see more detailed insights via https://bridgecrew.cloud"
+}
