@@ -1,0 +1,40 @@
+{
+  "app": {
+    "name": "docker-app-1",
+    "image": "docker-app",
+    "user": "appuser",
+    "read_only_rootfs": false,
+    "cap_drop": null,
+    "security_opt": null,
+    "published_ports": {
+      "8080/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "8080"
+        }
+      ]
+    },
+    "networks": [
+      "docker_default"
+    ]
+  },
+  "db": {
+    "name": "docker-db-1",
+    "image": "postgres:17-alpine",
+    "user": "",
+    "read_only_rootfs": false,
+    "cap_drop": null,
+    "security_opt": null,
+    "published_ports": {
+      "5432/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "5432"
+        }
+      ]
+    },
+    "networks": [
+      "docker_default"
+    ]
+  }
+}

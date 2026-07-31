@@ -1,0 +1,10 @@
+reading from file /captures/phase4-health-traffic.pcap, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 96
+Warning: interface names might be incorrect
+15:24:25.704818 eth0  In  IP 172.18.0.1.63896 > 172.18.0.3.8080: Flags [S], seq 1109099659, win 64240, options [mss 1460,sackOK,TS val 312883564 ecr 0,nop,wscale 7], length 0
+15:24:25.704897 eth0  Out IP 172.18.0.3.8080 > 172.18.0.1.63896: Flags [S.], seq 1486780734, ack 1109099660, win 65160, options [mss 1460,sackOK,TS val 1318702193 ecr 312883564,nop,wscale 7], length 0
+15:24:25.705002 eth0  In  IP 172.18.0.1.63896 > 172.18.0.3.8080: Flags [.], ack 1, win 502, options [nop,nop,TS val 312883565 ecr 1318702193], length 0
+15:24:25.705331 eth0  In  IP 172.18.0.1.63896 > 172.18.0.3.8080: Flags [P.], seq 1:89, ack 1, win 502, options [nop,nop,TS val 312883565 ecr 1318702193], length 88: HTTP [|http]
+15:24:25.705340 eth0  Out IP 172.18.0.3.8080 > 172.18.0.1.63896: Flags [.], ack 89, win 509, options [nop,nop,TS val 1318702194 ecr 312883565], length 0
+15:24:25.716519 eth0  Out IP 172.18.0.3.8080 > 172.18.0.1.63896: Flags [P.], seq 1:562, ack 89, win 509, options [nop,nop,TS val 1318702205 ecr 312883565], length 561: HTTP: HTTP/1.1 200 OK
+15:24:25.716567 eth0  In  IP 172.18.0.1.63896 > 172.18.0.3.8080: Flags [.], ack 562, win 498, options [nop,nop,TS val 312883576 ecr 1318702205], length 0
+15:24:25.716590 eth0  Out IP 172.18.0.3.8080 > 172.18.0.1.63896: Flags [P.], seq 562:567, ack 89, win 509, options [nop,nop,TS val 1318702205 ecr 312883576], length 5: HTTP
