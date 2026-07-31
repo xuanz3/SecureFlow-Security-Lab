@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create or reuse GitHub finding issues and link local finding records."""
+"""Create or update GitHub finding issues and link local finding records."""
 
 import argparse
 import csv
@@ -65,11 +65,35 @@ Testing was restricted to project-owned localhost containers and fictional data.
 
 def update_markdown(path, issue_url):
     text = path.read_text(encoding="utf-8")
-    text = text.replace(
-        "- GitHub issue: Pending",
-        "- GitHub issue: %s" % issue_url,
-    )
+    if "- GitHub issue: Pending" in text:
+        text = text.replace(
+            "- GitHub issue: Pending",
+            "- GitHub issue: %s" % issue_url,
+        )
+    else:
+        lines = text.splitlines()
+        replaced = False
+        for index, line in enumerate(lines):
+            if line.startswith("- GitHub issue:"):
+                lines[index] = "- GitHub issue: %s" % issue_url
+                replaced = True
+                break
+        if not replaced:
+            lines.insert(7, "- GitHub issue: %s" % issue_url)
+        text = "\n".join(lines) + ("\n" if text.endswith("\n") else "")
     path.write_text(text, encoding="utf-8")
+
+
+def find_phase4_milestone(repo):
+    raw = run([
+        "gh", "api", "--paginate",
+        "repos/%s/milestones?state=all&per_page=100" % repo,
+    ])
+    milestones = json.loads(raw)
+    for milestone in milestones:
+        if (milestone.get("title") or "").lower().startswith("phase 4"):
+            return milestone["number"]
+    raise RuntimeError("The Phase 4 milestone could not be resolved.")
 
 
 def write_registers(results_dir, findings):
@@ -140,6 +164,7 @@ def main():
     results_dir = Path(args.results_dir)
     findings_path = results_dir / "findings.json"
     findings = json.loads(findings_path.read_text(encoding="utf-8"))
+    milestone_number = find_phase4_milestone(args.repo)
 
     severity_labels = {
         "Low": "severity-low",
@@ -165,39 +190,57 @@ def main():
                 match = candidate
                 break
 
-        if match is None:
-            payload = {
-                "title": "[Phase 4 Finding %s] %s"
-                % (item["id"], item["title"]),
-                "body": issue_body(item),
-                "labels": [
-                    "security-finding",
-                    "phase-4",
-                    severity_labels[item["severity"]],
-                ],
-                "milestone": 4,
-            }
+        title = "[Phase 4 Finding %s] %s" % (
+            item["id"],
+            item["title"],
+        )
+        labels = [
+            "security-finding",
+            "phase-4",
+            severity_labels[item["severity"]],
+        ]
+        payload = {
+            "title": title,
+            "body": issue_body(item),
+            "labels": labels,
+            "milestone": milestone_number,
+        }
 
+        if match is None:
             created = json.loads(run([
                 "gh", "api",
                 "--method", "POST",
                 "repos/%s/issues" % args.repo,
                 "--input", "-",
             ], json.dumps(payload)))
-
             match = {
                 "number": created["number"],
                 "url": created["html_url"],
                 "title": created["title"],
             }
+        else:
+            updated = json.loads(run([
+                "gh", "api",
+                "--method", "PATCH",
+                "repos/%s/issues/%s" % (
+                    args.repo,
+                    match["number"],
+                ),
+                "--input", "-",
+            ], json.dumps(payload)))
+            match = {
+                "number": updated["number"],
+                "url": updated["html_url"],
+                "title": updated["title"],
+            }
 
         item["issue_number"] = match["number"]
         item["issue_url"] = match["url"]
-        update_markdown(
-            repo_root
-            / "security-assessment/findings/%s.md" % item["id"],
-            match["url"],
+
+        finding_path = repo_root / (
+            "security-assessment/findings/%s.md" % item["id"]
         )
+        update_markdown(finding_path, match["url"])
         print("%s -> #%s" % (item["id"], match["number"]))
 
     findings_path.write_text(
@@ -211,5 +254,8 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as error:
-        print("Finding issue publication failed: %s" % error, file=sys.stderr)
+        print(
+            "Finding issue publication failed: %s" % error,
+            file=sys.stderr,
+        )
         sys.exit(1)
