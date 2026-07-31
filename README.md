@@ -2,7 +2,7 @@
 
 A local-first enterprise security engineering and assurance portfolio project covering secure application development, DevSecOps, application security testing, vulnerability management, detection engineering, governance and recovery.
 
-**Project status:** Phase 3 — DevSecOps security gates implemented.
+**Project status:** Phase 4 — Authorised security assessment completed.
 
 ## Intended workflow
 
@@ -43,6 +43,18 @@ CycloneDX SBOM evidence and provenance attestations.
 | Phase 6 | Governance, recovery and final reporting |
 
 Detailed naming rules are recorded in `docs/PHASE_NUMBERING.md`.
+
+## Phase 4 security assessment
+
+The authorised local assessment covers object and role authorisation, upload
+controls, anti-forgery, error handling, browser headers, rate limiting, Docker
+runtime posture, Azure Terraform/Checkov review and loopback network exposure.
+
+- [Final assessment report](security-assessment/PHASE4_FINAL_ASSESSMENT_REPORT.md)
+- [Vulnerability register](security-assessment/results/phase4/VULNERABILITY_REGISTER.md)
+- [Phase 4 validation](docs/PHASE4_VALIDATION.md)
+
+Validated findings remain open for remediation and retest in Phase 5.
 
 ## Local start
 
