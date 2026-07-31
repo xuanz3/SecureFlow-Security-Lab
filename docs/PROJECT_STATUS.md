@@ -2,7 +2,7 @@
 
 ## Current phase
 
-**Phase 3 — DevSecOps security gates complete**
+**Phase 4 — Authorised security assessment complete**
 
 ## Completed
 
@@ -28,8 +28,18 @@
 
 ## Next phase
 
-Phase 4 executes the authorised application-security assessment, vulnerability
-register, manual authorisation tests, IaC review and network exposure analysis.
+Phase 5 remediates selected findings, adds regression tests and detection
+content, and records formal retest results.
+
+## Phase 4 assessment outputs
+
+- authorised application/API test matrix
+- eight validated and Issue-linked findings
+- vulnerability register
+- Checkov Azure Terraform reference and insecure fixture
+- Nmap loopback/LAN exposure evidence
+- controlled unauthenticated packet capture
+- final assessment report
 
 ## Limitations
 
