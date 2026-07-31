@@ -27,3 +27,14 @@ No network range or third-party host is scanned.
 The packet capture records only unauthenticated `/health/live` traffic in the
 application container's network namespace. It does not capture login, ticket,
 attachment or credential traffic.
+
+## Deliberate-fixture scanner isolation
+
+`infrastructure/terraform/azure/insecure-fixture/` intentionally contains
+misconfigurations for controlled scanner validation. It is excluded only from
+the general Trivy repository SARIF baseline so those known training findings do
+not appear as newly introduced production-code alerts.
+
+The fixture remains covered by the dedicated Checkov workflow and its original
+JSON evidence. The Azure reference configuration, Docker configuration and all
+other repository configuration remain inside the general Trivy scan boundary.
