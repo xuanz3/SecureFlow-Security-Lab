@@ -1,0 +1,281 @@
+#!/usr/bin/env python3
+"""Create or update GitHub finding issues and link local finding records."""
+
+import argparse
+import csv
+import json
+import subprocess
+import sys
+from pathlib import Path
+
+
+def run(args, input_text=None):
+    result = subprocess.run(
+        args,
+        input=input_text,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    if result.returncode != 0:
+        raise RuntimeError(
+            "Command failed: %s\n%s"
+            % (" ".join(args), result.stderr)
+        )
+    return result.stdout
+
+
+def issue_body(item):
+    return """## Finding
+
+**{id} — {title}**
+
+- Severity: **{severity}**
+- Status: **Open**
+- Asset: `{asset}`
+- CWE: {cwe}
+- OWASP: {owasp}
+- Parent assessment: #23
+
+## Evidence
+
+{evidence}
+
+## Safe reproduction
+
+{reproduction}
+
+## Technical cause
+
+{cause}
+
+## Impact
+
+{impact}
+
+## Recommendation
+
+{recommendation}
+
+## Safety boundary
+
+Testing was restricted to project-owned localhost containers and fictional data.
+""".format(**item)
+
+
+def update_markdown(path, issue_url):
+    text = path.read_text(encoding="utf-8")
+    if "- GitHub issue: Pending" in text:
+        text = text.replace(
+            "- GitHub issue: Pending",
+            "- GitHub issue: %s" % issue_url,
+        )
+    else:
+        lines = text.splitlines()
+        replaced = False
+        for index, line in enumerate(lines):
+            if line.startswith("- GitHub issue:"):
+                lines[index] = "- GitHub issue: %s" % issue_url
+                replaced = True
+                break
+        if not replaced:
+            lines.insert(7, "- GitHub issue: %s" % issue_url)
+        text = "\n".join(lines) + ("\n" if text.endswith("\n") else "")
+    path.write_text(text, encoding="utf-8")
+
+
+def find_phase4_milestone(repo):
+    """Resolve the milestone from the canonical Phase 4 parent Issue.
+
+    Issue #18 is part of the Phase 4 backlog and already carries the correct
+    milestone. Reading that relationship is more reliable than depending on
+    the milestone title's exact punctuation or wording.
+    """
+    parent = json.loads(run([
+        "gh", "api",
+        "repos/%s/issues/18" % repo,
+    ]))
+    milestone = parent.get("milestone")
+    if milestone and milestone.get("number") is not None:
+        return int(milestone["number"])
+
+    # Fallback for a repository where Issue #18 temporarily has no milestone.
+    raw = run([
+        "gh", "api", "--paginate",
+        "repos/%s/milestones?state=all&per_page=100" % repo,
+    ])
+    milestones = json.loads(raw)
+    for item in milestones:
+        title = (item.get("title") or "").lower()
+        if "phase 4" in title or title.startswith("4"):
+            return int(item["number"])
+
+    raise RuntimeError(
+        "The Phase 4 milestone could not be resolved from Issue #18 "
+        "or the repository milestone list."
+    )
+
+
+def write_registers(results_dir, findings):
+    md = [
+        "# Phase 4 Vulnerability Register",
+        "",
+        "| ID | Severity | Finding | CWE | Status | GitHub issue |",
+        "|---|---|---|---|---|---|",
+    ]
+
+    for item in findings:
+        md.append(
+            "| {id} | {severity} | {title} | {cwe} | {status} | [#{issue_number}]({issue_url}) |".format(
+                **item
+            )
+        )
+
+    md.extend([
+        "",
+        "## Register rules",
+        "",
+        "- Findings remain open until a remediation PR is merged and a retest is recorded.",
+        "- Deliberately insecure Terraform fixtures are training evidence and are not application findings.",
+        "- Severity is a portfolio estimate for the local reference environment.",
+        "",
+    ])
+
+    (results_dir / "VULNERABILITY_REGISTER.md").write_text(
+        "\n".join(md),
+        encoding="utf-8",
+    )
+
+    with (results_dir / "VULNERABILITY_REGISTER.csv").open(
+        "w",
+        encoding="utf-8",
+        newline="",
+    ) as handle:
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=[
+                "id",
+                "severity",
+                "title",
+                "asset",
+                "cwe",
+                "owasp",
+                "status",
+                "issue_number",
+                "issue_url",
+            ],
+        )
+        writer.writeheader()
+        for item in findings:
+            writer.writerow({
+                key: item.get(key, "")
+                for key in writer.fieldnames
+            })
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--repo", required=True)
+    parser.add_argument("--repo-root", required=True)
+    parser.add_argument("--results-dir", required=True)
+    args = parser.parse_args()
+
+    repo_root = Path(args.repo_root)
+    results_dir = Path(args.results_dir)
+    findings_path = results_dir / "findings.json"
+    findings = json.loads(findings_path.read_text(encoding="utf-8"))
+    milestone_number = find_phase4_milestone(args.repo)
+
+    severity_labels = {
+        "Low": "severity-low",
+        "Medium": "severity-medium",
+        "High": "severity-high",
+        "Critical": "severity-critical",
+    }
+
+    for item in findings:
+        search = run([
+            "gh", "issue", "list",
+            "--repo", args.repo,
+            "--state", "all",
+            "--search", "%s in:title" % item["id"],
+            "--limit", "10",
+            "--json", "number,url,title",
+        ])
+        candidates = json.loads(search)
+
+        match = None
+        for candidate in candidates:
+            if item["id"] in candidate.get("title", ""):
+                match = candidate
+                break
+
+        title = "[Phase 4 Finding %s] %s" % (
+            item["id"],
+            item["title"],
+        )
+        labels = [
+            "security-finding",
+            "phase-4",
+            severity_labels[item["severity"]],
+        ]
+        payload = {
+            "title": title,
+            "body": issue_body(item),
+            "labels": labels,
+            "milestone": milestone_number,
+        }
+
+        if match is None:
+            created = json.loads(run([
+                "gh", "api",
+                "--method", "POST",
+                "repos/%s/issues" % args.repo,
+                "--input", "-",
+            ], json.dumps(payload)))
+            match = {
+                "number": created["number"],
+                "url": created["html_url"],
+                "title": created["title"],
+            }
+        else:
+            updated = json.loads(run([
+                "gh", "api",
+                "--method", "PATCH",
+                "repos/%s/issues/%s" % (
+                    args.repo,
+                    match["number"],
+                ),
+                "--input", "-",
+            ], json.dumps(payload)))
+            match = {
+                "number": updated["number"],
+                "url": updated["html_url"],
+                "title": updated["title"],
+            }
+
+        item["issue_number"] = match["number"]
+        item["issue_url"] = match["url"]
+
+        finding_path = repo_root / (
+            "security-assessment/findings/%s.md" % item["id"]
+        )
+        update_markdown(finding_path, match["url"])
+        print("%s -> #%s" % (item["id"], match["number"]))
+
+    findings_path.write_text(
+        json.dumps(findings, indent=2),
+        encoding="utf-8",
+    )
+    write_registers(results_dir, findings)
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as error:
+        print(
+            "Finding issue publication failed: %s" % error,
+            file=sys.stderr,
+        )
+        sys.exit(1)
