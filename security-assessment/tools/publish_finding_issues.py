@@ -85,15 +85,35 @@ def update_markdown(path, issue_url):
 
 
 def find_phase4_milestone(repo):
+    """Resolve the milestone from the canonical Phase 4 parent Issue.
+
+    Issue #18 is part of the Phase 4 backlog and already carries the correct
+    milestone. Reading that relationship is more reliable than depending on
+    the milestone title's exact punctuation or wording.
+    """
+    parent = json.loads(run([
+        "gh", "api",
+        "repos/%s/issues/18" % repo,
+    ]))
+    milestone = parent.get("milestone")
+    if milestone and milestone.get("number") is not None:
+        return int(milestone["number"])
+
+    # Fallback for a repository where Issue #18 temporarily has no milestone.
     raw = run([
         "gh", "api", "--paginate",
         "repos/%s/milestones?state=all&per_page=100" % repo,
     ])
     milestones = json.loads(raw)
-    for milestone in milestones:
-        if (milestone.get("title") or "").lower().startswith("phase 4"):
-            return milestone["number"]
-    raise RuntimeError("The Phase 4 milestone could not be resolved.")
+    for item in milestones:
+        title = (item.get("title") or "").lower()
+        if "phase 4" in title or title.startswith("4"):
+            return int(item["number"])
+
+    raise RuntimeError(
+        "The Phase 4 milestone could not be resolved from Issue #18 "
+        "or the repository milestone list."
+    )
 
 
 def write_registers(results_dir, findings):
