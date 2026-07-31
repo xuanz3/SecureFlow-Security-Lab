@@ -1,0 +1,32 @@
+         OccurredAtUtc         |    EventType     | Outcome  |                UserId                | ObjectType |               ObjectId               |     CorrelationId      
+-------------------------------+------------------+----------+--------------------------------------+------------+--------------------------------------+------------------------
+ 2026-07-31 15:09:29.339603+00 | Login            | Failure  |                                      |            |                                      | 0HNNF2MR1OF2H:00000001
+ 2026-07-31 15:09:29.328096+00 | Login            | Failure  |                                      |            |                                      | 0HNNF2MR1OF2F:00000001
+ 2026-07-31 15:09:29.267151+00 | AttachmentUpload | Success  | bf9c9050-95b6-4245-b434-8634b9b310be | Ticket     | 98bb54f6-74f9-4105-a2ed-836ef6a68513 | 0HNNF2MR1OF2B:00000001
+ 2026-07-31 15:09:29.244251+00 | AttachmentUpload | Success  | bf9c9050-95b6-4245-b434-8634b9b310be | Ticket     | 98bb54f6-74f9-4105-a2ed-836ef6a68513 | 0HNNF2MR1OF28:00000001
+ 2026-07-31 15:09:29.206687+00 | AttachmentUpload | Rejected | bf9c9050-95b6-4245-b434-8634b9b310be | Ticket     | 98bb54f6-74f9-4105-a2ed-836ef6a68513 | 0HNNF2MR1OF25:00000001
+ 2026-07-31 15:09:29.128429+00 | AttachmentUpload | Rejected | bf9c9050-95b6-4245-b434-8634b9b310be | Ticket     | 98bb54f6-74f9-4105-a2ed-836ef6a68513 | 0HNNF2MR1OF22:00000001
+ 2026-07-31 15:09:29.108729+00 | AttachmentUpload | Rejected | bf9c9050-95b6-4245-b434-8634b9b310be | Ticket     | 98bb54f6-74f9-4105-a2ed-836ef6a68513 | 0HNNF2MR1OF1V:00000001
+ 2026-07-31 15:09:29.041191+00 | TicketAccess     | Denied   | bf9c9050-95b6-4245-b434-8634b9b310be | Ticket     | fddb2b99-a3f0-4fb6-b624-32ead25084ee | 0HNNF2MR1OF1N:00000001
+ 2026-07-31 15:09:29.02907+00  | TicketCreated    | Success  | caf3f316-3de1-4bbf-8ef6-cd77f669b8c9 | Ticket     | fddb2b99-a3f0-4fb6-b624-32ead25084ee | 0HNNF2MR1OF1L:00000001
+ 2026-07-31 15:09:28.974337+00 | TicketCreated    | Success  | bf9c9050-95b6-4245-b434-8634b9b310be | Ticket     | 98bb54f6-74f9-4105-a2ed-836ef6a68513 | 0HNNF2MR1OF1I:00000001
+ 2026-07-31 15:09:28.920365+00 | Login            | Success  | caf3f316-3de1-4bbf-8ef6-cd77f669b8c9 |            |                                      | 0HNNF2MR1OF1F:00000001
+ 2026-07-31 15:09:28.832207+00 | Login            | Success  | bf9c9050-95b6-4245-b434-8634b9b310be |            |                                      | 0HNNF2MR1OF1C:00000001
+ 2026-07-31 15:09:28.661805+00 | Login            | Success  | ce3f63ab-6204-44d5-aa32-ff0fefa08da9 |            |                                      | 0HNNF2MR1OF19:00000001
+ 2026-07-29 12:42:58.254836+00 | Login            | Success  | ce3f63ab-6204-44d5-aa32-ff0fefa08da9 |            |                                      | 0HNNDDN88SDB1:00000023
+ 2026-07-29 12:42:48.328057+00 | Logout           | Success  | bf9c9050-95b6-4245-b434-8634b9b310be |            |                                      | 0HNNDDN88SDB1:00000020
+ 2026-07-29 12:42:01.961142+00 | TicketAccess     | Denied   | bf9c9050-95b6-4245-b434-8634b9b310be | Ticket     | ebf75616-5a08-4be9-8748-d37bb7128955 | 0HNNDDN88SDB1:0000001D
+ 2026-07-29 12:41:50.326057+00 | Login            | Success  | bf9c9050-95b6-4245-b434-8634b9b310be |            |                                      | 0HNNDDN88SDB1:0000001B
+ 2026-07-29 12:41:29.321188+00 | Logout           | Success  | caf3f316-3de1-4bbf-8ef6-cd77f669b8c9 |            |                                      | 0HNNDDN88SDB1:00000018
+ 2026-07-29 12:41:05.989631+00 | Login            | Success  | caf3f316-3de1-4bbf-8ef6-cd77f669b8c9 |            |                                      | 0HNNDDN88SDB1:00000013
+ 2026-07-29 12:40:24.307264+00 | Logout           | Success  | bf9c9050-95b6-4245-b434-8634b9b310be |            |                                      | 0HNNDDN88SDB1:00000010
+ 2026-07-29 12:40:10.929206+00 | Login            | Success  | bf9c9050-95b6-4245-b434-8634b9b310be |            |                                      | 0HNNDDN88SDB1:0000000D
+ 2026-07-29 12:39:51.955562+00 | Logout           | Success  | caf3f316-3de1-4bbf-8ef6-cd77f669b8c9 |            |                                      | 0HNNDDN88SDB1:0000000A
+ 2026-07-29 12:39:10.578239+00 | TicketCreated    | Success  | caf3f316-3de1-4bbf-8ef6-cd77f669b8c9 | Ticket     | ebf75616-5a08-4be9-8748-d37bb7128955 | 0HNNDDN88SDB1:00000008
+ 2026-07-29 12:38:58.797718+00 | Login            | Success  | caf3f316-3de1-4bbf-8ef6-cd77f669b8c9 |            |                                      | 0HNNDDN88SDB1:00000004
+ 2026-07-29 12:38:36.058189+00 | Logout           | Success  | bf9c9050-95b6-4245-b434-8634b9b310be |            |                                      | 0HNNDDN88SDB1:00000001
+ 2026-07-29 12:36:47.407529+00 | TicketCreated    | Success  | bf9c9050-95b6-4245-b434-8634b9b310be | Ticket     | 6ab4d294-8f56-4b7f-9c19-8ae7989c4cc8 | 0HNNDDN88SDAU:0000000A
+ 2026-07-29 12:35:40.674521+00 | Login            | Success  | bf9c9050-95b6-4245-b434-8634b9b310be |            |                                      | 0HNNDDN88SDAU:00000004
+ 2026-07-29 12:29:24.021796+00 | Login            | Success  | bf9c9050-95b6-4245-b434-8634b9b310be |            |                                      | 0HNNDDDBS30OU:00000003
+(28 rows)
+
