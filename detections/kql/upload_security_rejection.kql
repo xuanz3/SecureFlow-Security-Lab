@@ -1,0 +1,6 @@
+// SecureFlow upload validation or quarantine rejection
+SecureFlowAuditEvents_CL
+| where EventType_s in ("AttachmentScan", "AttachmentUpload")
+| where Outcome_s == "Rejected"
+| project OccurredAtUtc_t, EventType_s, UserId_s, SourceAddress_s, ObjectType_s, ObjectId_s, CorrelationId_s
+| order by OccurredAtUtc_t desc

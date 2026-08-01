@@ -1,0 +1,21 @@
+title: SecureFlow Repeated Login Failures
+id: 1db8e20b-5ced-4b79-bbc6-a7c5aa0ef001
+status: experimental
+description: Detects three or more failed SecureFlow logins from the same source within five minutes.
+author: Xuanze Chen
+date: 2026-08-02
+tags:
+  - attack.credential_access
+  - attack.t1110
+logsource:
+  product: secureflow
+  service: security_audit
+detection:
+  selection:
+    EventType: Login
+    Outcome: Failure
+  timeframe: 5m
+  condition: selection | count() by SourceAddress >= 3
+falsepositives:
+  - A user repeatedly mistyping a password
+level: medium

@@ -1,0 +1,20 @@
+title: SecureFlow Account Lockout
+id: 4f751291-3b2d-49a3-9cf0-bf4d4862f002
+status: experimental
+description: Detects a SecureFlow authentication event that locked an account.
+author: Xuanze Chen
+date: 2026-08-02
+tags:
+  - attack.credential_access
+  - attack.t1110
+logsource:
+  product: secureflow
+  service: security_audit
+detection:
+  selection:
+    EventType: Login
+    Outcome: LockedOut
+  condition: selection
+falsepositives:
+  - A legitimate user repeatedly entering an incorrect password
+level: high

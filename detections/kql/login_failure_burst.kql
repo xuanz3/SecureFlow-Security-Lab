@@ -1,0 +1,5 @@
+// SecureFlow repeated login failures
+SecureFlowAuditEvents_CL
+| where EventType_s == "Login" and Outcome_s == "Failure"
+| summarize FailureCount=count(), FirstSeen=min(OccurredAtUtc_t), LastSeen=max(OccurredAtUtc_t), Correlations=make_set(CorrelationId_s, 20) by SourceAddress_s, UserId_s, bin(OccurredAtUtc_t, 5m)
+| where FailureCount >= 3

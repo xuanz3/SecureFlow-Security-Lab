@@ -1,0 +1,123 @@
+[
+  {
+    "Id": 47,
+    "EventType": "Login",
+    "Outcome": "Success",
+    "UserId": "fictional-bob",
+    "ObjectType": null,
+    "ObjectId": null,
+    "CorrelationId": "0HNNFRCC07RQH:00000001",
+    "SourceAddress": "local-test-source",
+    "OccurredAtUtc": "2026-08-01T14:42:21.726067+00:00"
+  },
+  {
+    "Id": 48,
+    "EventType": "TicketCreated",
+    "Outcome": "Success",
+    "UserId": "fictional-bob",
+    "ObjectType": "Ticket",
+    "ObjectId": "04a0198e-b088-4935-b06f-99f74d39ae52",
+    "CorrelationId": "0HNNFRCC07RQK:00000001",
+    "SourceAddress": "local-test-source",
+    "OccurredAtUtc": "2026-08-01T14:42:21.862595+00:00"
+  },
+  {
+    "Id": 49,
+    "EventType": "Login",
+    "Outcome": "Success",
+    "UserId": "fictional-alice",
+    "ObjectType": null,
+    "ObjectId": null,
+    "CorrelationId": "0HNNFRCC07RQN:00000001",
+    "SourceAddress": "local-test-source",
+    "OccurredAtUtc": "2026-08-01T14:42:21.968314+00:00"
+  },
+  {
+    "Id": 50,
+    "EventType": "TicketCreated",
+    "Outcome": "Success",
+    "UserId": "fictional-alice",
+    "ObjectType": "Ticket",
+    "ObjectId": "7195256c-9910-449d-a5f3-74c665e41072",
+    "CorrelationId": "0HNNFRCC07RQQ:00000001",
+    "SourceAddress": "local-test-source",
+    "OccurredAtUtc": "2026-08-01T14:42:21.982762+00:00"
+  },
+  {
+    "Id": 51,
+    "EventType": "TicketAccess",
+    "Outcome": "Denied",
+    "UserId": "fictional-alice",
+    "ObjectType": "Ticket",
+    "ObjectId": "04a0198e-b088-4935-b06f-99f74d39ae52",
+    "CorrelationId": "0HNNFRCC07RQS:00000001",
+    "SourceAddress": "local-test-source",
+    "OccurredAtUtc": "2026-08-01T14:42:21.993025+00:00"
+  },
+  {
+    "Id": 52,
+    "EventType": "AttachmentScan",
+    "Outcome": "Rejected",
+    "UserId": "fictional-alice",
+    "ObjectType": "Ticket",
+    "ObjectId": "7195256c-9910-449d-a5f3-74c665e41072",
+    "CorrelationId": "0HNNFRCC07RQU:00000001",
+    "SourceAddress": "local-test-source",
+    "OccurredAtUtc": "2026-08-01T14:42:22.022275+00:00"
+  },
+  {
+    "Id": 53,
+    "EventType": "Login",
+    "Outcome": "Failure",
+    "UserId": "fictional-alice",
+    "ObjectType": null,
+    "ObjectId": null,
+    "CorrelationId": "0HNNFRCC07RR1:00000001",
+    "SourceAddress": "local-test-source",
+    "OccurredAtUtc": "2026-08-01T14:42:22.114002+00:00"
+  },
+  {
+    "Id": 54,
+    "EventType": "Login",
+    "Outcome": "Failure",
+    "UserId": "fictional-alice",
+    "ObjectType": null,
+    "ObjectId": null,
+    "CorrelationId": "0HNNFRCC07RR3:00000001",
+    "SourceAddress": "local-test-source",
+    "OccurredAtUtc": "2026-08-01T14:42:22.187+00:00"
+  },
+  {
+    "Id": 55,
+    "EventType": "Login",
+    "Outcome": "Failure",
+    "UserId": "fictional-alice",
+    "ObjectType": null,
+    "ObjectId": null,
+    "CorrelationId": "0HNNFRCC07RR5:00000001",
+    "SourceAddress": "local-test-source",
+    "OccurredAtUtc": "2026-08-01T14:42:22.266291+00:00"
+  },
+  {
+    "Id": 56,
+    "EventType": "Login",
+    "Outcome": "Failure",
+    "UserId": "fictional-alice",
+    "ObjectType": null,
+    "ObjectId": null,
+    "CorrelationId": "0HNNFRCD08HLD:00000001",
+    "SourceAddress": "local-test-source",
+    "OccurredAtUtc": "2026-08-01T14:42:24.96719+00:00"
+  },
+  {
+    "Id": 57,
+    "EventType": "Login",
+    "Outcome": "LockedOut",
+    "UserId": "fictional-alice",
+    "ObjectType": null,
+    "ObjectId": null,
+    "CorrelationId": "0HNNFRCD08HLF:00000001",
+    "SourceAddress": "local-test-source",
+    "OccurredAtUtc": "2026-08-01T14:42:25.092013+00:00"
+  }
+]

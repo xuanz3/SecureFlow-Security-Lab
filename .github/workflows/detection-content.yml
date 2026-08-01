@@ -1,0 +1,35 @@
+name: Detection Content
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: detection-content-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate Sigma and KQL
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          persist-credentials: false
+
+      - name: Validate detection content and fixture
+        run: |
+          python3 security-assessment/tools/validate_detection_content.py \
+            --sigma-dir detections/sigma \
+            --kql-dir detections/kql \
+            --events evidence/archive/artifacts/phase5/incident-events.json \
+            --output /tmp/detection-validation.json

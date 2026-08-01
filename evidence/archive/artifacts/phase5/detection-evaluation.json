@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "sigma_count": 5,
+  "kql_count": 5,
+  "event_count": 11,
+  "detections": {
+    "D1": {
+      "triggered": true,
+      "matched_event_ids": [
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    "D2": {
+      "triggered": true,
+      "matched_event_ids": [
+        57
+      ]
+    },
+    "D3": {
+      "triggered": true,
+      "matched_event_ids": [
+        51
+      ]
+    },
+    "D4": {
+      "triggered": true,
+      "matched_event_ids": [
+        52
+      ]
+    },
+    "D5": {
+      "triggered": true,
+      "matched_event_ids": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57
+      ]
+    }
+  },
+  "errors": []
+}

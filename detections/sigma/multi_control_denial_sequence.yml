@@ -1,0 +1,30 @@
+title: SecureFlow Multiple Security Control Denials
+id: 36ce85a4-722d-4480-9ea8-e0098eeaf005
+status: experimental
+description: Detects a burst of authentication, authorisation or upload-control denials from one source within fifteen minutes.
+author: Xuanze Chen
+date: 2026-08-02
+tags:
+  - attack.initial_access
+  - attack.credential_access
+  - attack.collection
+logsource:
+  product: secureflow
+  service: security_audit
+detection:
+  selection:
+    EventType:
+      - Login
+      - TicketAccess
+      - AttachmentScan
+      - AttachmentUpload
+    Outcome:
+      - Failure
+      - LockedOut
+      - Denied
+      - Rejected
+  timeframe: 15m
+  condition: selection | count() by SourceAddress >= 3
+falsepositives:
+  - A user making several unrelated mistakes in a short period
+level: high
