@@ -54,9 +54,13 @@ public sealed class UploadAndAuthenticationControlTests
                 inherit: true)
             .Cast<RequestFormLimitsAttribute>());
 
+        var requestMetadata = Assert.IsAssignableFrom<
+            Microsoft.AspNetCore.Http.Metadata.IRequestSizeLimitMetadata>(
+                requestLimit);
+
         Assert.Equal(
-            FileUploadValidator.MaximumRequestBytes,
-            requestLimit.Bytes);
+            (long?)FileUploadValidator.MaximumRequestBytes,
+            requestMetadata.MaxRequestBodySize);
         Assert.Equal(
             FileUploadValidator.MaximumRequestBytes,
             formLimit.MultipartBodyLengthLimit);
