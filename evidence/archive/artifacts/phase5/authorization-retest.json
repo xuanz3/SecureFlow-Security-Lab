@@ -1,0 +1,40 @@
+{
+  "generated_at_utc": "2026-08-01T13:22:52.740237+00:00",
+  "base_url": "http://localhost:8080",
+  "scope": "Project-owned localhost and fictional accounts only",
+  "status": "PASS",
+  "tests": [
+    {
+      "test_id": "P5-AUTH-01",
+      "area": "Owner access",
+      "expected": "Bob can read Bob's ticket",
+      "actual": "HTTP 200",
+      "status": "PASS"
+    },
+    {
+      "test_id": "P5-AUTH-02",
+      "area": "Object-level authorisation",
+      "expected": "Access is denied before protected content is returned",
+      "actual": "HTTP 302 -> http://localhost:8080/Account/AccessDenied?ReturnUrl=%2FTickets%2FDetails%2F630a267f-f27a-4954-ab89-4bb6c87566a2",
+      "raw_denied": true,
+      "rendered_denied": true,
+      "status": "PASS"
+    },
+    {
+      "test_id": "P5-AUTH-03",
+      "area": "Administrator authorisation",
+      "expected": "Access is denied before protected content is returned",
+      "actual": "HTTP 302 -> http://localhost:8080/Account/AccessDenied?ReturnUrl=%2FAdmin",
+      "raw_denied": true,
+      "rendered_denied": true,
+      "status": "PASS"
+    },
+    {
+      "test_id": "P5-AUTH-04",
+      "area": "Administrator access",
+      "expected": "Administrator can access the administrator route",
+      "actual": "HTTP 200",
+      "status": "PASS"
+    }
+  ]
+}
