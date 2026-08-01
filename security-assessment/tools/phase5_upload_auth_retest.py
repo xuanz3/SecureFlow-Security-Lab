@@ -62,6 +62,7 @@ class Client:
                     "headers": dict(response.headers.items()),
                     "body": response.read(),
                     "url": response.geturl(),
+                    "transport_error": None,
                 }
         except urllib.error.HTTPError as error:
             return {
@@ -69,6 +70,20 @@ class Client:
                 "headers": dict(error.headers.items()),
                 "body": error.read(),
                 "url": error.geturl(),
+                "transport_error": None,
+            }
+        except (
+            urllib.error.URLError,
+            BrokenPipeError,
+            ConnectionResetError,
+            TimeoutError,
+        ) as error:
+            return {
+                "status": 0,
+                "headers": {},
+                "body": b"",
+                "url": url,
+                "transport_error": str(error),
             }
 
     def get(self, path, follow=True):
@@ -259,11 +274,50 @@ def main():
         b"%PDF-1.4\n" + (b"A" * (2 * 1024 * 1024 + 96 * 1024)),
         follow=False,
     )
+    transport_error = oversized.get("transport_error")
+    early_disconnect = (
+        oversized["status"] == 0
+        and transport_error
+        and any(
+            marker in transport_error.lower()
+            for marker in (
+                "broken pipe",
+                "connection reset",
+                "remote end closed",
+            )
+        )
+    )
+
+    health_after_limit = client.get("/health/ready")
+    application_healthy = health_after_limit["status"] == 200
+
+    oversized_rejected = (
+        oversized["status"] in {400, 413}
+        or (early_disconnect and application_healthy)
+    )
+
+    if oversized["status"] in {400, 413}:
+        oversized_actual = "HTTP %s" % oversized["status"]
+    elif early_disconnect and application_healthy:
+        oversized_actual = (
+            "Connection closed during oversized upload; "
+            "readiness remained HTTP 200"
+        )
+    else:
+        oversized_actual = (
+            "HTTP %s; transport error: %s; readiness: HTTP %s"
+            % (
+                oversized["status"],
+                transport_error or "none",
+                health_after_limit["status"],
+            )
+        )
+
     tests.append(result(
         "P5-UP-04",
         "Pre-model-binding request limit",
-        oversized["status"] in {400, 413},
-        "HTTP %s" % oversized["status"],
+        oversized_rejected,
+        oversized_actual,
     ))
 
     home = client.get("/")
