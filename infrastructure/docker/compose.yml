@@ -21,6 +21,13 @@ services:
       context: ../..
       dockerfile: infrastructure/docker/Dockerfile
     restart: unless-stopped
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=67108864
     depends_on:
       db:
         condition: service_healthy
@@ -39,7 +46,11 @@ services:
       - "127.0.0.1:8080:8080"
     volumes:
       - secureflow-uploads:/app/App_Data/uploads
+      - secureflow-quarantine:/app/App_Data/quarantine
+      - secureflow-data-protection:/home/appuser/.aspnet/DataProtection-Keys
 
 volumes:
   secureflow-postgres:
   secureflow-uploads:
+  secureflow-quarantine:
+  secureflow-data-protection:

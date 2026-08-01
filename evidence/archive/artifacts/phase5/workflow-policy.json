@@ -1,0 +1,142 @@
+{
+  "status": "PASS",
+  "workflow_count": 9,
+  "policy": {
+    "top_level_permissions_required": true,
+    "write_all_forbidden": true,
+    "actions_require_full_commit_sha": true,
+    "checkout_persist_credentials": false
+  },
+  "workflows": [
+    {
+      "workflow": ".github/workflows/ci.yml",
+      "permissions": {
+        "contents": "read"
+      },
+      "actions": [
+        "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+        "actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68",
+        "actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+        "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+        "docker/setup-buildx-action@bb05f3f5519dd87d3ba754cc423b652a5edd6d2c",
+        "docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a"
+      ],
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "workflow": ".github/workflows/codeql.yml",
+      "permissions": {
+        "contents": "read",
+        "packages": "read",
+        "security-events": "write"
+      },
+      "actions": [
+        "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+        "github/codeql-action/init@18420e3271f74589575af831a523c833acda327f",
+        "github/codeql-action/analyze@18420e3271f74589575af831a523c833acda327f"
+      ],
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "workflow": ".github/workflows/container-security.yml",
+      "permissions": {
+        "contents": "read",
+        "security-events": "write"
+      },
+      "actions": [
+        "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+        "docker/setup-buildx-action@bb05f3f5519dd87d3ba754cc423b652a5edd6d2c",
+        "docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a",
+        "aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25",
+        "aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25",
+        "github/codeql-action/upload-sarif@18420e3271f74589575af831a523c833acda327f",
+        "github/codeql-action/upload-sarif@18420e3271f74589575af831a523c833acda327f",
+        "anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610",
+        "aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25",
+        "actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a"
+      ],
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "workflow": ".github/workflows/dast.yml",
+      "permissions": {
+        "contents": "read"
+      },
+      "actions": [
+        "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+        "actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a"
+      ],
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "workflow": ".github/workflows/dependency-review.yml",
+      "permissions": {
+        "contents": "read"
+      },
+      "actions": [
+        "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+        "actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294"
+      ],
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "workflow": ".github/workflows/iac-security.yml",
+      "permissions": {
+        "contents": "read"
+      },
+      "actions": [
+        "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+        "actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a"
+      ],
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "workflow": ".github/workflows/publish-image.yml",
+      "permissions": {
+        "contents": "read",
+        "packages": "write",
+        "attestations": "write",
+        "id-token": "write"
+      },
+      "actions": [
+        "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+        "docker/setup-buildx-action@bb05f3f5519dd87d3ba754cc423b652a5edd6d2c",
+        "docker/login-action@dbcb813823bdd20940b903addbd779551569679f",
+        "docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302",
+        "docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a",
+        "actions/attest@508db95dd578ae2727ebd6217d5ba78e4fbda05d"
+      ],
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "workflow": ".github/workflows/secret-scan.yml",
+      "permissions": {
+        "contents": "read"
+      },
+      "actions": [
+        "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+        "actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a"
+      ],
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "workflow": ".github/workflows/workflow-policy.yml",
+      "permissions": {
+        "contents": "read"
+      },
+      "actions": [
+        "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd"
+      ],
+      "errors": [],
+      "status": "PASS"
+    }
+  ]
+}
