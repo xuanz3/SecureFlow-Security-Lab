@@ -1,0 +1,35 @@
+{
+  "container_id_prefix": "523498d0a934",
+  "image": "docker-app",
+  "configured_user": "appuser",
+  "readonly_rootfs": true,
+  "cap_drop": [
+    "ALL"
+  ],
+  "security_opt": [
+    "no-new-privileges:true"
+  ],
+  "tmpfs": [
+    "/tmp"
+  ],
+  "mounts": [
+    {
+      "type": "volume",
+      "name": "docker_secureflow-data-protection",
+      "destination": "/home/appuser/.aspnet/DataProtection-Keys",
+      "rw": true
+    },
+    {
+      "type": "volume",
+      "name": "docker_secureflow-uploads",
+      "destination": "/app/App_Data/uploads",
+      "rw": true
+    },
+    {
+      "type": "volume",
+      "name": "docker_secureflow-quarantine",
+      "destination": "/app/App_Data/quarantine",
+      "rw": true
+    }
+  ]
+}
