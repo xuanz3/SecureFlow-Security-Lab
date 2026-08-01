@@ -2,7 +2,7 @@
 
 A local-first enterprise security engineering and assurance portfolio project covering secure application development, DevSecOps, application security testing, vulnerability management, detection engineering, governance and recovery.
 
-**Project status:** Phase 4 — Authorised security assessment completed.
+**Project status:** Phase 5 — Remediation and detection engineering completed.
 
 ## Intended workflow
 
@@ -54,7 +54,16 @@ runtime posture, Azure Terraform/Checkov review and loopback network exposure.
 - [Vulnerability register](security-assessment/results/phase4/VULNERABILITY_REGISTER.md)
 - [Phase 4 validation](docs/PHASE4_VALIDATION.md)
 
-Validated findings remain open for remediation and retest in Phase 5.
+All eight validated findings were remediated and retested in Phase 5.
+
+## Phase 5 remediation and detection
+
+Phase 5 closes the full Phase 4 vulnerability register, adds regression and runtime retests, enforces least-privilege container/workflow policy, and validates portable detection engineering against a controlled local incident.
+
+- [Phase 5 remediation and detection report](security-assessment/PHASE5_REMEDIATION_DETECTION_REPORT.md)
+- [Phase 5 validation](docs/PHASE5_VALIDATION.md)
+- [Sigma and KQL detection content](detections/README.md)
+- [Controlled incident report](incident-response/IR-P5-001-CONTROLLED-SUSPICIOUS-SEQUENCE.md)
 
 ## Local start
 

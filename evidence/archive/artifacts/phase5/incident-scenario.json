@@ -1,0 +1,29 @@
+{
+  "scenario_id": "IR-P5-001",
+  "generated_at_utc": "2026-08-01T14:42:25.603226+00:00",
+  "scope": "Project-owned localhost containers and fictional accounts",
+  "baseline_audit_id": 46,
+  "event_count": 11,
+  "bob_ticket_id": "04a0198e-b088-4935-b06f-99f74d39ae52",
+  "alice_ticket_id": "7195256c-9910-449d-a5f3-74c665e41072",
+  "cross_user_response": 302,
+  "spoofed_upload_response": 200,
+  "failed_login_responses": [
+    200,
+    200,
+    200,
+    200,
+    200
+  ],
+  "checks": {
+    "five_login_failures_or_lockout_events": true,
+    "account_lockout": true,
+    "ticket_access_denied": true,
+    "upload_scan_rejected": true
+  },
+  "sanitisation": {
+    "source_addresses": "replaced with local-test-source",
+    "identity_ids": "mapped to fictional labels",
+    "credentials": "never written"
+  }
+}
