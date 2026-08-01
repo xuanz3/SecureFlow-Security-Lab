@@ -1,0 +1,10 @@
+PASS: application process uses non-root UID 100
+PASS: application root filesystem is read-only
+PASS: all Linux capabilities are dropped
+PASS: no-new-privileges is enabled
+PASS: write to the application root was denied
+PASS: required writable path works: /tmp/.phase5-write-test
+PASS: required writable path works: /app/App_Data/uploads/.phase5-write-test
+PASS: required writable path works: /app/App_Data/quarantine/.phase5-write-test
+PASS: required writable path works: /home/appuser/.aspnet/DataProtection-Keys/.phase5-write-test
+PASS: readiness endpoint remained HTTP 200
