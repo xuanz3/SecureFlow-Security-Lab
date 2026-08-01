@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="741fdb2f-0e2b-4d9b-9a82-13fc5d36e71f" name="@macbookpro 2026-08-01 23:11:48" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-08-01T23:11:48.0730670+10:00" queuing="2026-08-01T23:11:48.0730680+10:00" start="2026-08-01T23:11:47.6242680+10:00" finish="2026-08-01T23:11:48.0885990+10:00" />
+  <TestSettings name="default" id="cd15d57d-17a5-48d4-8a7b-999dfbb28ff5">
+    <Deployment runDeploymentRoot="_macbookpro_2026-08-01_23_11_48" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="214898e5-e2d3-4b6b-8351-9849f3e0a133" testId="26616ac5-c6e7-a752-66da-bace189355f2" testName="SecureFlow.Tests.FileUploadValidatorTests.RejectsEmptyFile" computerName="macbookpro" duration="00:00:00.0000220" startTime="2026-08-01T23:11:48.0495310+10:00" endTime="2026-08-01T23:11:48.0495600+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="214898e5-e2d3-4b6b-8351-9849f3e0a133" />
+    <UnitTestResult executionId="5afcee80-da8e-4314-b853-5b48612080fc" testId="aa0ddf90-33dc-1800-98bc-7eaa3d4bd56c" testName="SecureFlow.Tests.CreateTicketViewModelTests.ShortTitleFailsValidation" computerName="macbookpro" duration="00:00:00.0007571" startTime="2026-08-01T23:11:48.0500560+10:00" endTime="2026-08-01T23:11:48.0506580+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5afcee80-da8e-4314-b853-5b48612080fc" />
+    <UnitTestResult executionId="ad0edc01-59b0-4921-bb54-30e1faa679e1" testId="1afc4212-9e34-5bf9-c93c-a664cbc7d83d" testName="SecureFlow.Tests.FileUploadValidatorTests.RejectsMismatchedContentType" computerName="macbookpro" duration="00:00:00.0000222" startTime="2026-08-01T23:11:48.0497750+10:00" endTime="2026-08-01T23:11:48.0498300+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ad0edc01-59b0-4921-bb54-30e1faa679e1" />
+    <UnitTestResult executionId="ca3133c1-cd7b-4b4d-93df-67fa06ecb5c8" testId="cbbd54a8-23c5-bdbf-e886-a4608bb79c6c" testName="SecureFlow.Tests.CreateTicketViewModelTests.ValidInputPassesValidation" computerName="macbookpro" duration="00:00:00.0061973" startTime="2026-08-01T23:11:48.0238510+10:00" endTime="2026-08-01T23:11:48.0499980+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ca3133c1-cd7b-4b4d-93df-67fa06ecb5c8" />
+    <UnitTestResult executionId="2778ba9c-18fc-4961-af03-ca790a010fa8" testId="8dbfedc5-8319-ce88-d6af-ff68295e8fcb" testName="SecureFlow.Tests.FileUploadValidatorTests.RejectsExecutableExtension" computerName="macbookpro" duration="00:00:00.0000321" startTime="2026-08-01T23:11:48.0359380+10:00" endTime="2026-08-01T23:11:48.0359680+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2778ba9c-18fc-4961-af03-ca790a010fa8" />
+    <UnitTestResult executionId="1addc5c0-e47b-4c63-bb53-03101b6c1939" testId="bef68d10-0705-1255-6a16-8f0ce06f02a4" testName="SecureFlow.Tests.TicketAccessServiceTests.AdminCanReadAnotherUsersTicket" computerName="macbookpro" duration="00:00:00.0000407" startTime="2026-08-01T23:11:48.0359170+10:00" endTime="2026-08-01T23:11:48.0360270+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1addc5c0-e47b-4c63-bb53-03101b6c1939" />
+    <UnitTestResult executionId="2eb5a823-672a-4344-8426-217b2b843105" testId="1c7a1c16-66f3-58fa-7369-52b3fb1d3ee0" testName="SecureFlow.Tests.FileUploadValidatorTests.RemovesPathTraversalFromOriginalName" computerName="macbookpro" duration="00:00:00.0055921" startTime="2026-08-01T23:11:48.0231080+10:00" endTime="2026-08-01T23:11:48.0326030+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2eb5a823-672a-4344-8426-217b2b843105" />
+    <UnitTestResult executionId="539d0c68-216d-4b40-bf77-0b5d6cc293cf" testId="a26dd8fc-691b-a791-136a-59481c1639e4" testName="SecureFlow.Tests.TicketAccessServiceTests.AdminCanUseAdminFunctions" computerName="macbookpro" duration="00:00:00.0000186" startTime="2026-08-01T23:11:48.0499310+10:00" endTime="2026-08-01T23:11:48.0499580+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="539d0c68-216d-4b40-bf77-0b5d6cc293cf" />
+    <UnitTestResult executionId="98e25742-7b4b-4ebb-b14b-53e21727be23" testId="afa781c6-a3e7-1a11-19e0-0f6671446614" testName="SecureFlow.Tests.TicketAccessServiceTests.NormalUserCannotUseAdminFunctions" computerName="macbookpro" duration="00:00:00.0000432" startTime="2026-08-01T23:11:48.0498040+10:00" endTime="2026-08-01T23:11:48.0498710+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="98e25742-7b4b-4ebb-b14b-53e21727be23" />
+    <UnitTestResult executionId="52a257e8-a086-46e8-850b-6f0b8782a453" testId="f13165c1-67d7-6835-343f-3aa303c0c9c2" testName="SecureFlow.Tests.TicketAccessServiceTests.OwnerCanReadOwnTicket" computerName="macbookpro" duration="00:00:00.0000282" startTime="2026-08-01T23:11:48.0494930+10:00" endTime="2026-08-01T23:11:48.0496810+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="52a257e8-a086-46e8-850b-6f0b8782a453" />
+    <UnitTestResult executionId="481b3828-fdbe-40ff-8416-9b0f6f7950de" testId="bb7382a3-6637-b15c-0d67-0f751ff2787f" testName="SecureFlow.Tests.FileUploadValidatorTests.RejectsOversizedFile" computerName="macbookpro" duration="00:00:00.0000241" startTime="2026-08-01T23:11:48.0360580+10:00" endTime="2026-08-01T23:11:48.0361350+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="481b3828-fdbe-40ff-8416-9b0f6f7950de" />
+    <UnitTestResult executionId="3701ee38-ba5b-4739-ae89-486fbb11725e" testId="f42adb4a-59b6-6ae8-661d-3f316da65d36" testName="SecureFlow.Tests.FileUploadValidatorTests.AllowsPdfWithinSizeLimit" computerName="macbookpro" duration="00:00:00.0000408" startTime="2026-08-01T23:11:48.0361890+10:00" endTime="2026-08-01T23:11:48.0362520+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3701ee38-ba5b-4739-ae89-486fbb11725e" />
+    <UnitTestResult executionId="36417453-bbf5-42f1-8c53-b826f650728f" testId="6d1a9017-0d3d-ade1-16fe-6a7205479c05" testName="SecureFlow.Tests.TicketAccessServiceTests.UserCannotReadAnotherUsersTicket" computerName="macbookpro" duration="00:00:00.0053734" startTime="2026-08-01T23:11:48.0238270+10:00" endTime="2026-08-01T23:11:48.0308010+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="36417453-bbf5-42f1-8c53-b826f650728f" />
+    <UnitTestResult executionId="a5b5e7ce-c3b8-490e-9bfb-a33876b669ee" testId="4ebedf60-660c-8484-95e7-f7654b526541" testName="SecureFlow.Tests.CreateTicketViewModelTests.ShortDescriptionFailsValidation" computerName="macbookpro" duration="00:00:00.0001088" startTime="2026-08-01T23:11:48.0507290+10:00" endTime="2026-08-01T23:11:48.0507600+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a5b5e7ce-c3b8-490e-9bfb-a33876b669ee" />
+    <UnitTestResult executionId="43f280d1-322a-4478-b20a-f04c54fa57ab" testId="6ab458e2-6527-87e6-1ea0-35f1b2f5354b" testName="SecureFlow.Tests.TicketAccessServiceTests.UserCannotModifyAnotherUsersTicket" computerName="macbookpro" duration="00:00:00.0000554" startTime="2026-08-01T23:11:48.0361120+10:00" endTime="2026-08-01T23:11:48.0362110+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="43f280d1-322a-4478-b20a-f04c54fa57ab" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="SecureFlow.Tests.CreateTicketViewModelTests.ShortDescriptionFailsValidation" storage="/users/moyan/secureflow-workspace/secureflow-security-lab/tests/secureflow.tests/bin/release/net10.0/secureflow.tests.dll" id="4ebedf60-660c-8484-95e7-f7654b526541">
+      <Execution id="a5b5e7ce-c3b8-490e-9bfb-a33876b669ee" />
+      <TestMethod codeBase="/Users/moyan/SecureFlow-Workspace/SecureFlow-Security-Lab/tests/SecureFlow.Tests/bin/Release/net10.0/SecureFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SecureFlow.Tests.CreateTicketViewModelTests" name="ShortDescriptionFailsValidation" />
+    </UnitTest>
+    <UnitTest name="SecureFlow.Tests.TicketAccessServiceTests.NormalUserCannotUseAdminFunctions" storage="/users/moyan/secureflow-workspace/secureflow-security-lab/tests/secureflow.tests/bin/release/net10.0/secureflow.tests.dll" id="afa781c6-a3e7-1a11-19e0-0f6671446614">
+      <Execution id="98e25742-7b4b-4ebb-b14b-53e21727be23" />
+      <TestMethod codeBase="/Users/moyan/SecureFlow-Workspace/SecureFlow-Security-Lab/tests/SecureFlow.Tests/bin/Release/net10.0/SecureFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SecureFlow.Tests.TicketAccessServiceTests" name="NormalUserCannotUseAdminFunctions" />
+    </UnitTest>
+    <UnitTest name="SecureFlow.Tests.FileUploadValidatorTests.RejectsMismatchedContentType" storage="/users/moyan/secureflow-workspace/secureflow-security-lab/tests/secureflow.tests/bin/release/net10.0/secureflow.tests.dll" id="1afc4212-9e34-5bf9-c93c-a664cbc7d83d">
+      <Execution id="ad0edc01-59b0-4921-bb54-30e1faa679e1" />
+      <TestMethod codeBase="/Users/moyan/SecureFlow-Workspace/SecureFlow-Security-Lab/tests/SecureFlow.Tests/bin/Release/net10.0/SecureFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SecureFlow.Tests.FileUploadValidatorTests" name="RejectsMismatchedContentType" />
+    </UnitTest>
+    <UnitTest name="SecureFlow.Tests.TicketAccessServiceTests.UserCannotReadAnotherUsersTicket" storage="/users/moyan/secureflow-workspace/secureflow-security-lab/tests/secureflow.tests/bin/release/net10.0/secureflow.tests.dll" id="6d1a9017-0d3d-ade1-16fe-6a7205479c05">
+      <Execution id="36417453-bbf5-42f1-8c53-b826f650728f" />
+      <TestMethod codeBase="/Users/moyan/SecureFlow-Workspace/SecureFlow-Security-Lab/tests/SecureFlow.Tests/bin/Release/net10.0/SecureFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SecureFlow.Tests.TicketAccessServiceTests" name="UserCannotReadAnotherUsersTicket" />
+    </UnitTest>
+    <UnitTest name="SecureFlow.Tests.TicketAccessServiceTests.AdminCanUseAdminFunctions" storage="/users/moyan/secureflow-workspace/secureflow-security-lab/tests/secureflow.tests/bin/release/net10.0/secureflow.tests.dll" id="a26dd8fc-691b-a791-136a-59481c1639e4">
+      <Execution id="539d0c68-216d-4b40-bf77-0b5d6cc293cf" />
+      <TestMethod codeBase="/Users/moyan/SecureFlow-Workspace/SecureFlow-Security-Lab/tests/SecureFlow.Tests/bin/Release/net10.0/SecureFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SecureFlow.Tests.TicketAccessServiceTests" name="AdminCanUseAdminFunctions" />
+    </UnitTest>
+    <UnitTest name="SecureFlow.Tests.FileUploadValidatorTests.AllowsPdfWithinSizeLimit" storage="/users/moyan/secureflow-workspace/secureflow-security-lab/tests/secureflow.tests/bin/release/net10.0/secureflow.tests.dll" id="f42adb4a-59b6-6ae8-661d-3f316da65d36">
+      <Execution id="3701ee38-ba5b-4739-ae89-486fbb11725e" />
+      <TestMethod codeBase="/Users/moyan/SecureFlow-Workspace/SecureFlow-Security-Lab/tests/SecureFlow.Tests/bin/Release/net10.0/SecureFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SecureFlow.Tests.FileUploadValidatorTests" name="AllowsPdfWithinSizeLimit" />
+    </UnitTest>
+    <UnitTest name="SecureFlow.Tests.FileUploadValidatorTests.RemovesPathTraversalFromOriginalName" storage="/users/moyan/secureflow-workspace/secureflow-security-lab/tests/secureflow.tests/bin/release/net10.0/secureflow.tests.dll" id="1c7a1c16-66f3-58fa-7369-52b3fb1d3ee0">
+      <Execution id="2eb5a823-672a-4344-8426-217b2b843105" />
+      <TestMethod codeBase="/Users/moyan/SecureFlow-Workspace/SecureFlow-Security-Lab/tests/SecureFlow.Tests/bin/Release/net10.0/SecureFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SecureFlow.Tests.FileUploadValidatorTests" name="RemovesPathTraversalFromOriginalName" />
+    </UnitTest>
+    <UnitTest name="SecureFlow.Tests.TicketAccessServiceTests.OwnerCanReadOwnTicket" storage="/users/moyan/secureflow-workspace/secureflow-security-lab/tests/secureflow.tests/bin/release/net10.0/secureflow.tests.dll" id="f13165c1-67d7-6835-343f-3aa303c0c9c2">
+      <Execution id="52a257e8-a086-46e8-850b-6f0b8782a453" />
+      <TestMethod codeBase="/Users/moyan/SecureFlow-Workspace/SecureFlow-Security-Lab/tests/SecureFlow.Tests/bin/Release/net10.0/SecureFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SecureFlow.Tests.TicketAccessServiceTests" name="OwnerCanReadOwnTicket" />
+    </UnitTest>
+    <UnitTest name="SecureFlow.Tests.FileUploadValidatorTests.RejectsEmptyFile" storage="/users/moyan/secureflow-workspace/secureflow-security-lab/tests/secureflow.tests/bin/release/net10.0/secureflow.tests.dll" id="26616ac5-c6e7-a752-66da-bace189355f2">
+      <Execution id="214898e5-e2d3-4b6b-8351-9849f3e0a133" />
+      <TestMethod codeBase="/Users/moyan/SecureFlow-Workspace/SecureFlow-Security-Lab/tests/SecureFlow.Tests/bin/Release/net10.0/SecureFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SecureFlow.Tests.FileUploadValidatorTests" name="RejectsEmptyFile" />
+    </UnitTest>
+    <UnitTest name="SecureFlow.Tests.CreateTicketViewModelTests.ValidInputPassesValidation" storage="/users/moyan/secureflow-workspace/secureflow-security-lab/tests/secureflow.tests/bin/release/net10.0/secureflow.tests.dll" id="cbbd54a8-23c5-bdbf-e886-a4608bb79c6c">
+      <Execution id="ca3133c1-cd7b-4b4d-93df-67fa06ecb5c8" />
+      <TestMethod codeBase="/Users/moyan/SecureFlow-Workspace/SecureFlow-Security-Lab/tests/SecureFlow.Tests/bin/Release/net10.0/SecureFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SecureFlow.Tests.CreateTicketViewModelTests" name="ValidInputPassesValidation" />
+    </UnitTest>
+    <UnitTest name="SecureFlow.Tests.CreateTicketViewModelTests.ShortTitleFailsValidation" storage="/users/moyan/secureflow-workspace/secureflow-security-lab/tests/secureflow.tests/bin/release/net10.0/secureflow.tests.dll" id="aa0ddf90-33dc-1800-98bc-7eaa3d4bd56c">
+      <Execution id="5afcee80-da8e-4314-b853-5b48612080fc" />
+      <TestMethod codeBase="/Users/moyan/SecureFlow-Workspace/SecureFlow-Security-Lab/tests/SecureFlow.Tests/bin/Release/net10.0/SecureFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SecureFlow.Tests.CreateTicketViewModelTests" name="ShortTitleFailsValidation" />
+    </UnitTest>
+    <UnitTest name="SecureFlow.Tests.TicketAccessServiceTests.UserCannotModifyAnotherUsersTicket" storage="/users/moyan/secureflow-workspace/secureflow-security-lab/tests/secureflow.tests/bin/release/net10.0/secureflow.tests.dll" id="6ab458e2-6527-87e6-1ea0-35f1b2f5354b">
+      <Execution id="43f280d1-322a-4478-b20a-f04c54fa57ab" />
+      <TestMethod codeBase="/Users/moyan/SecureFlow-Workspace/SecureFlow-Security-Lab/tests/SecureFlow.Tests/bin/Release/net10.0/SecureFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SecureFlow.Tests.TicketAccessServiceTests" name="UserCannotModifyAnotherUsersTicket" />
+    </UnitTest>
+    <UnitTest name="SecureFlow.Tests.FileUploadValidatorTests.RejectsOversizedFile" storage="/users/moyan/secureflow-workspace/secureflow-security-lab/tests/secureflow.tests/bin/release/net10.0/secureflow.tests.dll" id="bb7382a3-6637-b15c-0d67-0f751ff2787f">
+      <Execution id="481b3828-fdbe-40ff-8416-9b0f6f7950de" />
+      <TestMethod codeBase="/Users/moyan/SecureFlow-Workspace/SecureFlow-Security-Lab/tests/SecureFlow.Tests/bin/Release/net10.0/SecureFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SecureFlow.Tests.FileUploadValidatorTests" name="RejectsOversizedFile" />
+    </UnitTest>
+    <UnitTest name="SecureFlow.Tests.TicketAccessServiceTests.AdminCanReadAnotherUsersTicket" storage="/users/moyan/secureflow-workspace/secureflow-security-lab/tests/secureflow.tests/bin/release/net10.0/secureflow.tests.dll" id="bef68d10-0705-1255-6a16-8f0ce06f02a4">
+      <Execution id="1addc5c0-e47b-4c63-bb53-03101b6c1939" />
+      <TestMethod codeBase="/Users/moyan/SecureFlow-Workspace/SecureFlow-Security-Lab/tests/SecureFlow.Tests/bin/Release/net10.0/SecureFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SecureFlow.Tests.TicketAccessServiceTests" name="AdminCanReadAnotherUsersTicket" />
+    </UnitTest>
+    <UnitTest name="SecureFlow.Tests.FileUploadValidatorTests.RejectsExecutableExtension" storage="/users/moyan/secureflow-workspace/secureflow-security-lab/tests/secureflow.tests/bin/release/net10.0/secureflow.tests.dll" id="8dbfedc5-8319-ce88-d6af-ff68295e8fcb">
+      <Execution id="2778ba9c-18fc-4961-af03-ca790a010fa8" />
+      <TestMethod codeBase="/Users/moyan/SecureFlow-Workspace/SecureFlow-Security-Lab/tests/SecureFlow.Tests/bin/Release/net10.0/SecureFlow.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SecureFlow.Tests.FileUploadValidatorTests" name="RejectsExecutableExtension" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="26616ac5-c6e7-a752-66da-bace189355f2" executionId="214898e5-e2d3-4b6b-8351-9849f3e0a133" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="aa0ddf90-33dc-1800-98bc-7eaa3d4bd56c" executionId="5afcee80-da8e-4314-b853-5b48612080fc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1afc4212-9e34-5bf9-c93c-a664cbc7d83d" executionId="ad0edc01-59b0-4921-bb54-30e1faa679e1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cbbd54a8-23c5-bdbf-e886-a4608bb79c6c" executionId="ca3133c1-cd7b-4b4d-93df-67fa06ecb5c8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8dbfedc5-8319-ce88-d6af-ff68295e8fcb" executionId="2778ba9c-18fc-4961-af03-ca790a010fa8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bef68d10-0705-1255-6a16-8f0ce06f02a4" executionId="1addc5c0-e47b-4c63-bb53-03101b6c1939" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1c7a1c16-66f3-58fa-7369-52b3fb1d3ee0" executionId="2eb5a823-672a-4344-8426-217b2b843105" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a26dd8fc-691b-a791-136a-59481c1639e4" executionId="539d0c68-216d-4b40-bf77-0b5d6cc293cf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="afa781c6-a3e7-1a11-19e0-0f6671446614" executionId="98e25742-7b4b-4ebb-b14b-53e21727be23" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f13165c1-67d7-6835-343f-3aa303c0c9c2" executionId="52a257e8-a086-46e8-850b-6f0b8782a453" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bb7382a3-6637-b15c-0d67-0f751ff2787f" executionId="481b3828-fdbe-40ff-8416-9b0f6f7950de" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f42adb4a-59b6-6ae8-661d-3f316da65d36" executionId="3701ee38-ba5b-4739-ae89-486fbb11725e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6d1a9017-0d3d-ade1-16fe-6a7205479c05" executionId="36417453-bbf5-42f1-8c53-b826f650728f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4ebedf60-660c-8484-95e7-f7654b526541" executionId="a5b5e7ce-c3b8-490e-9bfb-a33876b669ee" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6ab458e2-6527-87e6-1ea0-35f1b2f5354b" executionId="43f280d1-322a-4478-b20a-f04c54fa57ab" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="15" executed="15" passed="15" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.10)
+[xUnit.net 00:00:00.04]   Discovering: SecureFlow.Tests
+[xUnit.net 00:00:00.06]   Discovered:  SecureFlow.Tests
+[xUnit.net 00:00:00.07]   Starting:    SecureFlow.Tests
+[xUnit.net 00:00:00.11]   Finished:    SecureFlow.Tests
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>
