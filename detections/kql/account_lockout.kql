@@ -1,0 +1,5 @@
+// SecureFlow account lockout
+SecureFlowAuditEvents_CL
+| where EventType_s == "Login" and Outcome_s == "LockedOut"
+| project OccurredAtUtc_t, UserId_s, SourceAddress_s, CorrelationId_s
+| order by OccurredAtUtc_t desc

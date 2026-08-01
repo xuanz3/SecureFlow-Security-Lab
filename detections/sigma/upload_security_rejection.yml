@@ -1,0 +1,23 @@
+title: SecureFlow Upload Rejected by Security Controls
+id: 7fc84f9c-9b0f-4c44-a5ca-3815cfbef004
+status: experimental
+description: Detects a file rejected by upload validation or the quarantine scanning gate.
+author: Xuanze Chen
+date: 2026-08-02
+tags:
+  - attack.initial_access
+  - attack.t1190
+logsource:
+  product: secureflow
+  service: security_audit
+detection:
+  selection_scan:
+    EventType: AttachmentScan
+    Outcome: Rejected
+  selection_upload:
+    EventType: AttachmentUpload
+    Outcome: Rejected
+  condition: selection_scan or selection_upload
+falsepositives:
+  - A legitimate file with an unsupported or malformed format
+level: medium

@@ -1,0 +1,6 @@
+// SecureFlow cross-user ticket access denial
+SecureFlowAuditEvents_CL
+| where EventType_s == "TicketAccess"
+| where Outcome_s == "Denied" and ObjectType_s == "Ticket"
+| project OccurredAtUtc_t, UserId_s, SourceAddress_s, ObjectId_s, CorrelationId_s
+| order by OccurredAtUtc_t desc

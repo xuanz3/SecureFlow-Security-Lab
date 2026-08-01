@@ -1,0 +1,6 @@
+// SecureFlow multi-control suspicious sequence
+SecureFlowAuditEvents_CL
+| where EventType_s in ("Login", "TicketAccess", "AttachmentScan", "AttachmentUpload")
+| where Outcome_s in ("Failure", "LockedOut", "Denied", "Rejected")
+| summarize EventCount=count(), DistinctControls=dcount(EventType_s), FirstSeen=min(OccurredAtUtc_t), LastSeen=max(OccurredAtUtc_t), Outcomes=make_set(Outcome_s, 20), Correlations=make_set(CorrelationId_s, 50) by SourceAddress_s, UserId_s, bin(OccurredAtUtc_t, 15m)
+| where EventCount >= 5 and DistinctControls >= 3

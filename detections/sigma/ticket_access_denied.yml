@@ -1,0 +1,21 @@
+title: SecureFlow Cross-User Ticket Access Denied
+id: 8bd4d1b2-3ae9-45c7-9848-04ee9648f003
+status: experimental
+description: Detects a server-side denial when a user attempts to access a ticket outside the ownership boundary.
+author: Xuanze Chen
+date: 2026-08-02
+tags:
+  - attack.collection
+  - attack.t1213
+logsource:
+  product: secureflow
+  service: security_audit
+detection:
+  selection:
+    EventType: TicketAccess
+    Outcome: Denied
+    ObjectType: Ticket
+  condition: selection
+falsepositives:
+  - A user opening an incorrectly copied ticket link
+level: medium
