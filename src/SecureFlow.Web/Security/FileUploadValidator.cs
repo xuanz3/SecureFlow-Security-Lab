@@ -14,6 +14,7 @@ public interface IFileUploadValidator
 public sealed class FileUploadValidator : IFileUploadValidator
 {
     public const long MaximumBytes = 2 * 1024 * 1024;
+    public const long MaximumRequestBytes = MaximumBytes + (64 * 1024);
 
     private static readonly IReadOnlyDictionary<string, string[]> Allowed =
         new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase)
@@ -47,7 +48,11 @@ public sealed class FileUploadValidator : IFileUploadValidator
 
         if (!allowedTypes.Contains(contentType, StringComparer.OrdinalIgnoreCase))
         {
-            return new(false, "The declared content type does not match the allowed type.", safeName, extension);
+            return new(
+                false,
+                "The declared content type does not match the allowed type.",
+                safeName,
+                extension);
         }
 
         return new(true, null, safeName, extension.ToLowerInvariant());

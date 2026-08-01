@@ -1,0 +1,38 @@
+{
+  "generated_at_utc": "2026-08-01T13:58:50.885688+00:00",
+  "scope": "Project-owned localhost and fictional data only",
+  "status": "PASS",
+  "tests": [
+    {
+      "test_id": "P5-UP-01",
+      "control": "Server-side file signature validation",
+      "status": "PASS",
+      "actual": "Mismatched PDF content was rejected"
+    },
+    {
+      "test_id": "P5-UP-02",
+      "control": "Quarantine and scanner gate",
+      "status": "PASS",
+      "actual": "Harmless scanner test marker was not released"
+    },
+    {
+      "test_id": "P5-UP-03",
+      "control": "Clean-file release",
+      "status": "PASS",
+      "actual": "Valid PDF was released after inspection"
+    },
+    {
+      "test_id": "P5-UP-04",
+      "control": "Pre-model-binding request limit",
+      "status": "PASS",
+      "actual": "HTTP 400"
+    },
+    {
+      "test_id": "P5-UP-05",
+      "control": "Content Security Policy",
+      "status": "PASS",
+      "actual": "default-src 'self'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; object-src 'none'; img-src 'self' data:; script-src 'self'; style-src 'self'"
+    }
+  ],
+  "residual_risk": "The local deterministic scanner demonstrates quarantine and release gating. Production deployment would integrate a managed antivirus or sandbox service and a distributed rate-limit store."
+}
