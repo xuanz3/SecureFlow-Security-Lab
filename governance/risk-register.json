@@ -1,0 +1,279 @@
+{
+  "schema_version": "1.0",
+  "project": "SecureFlow Security Lab",
+  "assessment_type": "portfolio project risk self-assessment",
+  "scale": {
+    "likelihood": "1 Rare, 2 Unlikely, 3 Possible, 4 Likely, 5 Almost certain",
+    "impact": "1 Insignificant, 2 Minor, 3 Moderate, 4 Major, 5 Severe",
+    "score": "likelihood multiplied by impact",
+    "bands": {
+      "1-4": "Low",
+      "5-9": "Moderate",
+      "10-14": "High",
+      "15-25": "Extreme"
+    }
+  },
+  "limitations": [
+    "This is a project-level risk register, not an enterprise risk assessment.",
+    "Scores are reasoned portfolio estimates and are not based on production loss data.",
+    "No certification, regulatory compliance or Essential Eight maturity level is claimed."
+  ],
+  "risks": [
+    {
+      "id": "R-01",
+      "title": "Credential guessing or account compromise",
+      "asset": "Local application identities and protected tickets",
+      "threat": "Repeated password attempts against a fictional or future deployed account",
+      "inherent_likelihood": 4,
+      "inherent_impact": 4,
+      "inherent_score": 16,
+      "controls": [
+        "Password policy and account lockout",
+        "Source-partitioned login throttling",
+        "Structured login audit events",
+        "Sigma and KQL detections"
+      ],
+      "residual_likelihood": 2,
+      "residual_impact": 4,
+      "residual_score": 8,
+      "treatment": "Add MFA or federated identity before production deployment.",
+      "owner": "Project owner",
+      "status": "Mitigated with residual risk",
+      "evidence": [
+        "security-assessment/results/phase5/UPLOAD_AUTH_RETEST.md",
+        "detections/README.md",
+        "incident-response/IR-P5-001-CONTROLLED-SUSPICIOUS-SEQUENCE.md"
+      ]
+    },
+    {
+      "id": "R-02",
+      "title": "Broken object or administrator authorisation",
+      "asset": "Tickets, attachments and administrator functions",
+      "threat": "An authenticated user attempts to access another user's object or an administrator route",
+      "inherent_likelihood": 4,
+      "inherent_impact": 5,
+      "inherent_score": 20,
+      "controls": [
+        "Server-side owner checks",
+        "Role-based Admin controller boundary",
+        "Negative regression tests",
+        "Runtime denial retest"
+      ],
+      "residual_likelihood": 1,
+      "residual_impact": 5,
+      "residual_score": 5,
+      "treatment": "Retain negative tests and review new object routes during pull requests.",
+      "owner": "Project owner",
+      "status": "Mitigated",
+      "evidence": [
+        "security-assessment/results/phase5/AUTHORIZATION_RETEST.md",
+        "tests/SecureFlow.Tests/Security/AuthorizationBoundaryTests.cs"
+      ]
+    },
+    {
+      "id": "R-03",
+      "title": "Malicious or misclassified file upload",
+      "asset": "Application storage, users and downstream file consumers",
+      "threat": "An attacker uploads content whose extension or declared MIME type hides its actual type",
+      "inherent_likelihood": 4,
+      "inherent_impact": 4,
+      "inherent_score": 16,
+      "controls": [
+        "Extension, MIME, size and signature checks",
+        "Quarantine-before-release workflow",
+        "Deterministic local security scanner",
+        "Upload rejection audit events"
+      ],
+      "residual_likelihood": 2,
+      "residual_impact": 4,
+      "residual_score": 8,
+      "treatment": "Use a managed antivirus or sandbox service before production use.",
+      "owner": "Project owner",
+      "status": "Mitigated with residual risk",
+      "evidence": [
+        "security-assessment/results/phase5/UPLOAD_AUTH_RETEST.md",
+        "tests/SecureFlow.Tests/Security/FileSecurityScannerTests.cs"
+      ]
+    },
+    {
+      "id": "R-04",
+      "title": "Software supply-chain compromise",
+      "asset": "Application dependencies, container image and release artefacts",
+      "threat": "A vulnerable dependency, mutable build input or compromised automation component enters a release",
+      "inherent_likelihood": 3,
+      "inherent_impact": 5,
+      "inherent_score": 15,
+      "controls": [
+        "Locked dependency restore",
+        "Dependency Review and vulnerability audit",
+        "Action references pinned to commit SHAs",
+        "Container scanning, SBOM and provenance",
+        "Digest-pinned .NET base images"
+      ],
+      "residual_likelihood": 1,
+      "residual_impact": 5,
+      "residual_score": 5,
+      "treatment": "Continue reviewed dependency and digest updates through pull requests.",
+      "owner": "Project owner",
+      "status": "Mitigated",
+      "evidence": [
+        ".github/workflows/dependency-review.yml",
+        ".github/workflows/container-security.yml",
+        ".github/workflows/workflow-policy.yml",
+        "security-assessment/results/phase5/CONTAINER_WORKFLOW_RETEST.md"
+      ]
+    },
+    {
+      "id": "R-05",
+      "title": "Container privilege escalation or runtime configuration drift",
+      "asset": "Application container and host boundary",
+      "threat": "A compromised process writes to the image, gains capabilities or runs with excess privilege",
+      "inherent_likelihood": 3,
+      "inherent_impact": 5,
+      "inherent_score": 15,
+      "controls": [
+        "Non-root runtime user",
+        "Read-only root filesystem",
+        "All Linux capabilities dropped",
+        "No-new-privileges",
+        "Explicit writable volumes only",
+        "Workflow policy validation"
+      ],
+      "residual_likelihood": 1,
+      "residual_impact": 5,
+      "residual_score": 5,
+      "treatment": "Revalidate runtime policy after Compose or hosting changes.",
+      "owner": "Project owner",
+      "status": "Mitigated",
+      "evidence": [
+        "infrastructure/docker/Dockerfile",
+        "infrastructure/docker/compose.yml",
+        "security-assessment/results/phase5/CONTAINER_WORKFLOW_RETEST.md"
+      ]
+    },
+    {
+      "id": "R-06",
+      "title": "Credential or secret exposure in source control",
+      "asset": "Database password, fictional account secrets and CI credentials",
+      "threat": "A local secret is committed or a workflow retains credentials unnecessarily",
+      "inherent_likelihood": 3,
+      "inherent_impact": 5,
+      "inherent_score": 15,
+      "controls": [
+        "Local-only generated .env file",
+        "Gitleaks workflow",
+        "Checkout persist-credentials disabled",
+        "Explicit workflow permissions"
+      ],
+      "residual_likelihood": 1,
+      "residual_impact": 5,
+      "residual_score": 5,
+      "treatment": "Use a managed secret store for any deployed environment.",
+      "owner": "Project owner",
+      "status": "Mitigated",
+      "evidence": [
+        ".github/workflows/secret-scan.yml",
+        ".github/workflows/workflow-policy.yml",
+        "security-assessment/results/phase5/CONTAINER_WORKFLOW_RETEST.md"
+      ]
+    },
+    {
+      "id": "R-07",
+      "title": "Security events are not detected or correlated",
+      "asset": "Audit trail and incident response capability",
+      "threat": "Credential, authorisation and upload abuse occurs without an actionable alert",
+      "inherent_likelihood": 4,
+      "inherent_impact": 4,
+      "inherent_score": 16,
+      "controls": [
+        "Structured audit schema",
+        "Five Sigma rules",
+        "Five KQL examples",
+        "Automated detection-content validation",
+        "Controlled incident evaluation"
+      ],
+      "residual_likelihood": 2,
+      "residual_impact": 4,
+      "residual_score": 8,
+      "treatment": "Forward events to a real SIEM and tune thresholds before production use.",
+      "owner": "Project owner",
+      "status": "Mitigated with residual risk",
+      "evidence": [
+        "detections/README.md",
+        ".github/workflows/detection-content.yml",
+        "incident-response/IR-P5-001-CONTROLLED-SUSPICIOUS-SEQUENCE.md"
+      ]
+    },
+    {
+      "id": "R-08",
+      "title": "Database loss or unusable backup",
+      "asset": "PostgreSQL tickets, attachments metadata, identities and audit events",
+      "threat": "Data is deleted or corrupted and the available backup cannot be restored",
+      "inherent_likelihood": 3,
+      "inherent_impact": 5,
+      "inherent_score": 15,
+      "controls": [
+        "Persistent PostgreSQL volume",
+        "Recovery work item defined"
+      ],
+      "residual_likelihood": 3,
+      "residual_impact": 5,
+      "residual_score": 15,
+      "treatment": "Complete measured backup and clean restore exercise in Issue #32.",
+      "owner": "Project owner",
+      "status": "Open treatment",
+      "evidence": [
+        "infrastructure/docker/compose.yml"
+      ]
+    },
+    {
+      "id": "R-09",
+      "title": "Application rollback fails during an incident or bad release",
+      "asset": "Service availability and release integrity",
+      "threat": "A faulty application version cannot be replaced by a known-good version within an acceptable time",
+      "inherent_likelihood": 3,
+      "inherent_impact": 4,
+      "inherent_score": 12,
+      "controls": [
+        "Versioned Git releases",
+        "Published container images and provenance",
+        "Recovery work item defined"
+      ],
+      "residual_likelihood": 3,
+      "residual_impact": 4,
+      "residual_score": 12,
+      "treatment": "Execute and time a controlled application rollback in Issue #32.",
+      "owner": "Project owner",
+      "status": "Open treatment",
+      "evidence": [
+        ".github/workflows/publish-image.yml",
+        "security-assessment/PHASE5_REMEDIATION_DETECTION_REPORT.md"
+      ]
+    },
+    {
+      "id": "R-10",
+      "title": "Governance or compliance capability is overstated",
+      "asset": "Portfolio credibility and stakeholder trust",
+      "threat": "Project evidence is presented as certification, enterprise compliance or a complete organisational assessment",
+      "inherent_likelihood": 2,
+      "inherent_impact": 4,
+      "inherent_score": 8,
+      "controls": [
+        "Explicit scope and limitations",
+        "Evidence-linked claims",
+        "No certification or maturity-level claim",
+        "Automated governance-content validation"
+      ],
+      "residual_likelihood": 1,
+      "residual_impact": 4,
+      "residual_score": 4,
+      "treatment": "Retain limitations in final management and technical reports.",
+      "owner": "Project owner",
+      "status": "Mitigated",
+      "evidence": [
+        "README.md",
+        "security-assessment/PHASE5_REMEDIATION_DETECTION_REPORT.md"
+      ]
+    }
+  ]
+}
