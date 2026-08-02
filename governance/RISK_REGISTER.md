@@ -18,8 +18,8 @@ impact. Bands are Low 1–4, Moderate 5–9, High 10–14 and Extreme 15–25.
 | R-05 | Container privilege escalation or runtime configuration drift | 15 | 5 | Mitigated | Revalidate runtime policy after Compose or hosting changes. |
 | R-06 | Credential or secret exposure in source control | 15 | 5 | Mitigated | Use a managed secret store for any deployed environment. |
 | R-07 | Security events are not detected or correlated | 16 | 8 | Mitigated with residual risk | Forward events to a real SIEM and tune thresholds before production use. |
-| R-08 | Database loss or unusable backup | 15 | 15 | Open treatment | Complete measured backup and clean restore exercise in Issue #32. |
-| R-09 | Application rollback fails during an incident or bad release | 12 | 12 | Open treatment | Execute and time a controlled application rollback in Issue #32. |
+| R-08 | Database loss or unusable backup | 15 | 5 | Mitigated with residual risk | Retain scheduled restore testing and add encrypted off-site retention before production. |
+| R-09 | Application rollback fails during an incident or bad release | 12 | 4 | Mitigated | Retain immutable known-good image references and rehearse rollback after material deployment changes. |
 | R-10 | Governance or compliance capability is overstated | 8 | 4 | Mitigated | Retain limitations in final management and technical reports. |
 
 ## Evidence and control detail
@@ -145,11 +145,16 @@ impact. Bands are Low 1–4, Moderate 5–9, High 10–14 and Extreme 15–25.
 - Threat: Data is deleted or corrupted and the available backup cannot be restored
 - Controls:
   - Persistent PostgreSQL volume
-  - Recovery work item defined
+  - Custom-format database backup with SHA-256 validation
+  - Clean-volume restore with schema and row-count comparison
+  - Measured local recovery exercise and failure runbook
 - Evidence:
   - [`infrastructure/docker/compose.yml`](../infrastructure/docker/compose.yml)
+  - [`recovery/PHASE6_RECOVERY_EXERCISE_REPORT.md`](../recovery/PHASE6_RECOVERY_EXERCISE_REPORT.md)
+  - [`docs/PHASE6_RECOVERY_VALIDATION.md`](../docs/PHASE6_RECOVERY_VALIDATION.md)
+  - [`recovery/runbooks/DATABASE_BACKUP_RESTORE.md`](../recovery/runbooks/DATABASE_BACKUP_RESTORE.md)
 - Owner: Project owner
-- Residual treatment decision: Complete measured backup and clean restore exercise in Issue #32.
+- Residual treatment decision: Retain scheduled restore testing and add encrypted off-site retention before production.
 
 ### R-09 — Application rollback fails during an incident or bad release
 
@@ -158,12 +163,15 @@ impact. Bands are Low 1–4, Moderate 5–9, High 10–14 and Extreme 15–25.
 - Controls:
   - Versioned Git releases
   - Published container images and provenance
-  - Recovery work item defined
+  - Exact known-good image identity verification
+  - Controlled candidate failure and measured rollback exercise
 - Evidence:
   - [`.github/workflows/publish-image.yml`](../.github/workflows/publish-image.yml)
-  - [`security-assessment/PHASE5_REMEDIATION_DETECTION_REPORT.md`](../security-assessment/PHASE5_REMEDIATION_DETECTION_REPORT.md)
+  - [`recovery/PHASE6_RECOVERY_EXERCISE_REPORT.md`](../recovery/PHASE6_RECOVERY_EXERCISE_REPORT.md)
+  - [`docs/PHASE6_RECOVERY_VALIDATION.md`](../docs/PHASE6_RECOVERY_VALIDATION.md)
+  - [`recovery/runbooks/APPLICATION_ROLLBACK.md`](../recovery/runbooks/APPLICATION_ROLLBACK.md)
 - Owner: Project owner
-- Residual treatment decision: Execute and time a controlled application rollback in Issue #32.
+- Residual treatment decision: Retain immutable known-good image references and rehearse rollback after material deployment changes.
 
 ### R-10 — Governance or compliance capability is overstated
 

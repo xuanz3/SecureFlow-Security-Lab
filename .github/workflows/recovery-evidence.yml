@@ -1,0 +1,35 @@
+name: Recovery Evidence
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: recovery-evidence-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate recovery evidence
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          persist-credentials: false
+
+      - name: Validate measured recovery evidence
+        run: |
+          python3 security-assessment/tools/validate_phase6_recovery.py             --root .             --output-json /tmp/phase6-recovery-validation.json             --output-md /tmp/phase6-recovery-validation.md
+
+      - name: Revalidate governance after recovery closure
+        run: |
+          python3 security-assessment/tools/validate_phase6_governance.py             --root .             --output-json /tmp/phase6-governance-validation.json             --output-md /tmp/phase6-governance-validation.md

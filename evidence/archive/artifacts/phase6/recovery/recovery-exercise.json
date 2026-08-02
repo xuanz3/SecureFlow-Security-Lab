@@ -1,0 +1,31 @@
+{
+  "exercise_id": "P6-RECOVERY-001",
+  "status": "PASS",
+  "scope": "Project-owned isolated local Docker Compose environments",
+  "source_commit": "0b93f928a58dc0cc99d769db512bf1e55eb6d108",
+  "started_at_utc": "2026-08-02T14:35:49.751530+00:00",
+  "finished_at_utc": "2026-08-02T14:36:10.809866+00:00",
+  "known_good_build_seconds": 1.298,
+  "clean_target_initial_public_table_count": 0,
+  "restore_duration_seconds": 0.146,
+  "measured_recovery_time_seconds": 5.007,
+  "observed_fixture_rpo_seconds": 0,
+  "restored_readiness_http_status": 200,
+  "checks": {
+    "backup_archive_valid": true,
+    "clean_target_confirmed": true,
+    "table_set_and_row_counts_match": true,
+    "schema_fingerprint_matches": true,
+    "recovery_marker_restored_once": true,
+    "restored_application_ready": true,
+    "controlled_candidate_failed": true,
+    "known_good_image_restored": true,
+    "database_intact_after_rollback": true
+  },
+  "limitations": [
+    "Measured times apply only to this local controlled dataset.",
+    "The raw backup was deleted and is not committed.",
+    "Production requires encrypted off-site retention and approved RPO/RTO.",
+    "The candidate image is a controlled failing fixture, not a historical production defect."
+  ]
+}

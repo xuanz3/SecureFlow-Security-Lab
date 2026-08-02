@@ -19,10 +19,7 @@
     "Multi-factor authentication",
     "Regular backups"
   ],
-  "open_treatments": [
-    "R-08",
-    "R-09"
-  ],
+  "open_treatments": [],
   "all_evidence_paths_exist": true,
   "claim_boundary_validated": true,
   "errors": []

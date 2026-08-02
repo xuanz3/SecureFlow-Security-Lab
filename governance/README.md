@@ -18,6 +18,6 @@ Essential Eight maturity level.
 
 ## Next evidence
 
-Issue #32 will supply measured backup, restore and rollback evidence. Issue #33
-will publish the final management report, technical report, evidence navigation,
-final screenshots and v1.0 release.
+Issue #32 supplies measured backup, clean restore and exact-image rollback evidence.
+Issue #33 will publish the final management report, technical report, evidence
+navigation, final screenshots and v1.0 release.

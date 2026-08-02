@@ -19,7 +19,7 @@ Identify, Protect, Detect, Respond and Recover.
 | Protect | Identity, authorisation, upload, dependency, secret, container and browser protections are implemented and retested. | Established with stated limitations | `security-assessment/PHASE5_REMEDIATION_DETECTION_REPORT.md`; `security-assessment/results/phase5/CONTAINER_WORKFLOW_RETEST.md` | Add MFA/federation, managed malware scanning and production secret management before deployment. |
 | Detect | Structured audit events, five Sigma rules, five KQL examples and automated content validation exist. | Established for local evidence | `detections/README.md`; `incident-response/IR-P5-001-CONTROLLED-SUSPICIOUS-SEQUENCE.md` | Forward events to a real SIEM, define alert ownership and tune against operational baselines. |
 | Respond | A controlled suspicious sequence was analysed, contained and documented. | Partial | `incident-response/IR-P5-001-CONTROLLED-SUSPICIOUS-SEQUENCE.md` | Add organisational communication, escalation, legal/privacy and external-notification procedures where applicable. |
-| Recover | Versioned releases and persistent data exist, but measured restore and rollback evidence is not yet complete. | Planned | `.github/workflows/publish-image.yml`; Issue #32 | Verify backup integrity, clean restore, application rollback, recovery time and failure handling. |
+| Recover | A PostgreSQL backup was validated and restored into a clean volume, and a controlled failing candidate image was rolled back to an exact known-good image. | Established for the local exercise | `recovery/PHASE6_RECOVERY_EXERCISE_REPORT.md`; `docs/PHASE6_RECOVERY_VALIDATION.md` | Add encrypted off-site retention, scheduled exercises and organisation-approved RPO/RTO before production. |
 
 ## Priority gaps
 

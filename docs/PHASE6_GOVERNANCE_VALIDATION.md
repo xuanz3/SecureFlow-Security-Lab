@@ -4,7 +4,7 @@
 - Risks validated: **10**
 - NIST CSF functions represented: **6**
 - Essential Eight strategies reviewed: **8**
-- Open treatments: **R-08, R-09**
+- Open treatments: ****
 - Evidence paths resolve: **True**
 - Claim boundary validated: **True**
 

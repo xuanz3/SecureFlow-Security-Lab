@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "table_count": 11,
+  "backup_sha256": "5553252e13a9ac5c6c617a69083c708999935859a9d8baf6b72259cc4e47a7d5",
+  "backup_size_bytes": 22833,
+  "measured_recovery_time_seconds": 5.007,
+  "rollback_duration_seconds": 1.473,
+  "all_integrity_checks_passed": true,
+  "raw_backup_committed": false,
+  "errors": []
+}

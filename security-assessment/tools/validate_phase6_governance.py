@@ -187,9 +187,9 @@ def main():
         for risk in register["risks"]
         if risk["status"] == "Open treatment"
     ]
-    if set(open_treatments) != {"R-08", "R-09"}:
+    if open_treatments:
         errors.append(
-            "expected only R-08 and R-09 to remain open treatments"
+            "expected no open recovery treatments after Issue #32"
         )
 
     payload = {
