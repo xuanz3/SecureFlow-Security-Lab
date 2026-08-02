@@ -2,8 +2,8 @@
 
 | Priority | Action | Risk / framework driver | Owner | Target | Evidence of completion |
 |---:|---|---|---|---|---|
-| 1 | Execute PostgreSQL backup and clean restore with integrity checks and measured recovery time. | R-08; NIST Recover; Essential Eight regular backups | Project owner | Issue #32 | Restore report, checksums, row counts and timed run log |
-| 1 | Execute rollback from a deliberately changed application image to a known-good version. | R-09; NIST Recover | Project owner | Issue #32 | Rollback runbook, image digests, health checks and elapsed time |
+| 1 | Execute PostgreSQL backup and clean restore with integrity checks and measured recovery time. | R-08; NIST Recover; Essential Eight regular backups | Project owner | Completed in Issue #32 | `recovery/PHASE6_RECOVERY_EXERCISE_REPORT.md`; `docs/PHASE6_RECOVERY_VALIDATION.md` |
+| 1 | Execute rollback from a deliberately changed application image to a known-good version. | R-09; NIST Recover | Project owner | Completed in Issue #32 | `recovery/PHASE6_RECOVERY_EXERCISE_REPORT.md`; `recovery/runbooks/APPLICATION_ROLLBACK.md` |
 | 1 | Publish final management and technical reports with finding-to-remediation traceability. | R-10; NIST Govern | Project owner | Issue #33 | Final reports and v1.0 release |
 | 2 | Add MFA or federated identity before any production deployment. | R-01; NIST Protect; Essential Eight MFA | Future deployment owner | Post-v1.0 | Authentication design and negative tests |
 | 2 | Replace deterministic local upload scanning with managed antivirus or sandbox analysis. | R-03; NIST Protect/Detect | Future deployment owner | Post-v1.0 | Provider integration tests and quarantine telemetry |

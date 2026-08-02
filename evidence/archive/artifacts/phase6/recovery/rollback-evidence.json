@@ -1,0 +1,12 @@
+{
+  "candidate_image_id": "sha256:73b592d0a5e090bd011266d53c5290d73ccb39faf9e65bad003e9ca2a8a9b697",
+  "known_good_image_id": "sha256:25729444d5aaf448c20224c5a9f5c5f70ab6d89f94fd0faa72336bc473d67d9f",
+  "candidate_state": "exited",
+  "candidate_exit_code": 42,
+  "candidate_readiness_http_status": 0,
+  "rollback_readiness_http_status": 200,
+  "running_image_id_after_rollback": "sha256:25729444d5aaf448c20224c5a9f5c5f70ab6d89f94fd0faa72336bc473d67d9f",
+  "image_identity_match": true,
+  "database_intact_after_rollback": true,
+  "rollback_duration_seconds": 1.473
+}

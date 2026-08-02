@@ -1,0 +1,31 @@
+{
+  "table_count": 11,
+  "tables": [
+    "AspNetRoleClaims",
+    "AspNetRoles",
+    "AspNetUserClaims",
+    "AspNetUserLogins",
+    "AspNetUserRoles",
+    "AspNetUserTokens",
+    "AspNetUsers",
+    "SecurityAuditEvents",
+    "TicketAttachments",
+    "Tickets",
+    "__EFMigrationsHistory"
+  ],
+  "row_counts": {
+    "AspNetRoleClaims": 0,
+    "AspNetRoles": 2,
+    "AspNetUserClaims": 0,
+    "AspNetUserLogins": 0,
+    "AspNetUserRoles": 3,
+    "AspNetUserTokens": 0,
+    "AspNetUsers": 3,
+    "SecurityAuditEvents": 1,
+    "TicketAttachments": 0,
+    "Tickets": 0,
+    "__EFMigrationsHistory": 3
+  },
+  "schema_fingerprint_sha256": "8e5bacedc555a9dc916ee949a93e6f89f77015d2f9abceccd5829979f5e7b226",
+  "recovery_marker_count": 1
+}

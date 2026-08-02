@@ -23,7 +23,7 @@ can be assessed.
 | Restrict administrative privileges | Relevant | Partial | Admin RBAC, non-root containers, dropped capabilities and explicit workflow permissions are evidenced. PAM, JIT elevation and periodic access review are not. | Add federated identity, access review and privileged workflow controls before production. |
 | Patch operating systems | Relevant | Partial | Digest-pinned .NET base images and Trivy scanning are evidenced. Host and endpoint OS patch operations are outside the project. | Define reviewed base-image refresh and host patch processes. |
 | Multi-factor authentication | Relevant | Not implemented | Local ASP.NET Core Identity uses passwords and lockout only. | Add MFA or federation before production deployment. |
-| Regular backups | Relevant | Planned | Persistent volumes exist, but backup integrity, clean restore and recovery time have not yet been demonstrated. | Complete Issue #32 and retain measured recovery evidence. |
+| Regular backups | Relevant | Demonstrated for the local exercise | Backup integrity, clean restore and measured recovery were verified locally; enterprise scheduling, encryption, off-site retention and organisational coverage remain outside scope. | Retain scheduled restore testing and add production retention controls before deployment. |
 
 ## Interpretation
 

@@ -214,16 +214,21 @@
       "inherent_score": 15,
       "controls": [
         "Persistent PostgreSQL volume",
-        "Recovery work item defined"
+        "Custom-format database backup with SHA-256 validation",
+        "Clean-volume restore with schema and row-count comparison",
+        "Measured local recovery exercise and failure runbook"
       ],
-      "residual_likelihood": 3,
+      "residual_likelihood": 1,
       "residual_impact": 5,
-      "residual_score": 15,
-      "treatment": "Complete measured backup and clean restore exercise in Issue #32.",
+      "residual_score": 5,
+      "treatment": "Retain scheduled restore testing and add encrypted off-site retention before production.",
       "owner": "Project owner",
-      "status": "Open treatment",
+      "status": "Mitigated with residual risk",
       "evidence": [
-        "infrastructure/docker/compose.yml"
+        "infrastructure/docker/compose.yml",
+        "recovery/PHASE6_RECOVERY_EXERCISE_REPORT.md",
+        "docs/PHASE6_RECOVERY_VALIDATION.md",
+        "recovery/runbooks/DATABASE_BACKUP_RESTORE.md"
       ]
     },
     {
@@ -237,17 +242,20 @@
       "controls": [
         "Versioned Git releases",
         "Published container images and provenance",
-        "Recovery work item defined"
+        "Exact known-good image identity verification",
+        "Controlled candidate failure and measured rollback exercise"
       ],
-      "residual_likelihood": 3,
+      "residual_likelihood": 1,
       "residual_impact": 4,
-      "residual_score": 12,
-      "treatment": "Execute and time a controlled application rollback in Issue #32.",
+      "residual_score": 4,
+      "treatment": "Retain immutable known-good image references and rehearse rollback after material deployment changes.",
       "owner": "Project owner",
-      "status": "Open treatment",
+      "status": "Mitigated",
       "evidence": [
         ".github/workflows/publish-image.yml",
-        "security-assessment/PHASE5_REMEDIATION_DETECTION_REPORT.md"
+        "recovery/PHASE6_RECOVERY_EXERCISE_REPORT.md",
+        "docs/PHASE6_RECOVERY_VALIDATION.md",
+        "recovery/runbooks/APPLICATION_ROLLBACK.md"
       ]
     },
     {
