@@ -1,23 +1,73 @@
 @{
-    ViewData["Title"] = "SecureFlow";
+    ViewData["Title"] = "Security Engineering Portfolio";
 }
 
-<section class="hero">
-    <p class="eyebrow">SECURITY ENGINEERING PORTFOLIO LAB</p>
-    <h1>SecureFlow</h1>
-    <p>
-        A local-first ASP.NET Core application used to demonstrate secure development,
-        authorisation testing, vulnerability remediation, detection and recovery.
-    </p>
+<section class="portfolio-hero">
+    <div class="hero-main">
+        <p class="eyebrow">FINAL PORTFOLIO RELEASE · v1.0</p>
+        <h1>SecureFlow Security Lab</h1>
+        <p class="hero-copy">
+            An evidence-driven security engineering project that designs, builds,
+            assesses, remediates, detects, governs and recovers a local-first
+            ASP.NET Core service.
+        </p>
+        <div class="badge-row">
+            <span class="status-badge success">All 8 findings closed</span>
+            <span class="status-badge">34 automated tests</span>
+            <span class="status-badge">Local-only safety boundary</span>
+        </div>
+    </div>
+
+    <div class="metric-stack" aria-label="Final project metrics">
+        <div class="metric-card">
+            <strong>5 + 5</strong>
+            <span>Sigma rules and KQL detections</span>
+        </div>
+        <div class="metric-card">
+            <strong>10</strong>
+            <span>Evidence-linked project risks</span>
+        </div>
+        <div class="metric-card">
+            <strong>5.007s</strong>
+            <span>Measured local recovery time</span>
+        </div>
+        <div class="metric-card">
+            <strong>1.473s</strong>
+            <span>Known-good image rollback</span>
+        </div>
+    </div>
 </section>
 
-<section class="grid">
-    <article>
-        <h2>Phase 2</h2>
-        <p>Application, PostgreSQL, identity, roles, tickets, protected uploads and audit events.</p>
+<section class="capability-grid">
+    <article class="capability-card">
+        <span class="card-number">01</span>
+        <h2>Secure application</h2>
+        <p>Identity, RBAC, object ownership, protected uploads, PostgreSQL and structured audit events.</p>
     </article>
-    <article>
-        <h2>Safety boundary</h2>
-        <p>All testing is limited to project-owned local containers and fictional data.</p>
+    <article class="capability-card">
+        <span class="card-number">02</span>
+        <h2>DevSecOps assurance</h2>
+        <p>Locked builds, tests, CodeQL, Gitleaks, Trivy, Checkov, ZAP, SBOM and provenance.</p>
     </article>
+    <article class="capability-card">
+        <span class="card-number">03</span>
+        <h2>Assessment and detection</h2>
+        <p>Eight documented findings, complete remediation traceability and a controlled 11-event investigation.</p>
+    </article>
+    <article class="capability-card">
+        <span class="card-number">04</span>
+        <h2>Governance and recovery</h2>
+        <p>NIST CSF profile, Essential Eight gap review, risk treatment, clean restore and exact-image rollback.</p>
+    </article>
+</section>
+
+<section class="delivery-strip" aria-label="SecureFlow delivery lifecycle">
+    <span>Design</span>
+    <span>Build</span>
+    <span>Test</span>
+    <span>Assess</span>
+    <span>Remediate</span>
+    <span>Detect</span>
+    <span>Assure</span>
+    <span>Recover</span>
 </section>

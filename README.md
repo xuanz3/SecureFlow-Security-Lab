@@ -1,37 +1,63 @@
 # SecureFlow Security Lab
 
-A local-first enterprise security engineering and assurance portfolio project covering secure application development, DevSecOps, application security testing, vulnerability management, detection engineering, governance and recovery.
+An evidence-driven security engineering portfolio covering secure application
+development, DevSecOps, authorised assessment, remediation, detection,
+governance and recovery.
 
-**Project status:** Phase 5 — Remediation and detection engineering completed.
+**Status: v1.0 complete**
 
-## Intended workflow
+## 30-second overview
+
+- Built an ASP.NET Core 10 and PostgreSQL 17 service with identity, RBAC,
+  server-side object ownership, protected uploads and structured audit events.
+- Automated Build, 34 tests, Docker, Dependency Review, CodeQL, Gitleaks,
+  Trivy, Checkov, OWASP ZAP, SBOM, provenance and evidence-policy checks.
+- Documented 8 assessment findings and closed all 8 through remediation and
+  committed retests.
+- Added 5 Sigma rules, 5 KQL examples and a controlled 11-event investigation
+  in which all 5 detections triggered.
+- Assessed 10 project risks across all 6 NIST CSF Functions and all 8 Essential
+  Eight strategies, with no open Phase 6 recovery treatments.
+- Verified a clean 11-table PostgreSQL restore in 5.007 seconds and exact-image
+  rollback in 1.473 seconds.
+
+## Final evidence
+
+![SecureFlow application overview](evidence/final/01-application-overview.png)
+
+![Security pipeline](evidence/final/02-security-pipeline.png)
+
+![Assessment findings](evidence/final/03-assessment-findings.png)
+
+![Remediation and retest](evidence/final/04-remediation-retest.png)
+
+![Detection investigation](evidence/final/05-detection-investigation.png)
+
+![Governance and recovery](evidence/final/06-governance-recovery.png)
+
+## Capability and evidence map
+
+| Capability | Demonstrated evidence |
+|---|---|
+| Secure software development | ASP.NET Core Identity, RBAC, object ownership, upload quarantine and 34 tests |
+| DevSecOps | Locked restore, CodeQL, Gitleaks, Trivy, Checkov, ZAP, SBOM and provenance |
+| Application security | Authorised assessment, 8 findings, vulnerability register and retests |
+| Vulnerability management | Finding-to-Issue-to-remediation-to-retest traceability |
+| Detection engineering | 5 Sigma rules, 5 KQL examples and automated content validation |
+| Incident response | Controlled 11-event investigation with sanitised evidence |
+| Governance | 10-risk register, NIST CSF profile and Essential Eight gap review |
+| Recovery | Validated backup, clean restore, integrity checks and exact-image rollback |
+
+## Final reports
+
+- [Management report](reports/FINAL_MANAGEMENT_REPORT.md)
+- [Technical report](reports/FINAL_TECHNICAL_REPORT.md)
+- [Final validation](docs/FINAL_VALIDATION.md)
+- [Final evidence index](evidence/final/README.md)
+
+## Delivery lifecycle
 
 **Design → Build → Test → Assess → Remediate → Detect → Assure → Recover**
-
-## Implemented in Phase 2
-
-- ASP.NET Core 10 MVC application
-- PostgreSQL 17 and EF Core migrations
-- ASP.NET Core Identity with fictional local accounts
-- `Admin` and `User` role boundaries
-- Server-side ticket ownership authorisation
-- Protected file storage outside the web root
-- File extension, MIME and size validation
-- Structured security audit events and correlation identifiers
-- Login lockout, rate limiting and secure cookie configuration
-- Security response headers
-- Liveness and PostgreSQL readiness health checks
-- Automated negative authorisation and upload tests
-- Reproducible Docker Compose environment
-
-## DevSecOps automation
-
-Pull requests run locked dependency restore, Release build and tests, Docker build,
-dependency review, CodeQL, Gitleaks, Trivy container/configuration scanning and an
-isolated OWASP ZAP baseline scan. Published releases produce versioned GHCR images,
-CycloneDX SBOM evidence and provenance attestations.
-
-## Delivery phases
 
 | Phase | Focus |
 |---|---|
@@ -39,31 +65,21 @@ CycloneDX SBOM evidence and provenance attestations.
 | Phase 2 | Secure application foundation |
 | Phase 3 | DevSecOps automation and supply-chain assurance |
 | Phase 4 | Authorised security assessment |
-| Phase 5 | Remediation and detection engineering |
+| Phase 5 | Remediation, detection engineering and incident investigation |
 | Phase 6 | Governance, recovery and final reporting |
 
-Detailed naming rules are recorded in `docs/PHASE_NUMBERING.md`.
+## Repository map
 
-## Phase 4 security assessment
-
-The authorised local assessment covers object and role authorisation, upload
-controls, anti-forgery, error handling, browser headers, rate limiting, Docker
-runtime posture, Azure Terraform/Checkov review and loopback network exposure.
-
-- [Final assessment report](security-assessment/PHASE4_FINAL_ASSESSMENT_REPORT.md)
-- [Vulnerability register](security-assessment/results/phase4/VULNERABILITY_REGISTER.md)
-- [Phase 4 validation](docs/PHASE4_VALIDATION.md)
-
-All eight validated findings were remediated and retested in Phase 5.
-
-## Phase 5 remediation and detection
-
-Phase 5 closes the full Phase 4 vulnerability register, adds regression and runtime retests, enforces least-privilege container/workflow policy, and validates portable detection engineering against a controlled local incident.
-
-- [Phase 5 remediation and detection report](security-assessment/PHASE5_REMEDIATION_DETECTION_REPORT.md)
-- [Phase 5 validation](docs/PHASE5_VALIDATION.md)
-- [Sigma and KQL detection content](detections/README.md)
-- [Controlled incident report](incident-response/IR-P5-001-CONTROLLED-SUSPICIOUS-SEQUENCE.md)
+- `src/` — ASP.NET Core application
+- `tests/` — application and security regression tests
+- `.github/workflows/` — DevSecOps and evidence-policy automation
+- `security-assessment/` — rules, findings, assessment and retests
+- `detections/` — Sigma and KQL
+- `incident-response/` — controlled investigation
+- `governance/` — risk and framework evidence
+- `recovery/` — backup, restore and rollback
+- `reports/` — final management and technical reports
+- `evidence/final/` — deterministic final portfolio images and manifest
 
 ## Local start
 
@@ -74,34 +90,16 @@ docker compose --env-file .env -f infrastructure/docker/compose.yml up --build
 
 Open `http://localhost:8080`.
 
-The setup generates local-only credentials for:
+The script creates local-only fictional accounts. No passwords are committed.
 
-- `admin@example.test`
-- `alice@example.test`
-- `bob@example.test`
+## Safety and claim boundary
 
-No passwords are committed.
+All testing is restricted to project-owned local containers and deliberately
+created fictional data. No public or third-party target is in scope.
 
-## Repository map
-
-- `src/` — ASP.NET Core application
-- `tests/` — automated security and application tests
-- `docs/` — scope, architecture, threat model, decisions and validation
-- `security-assessment/` — authorised test rules, findings and retests
-- `detections/` — Sigma and KQL detection content
-- `infrastructure/` — Docker and Terraform reference material
-- `governance/` — risk and control-assurance artefacts
-- `recovery/` — backup, restore and rollback evidence
-- `evidence/` — selected portfolio evidence
-
-## Safety boundary
-
-All testing is restricted to project-owned local containers and deliberately created fictional data. No public or third-party systems are in scope.
-
-## Known limitations
-
-The compressed implementation uses local ASP.NET Core Identity. MFA, federation,
-automated access reviews and production cloud deployment are not claimed.
+The project does not claim NIST certification, Essential Eight maturity,
+organisational compliance, production cloud deployment, MFA, federation or a
+production recovery SLA.
 
 ## Author
 
