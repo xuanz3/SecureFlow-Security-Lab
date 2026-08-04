@@ -1,12 +1,12 @@
 # SecureFlow Security Lab
 
-An evidence-driven security engineering portfolio covering secure application
+A local-first security engineering reference implementation covering secure application
 development, DevSecOps, authorised assessment, remediation, detection,
 governance and recovery.
 
-**Status: v1.0 complete**
+**Status: v1.0.1 — maintained release**
 
-## 30-second overview
+## Project overview
 
 - Built an ASP.NET Core 10 and PostgreSQL 17 service with identity, RBAC,
   server-side object ownership, protected uploads and structured audit events.
@@ -21,7 +21,7 @@ governance and recovery.
 - Verified a clean 11-table PostgreSQL restore in 5.007 seconds and exact-image
   rollback in 1.473 seconds.
 
-## Final evidence
+## Release evidence
 
 ![SecureFlow application overview](evidence/final/01-application-overview.png)
 
@@ -48,12 +48,12 @@ governance and recovery.
 | Governance | 10-risk register, NIST CSF profile and Essential Eight gap review |
 | Recovery | Validated backup, clean restore, integrity checks and exact-image rollback |
 
-## Final reports
+## Release reports
 
 - [Management report](reports/FINAL_MANAGEMENT_REPORT.md)
 - [Technical report](reports/FINAL_TECHNICAL_REPORT.md)
 - [Final validation](docs/FINAL_VALIDATION.md)
-- [Final evidence index](evidence/final/README.md)
+- [Release evidence index](evidence/final/README.md)
 
 ## Delivery lifecycle
 
@@ -79,7 +79,7 @@ governance and recovery.
 - `governance/` — risk and framework evidence
 - `recovery/` — backup, restore and rollback
 - `reports/` — final management and technical reports
-- `evidence/final/` — deterministic final portfolio images and manifest
+- `evidence/final/` — deterministic final evidence images and manifest
 
 ## Local start
 

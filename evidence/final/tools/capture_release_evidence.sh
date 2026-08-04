@@ -36,14 +36,14 @@ rm -f \
 PAGES_DIR="$WORK_ROOT/pages"
 mkdir -p "$PAGES_DIR"
 
-python3 "$SCRIPT_DIR/build_final_pages.py" \
+python3 "$SCRIPT_DIR/render_assurance_views.py" \
   --root "$REPO_ROOT" \
   --output "$PAGES_DIR"
 
 NODE_PATH="$PW_NODE/node_modules" \
-  node "$SCRIPT_DIR/capture.cjs" \
+  node "$SCRIPT_DIR/capture_assurance_evidence.cjs" \
     "$APP_URL" \
     "$PAGES_DIR" \
     "$OUTPUT_DIR"
 
-echo "Final evidence capture completed."
+echo "Release evidence capture completed."

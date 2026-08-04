@@ -19,7 +19,7 @@ function launchOptions() {
 async function main() {
   const [appUrl, pagesDir, outputDir] = process.argv.slice(2);
   if (!appUrl || !pagesDir || !outputDir) {
-    throw new Error("Usage: capture.cjs <app-url> <pages-dir> <output-dir>");
+    throw new Error("Usage: capture_assurance_evidence.cjs <app-url> <pages-dir> <output-dir>");
   }
 
   fs.mkdirSync(outputDir, { recursive: true });

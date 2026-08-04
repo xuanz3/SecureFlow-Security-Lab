@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "release": "v1.0.0",
+  "release": "v1.0.1",
   "image_count": 6,
   "image_dimensions": "1600x900",
   "findings_closed": 8,

@@ -2,7 +2,7 @@
 
 ## Scope and method
 
-This is a project-level portfolio risk self-assessment. It is not an
+This is a project-level project risk self-assessment. It is not an
 enterprise risk assessment, certification, regulatory compliance statement
 or substitute for production threat, business-impact and legal analysis.
 
@@ -175,7 +175,7 @@ impact. Bands are Low 1–4, Moderate 5–9, High 10–14 and Extreme 15–25.
 
 ### R-10 — Governance or compliance capability is overstated
 
-- Asset: Portfolio credibility and stakeholder trust
+- Asset: project credibility and stakeholder trust
 - Threat: Project evidence is presented as certification, enterprise compliance or a complete organisational assessment
 - Controls:
   - Explicit scope and limitations

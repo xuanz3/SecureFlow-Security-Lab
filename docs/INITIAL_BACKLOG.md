@@ -58,4 +58,4 @@ This backlog is designed for six milestones. Issue bodies should reference the r
 37. Validate application image rollback
 38. Publish executive and technical security reports
 39. Curate selected evidence and final README
-40. Create v1.0 portfolio release and retrospective
+40. Create v1.0 release and retrospective

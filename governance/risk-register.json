@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "project": "SecureFlow Security Lab",
-  "assessment_type": "portfolio project risk self-assessment",
+  "assessment_type": "reference implementation risk self-assessment",
   "scale": {
     "likelihood": "1 Rare, 2 Unlikely, 3 Possible, 4 Likely, 5 Almost certain",
     "impact": "1 Insignificant, 2 Minor, 3 Moderate, 4 Major, 5 Severe",
@@ -15,7 +15,7 @@
   },
   "limitations": [
     "This is a project-level risk register, not an enterprise risk assessment.",
-    "Scores are reasoned portfolio estimates and are not based on production loss data.",
+    "Scores are reasoned project estimates and are not based on production loss data.",
     "No certification, regulatory compliance or Essential Eight maturity level is claimed."
   ],
   "risks": [
@@ -261,7 +261,7 @@
     {
       "id": "R-10",
       "title": "Governance or compliance capability is overstated",
-      "asset": "Portfolio credibility and stakeholder trust",
+      "asset": "project credibility and stakeholder trust",
       "threat": "Project evidence is presented as certification, enterprise compliance or a complete organisational assessment",
       "inherent_likelihood": 2,
       "inherent_impact": 4,

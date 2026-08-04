@@ -71,7 +71,7 @@ No public, third-party or production system was tested.
 - The assessment does not claim production penetration-test coverage.
 - Checkov reference results are manually triaged and no Azure resources were deployed.
 - Malware-scanner integration was assessed by design/code review, not by introducing live malware.
-- Finding severity is an estimate for this portfolio environment.
+- Finding severity is an estimate for this project environment.
 
 ## Next phase
 

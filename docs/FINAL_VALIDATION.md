@@ -11,6 +11,6 @@
 - Restored tables: **11**
 - Local recovery / rollback: **5.007s / 1.473s**
 
-The validation confirms internal portfolio traceability and deterministic
+The validation confirms internal release traceability and deterministic
 evidence. It does not establish certification, organisational compliance
 or a production recovery SLA.

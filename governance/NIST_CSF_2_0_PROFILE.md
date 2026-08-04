@@ -3,7 +3,7 @@
 ## Purpose
 
 This is a selected, function-level Current/Target Profile for the SecureFlow
-portfolio project. It uses NIST CSF 2.0 as a communication structure for
+reference implementation. It uses NIST CSF 2.0 as a communication structure for
 project evidence. It is not a complete Core outcome assessment, CSF Tier
 determination, certification or organisational compliance statement.
 

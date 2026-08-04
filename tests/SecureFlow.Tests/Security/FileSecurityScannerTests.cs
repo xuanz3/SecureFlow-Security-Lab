@@ -59,7 +59,7 @@ public sealed class FileSecurityScannerTests
     {
         var result = await ScanAsync(
             ".txt",
-            Encoding.UTF8.GetBytes("harmless portfolio text"));
+            Encoding.UTF8.GetBytes("harmless document text"));
 
         Assert.True(result.IsClean);
         Assert.Equal("text/plain", result.DetectedContentType);

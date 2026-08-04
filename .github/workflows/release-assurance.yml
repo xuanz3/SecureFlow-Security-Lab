@@ -1,4 +1,4 @@
-name: Final Portfolio
+name: Release Assurance
 
 on:
   push:
@@ -11,12 +11,12 @@ permissions:
   contents: read
 
 concurrency:
-  group: final-portfolio-${{ github.workflow }}-${{ github.ref }}
+  group: release-assurance-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   validate:
-    name: Validate final portfolio
+    name: Validate release assurance
     runs-on: ubuntu-24.04
     timeout-minutes: 5
 
@@ -26,6 +26,9 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Validate v1.0 reports and evidence
-        run: |
-          python3 security-assessment/tools/validate_final_portfolio.py             --root .             --output-json /tmp/final-validation.json             --output-md /tmp/final-validation.md
+      - name: Validate v1.0.1 reports and evidence
+        run: >-
+          python3 security-assessment/tools/validate_release_assurance.py
+          --root .
+          --output-json /tmp/release-assurance.json
+          --output-md /tmp/release-assurance.md

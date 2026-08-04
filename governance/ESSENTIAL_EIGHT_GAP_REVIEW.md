@@ -3,7 +3,7 @@
 ## Assessment boundary
 
 This is an applicability and evidence review for a local Linux containerised web
-application portfolio. It is not an ASD Essential Eight assessment, and no
+application project. It is not an ASD Essential Eight assessment, and no
 Maturity Level One, Two or Three claim is made.
 
 The official assessment process evaluates the implementation and effectiveness
