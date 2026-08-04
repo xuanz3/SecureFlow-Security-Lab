@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build deterministic SecureFlow final evidence HTML pages."""
+"""Render deterministic SecureFlow release-assurance HTML views."""
 
 from __future__ import annotations
 
@@ -208,8 +208,8 @@ def page(title: str, subtitle: str, content: str) -> str:
 <body data-capture-ready="true">
 <main class="frame">
   <div class="topline">
-    <span class="kicker">SECUREFLOW · FINAL PORTFOLIO EVIDENCE</span>
-    <span class="release">v1.0 · VERIFIED</span>
+    <span class="kicker">SECUREFLOW · RELEASE ASSURANCE EVIDENCE</span>
+    <span class="release">v1.0.1 · VERIFIED</span>
   </div>
   <h1>{esc(title)}</h1>
   <p class="subtitle">{esc(subtitle)}</p>
@@ -243,7 +243,7 @@ def main() -> None:
   <div class="metric"><strong>{workflow_count}</strong><span>Repository workflow definitions</span></div>
   <div class="metric"><strong>34</strong><span>Passing automated tests</span></div>
   <div class="metric"><strong>SHA-pinned</strong><span>Actions and .NET base images</span></div>
-  <div class="metric"><strong>PASS</strong><span>Final evidence policy</span></div>
+  <div class="metric"><strong>PASS</strong><span>Release evidence policy</span></div>
 </div>
 <div class="section-title">Pull request assurance path</div>
 <div class="pipeline">
@@ -375,7 +375,7 @@ def main() -> None:
     (output / "05-detection-investigation.html").write_text(
         page(
             "Detection investigation",
-            "Portable detection content was validated against an evidence-based suspicious sequence generated only in project-owned local containers.",
+            "Portable detection content was validated against an evidence-based suspicious sequence produced only in project-owned local containers.",
             detection_content,
         ),
         encoding="utf-8",

@@ -1,7 +1,7 @@
-# Final Portfolio Evidence
+# Release Assurance Evidence
 
-The six final images are generated once from the completed and validated v1.0
-project. They replace phase-by-phase screenshots and are the only images shown
+The six release images are captured once from the completed and validated v1.0.1
+release. They replace phase-by-phase screenshots and are the only images shown
 on the root README.
 
 | Image | Purpose | Source |
@@ -19,7 +19,7 @@ The final-release automation starts the hardened application in isolated Docker
 containers and runs:
 
 ```bash
-evidence/final/tools/capture_final_evidence.sh http://127.0.0.1:<dynamic-port>
+evidence/final/tools/capture_release_evidence.sh http://127.0.0.1:<dynamic-port>
 ```
 
 The capture process uses:

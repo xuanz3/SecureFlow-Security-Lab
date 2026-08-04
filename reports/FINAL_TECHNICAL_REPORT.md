@@ -1,4 +1,4 @@
-# SecureFlow v1.0 Technical Report
+# SecureFlow v1.0.1 Technical Report
 
 ## 1. System overview
 
@@ -7,7 +7,7 @@ Entity Framework Core. It uses ASP.NET Core Identity, role-based administrator
 boundaries, object-level ticket ownership checks, protected attachment storage,
 structured audit events, health checks and a reproducible Docker environment.
 
-The final portfolio covers six delivery phases:
+The completed implementation covers six delivery phases:
 
 | Phase | Technical focus | Primary evidence |
 |---|---|---|
@@ -117,11 +117,11 @@ The recovery exercise:
 Observed local recovery time was 5.007 seconds and rollback time was 1.473
 seconds. These are exercise measurements, not production commitments.
 
-## 8. Final evidence and reproducibility
+## 8. Release evidence and reproducibility
 
 Six final images are generated from a clean isolated clone. The application
 overview is captured from a hardened Docker runtime. The remaining evidence
-views are generated directly from committed Markdown and JSON records.
+views are rendered directly from committed Markdown and JSON records.
 
 Capture uses a fixed Playwright version, verified installed Chrome, fixed 1600×900 viewport, deterministic
 routes, content assertions, exact filenames, PNG dimension validation, SHA-256

@@ -36,7 +36,7 @@ nav a, footer a { color: #fff; text-decoration: none; }
 .actions { display: flex; flex-wrap: wrap; gap: .65rem; align-items: center; }
 .actions form { margin: 0; }
 
-.portfolio-hero {
+.release-hero {
   display: grid;
   grid-template-columns: minmax(0, 1.6fr) minmax(320px, .7fr);
   gap: 1.25rem;
@@ -205,7 +205,7 @@ th, td {
 code { word-break: break-word; }
 
 @media (max-width: 900px) {
-  .portfolio-hero { grid-template-columns: 1fr; }
+  .release-hero { grid-template-columns: 1fr; }
   .capability-grid { grid-template-columns: 1fr 1fr; }
   .delivery-strip { grid-template-columns: repeat(4, 1fr); }
 }

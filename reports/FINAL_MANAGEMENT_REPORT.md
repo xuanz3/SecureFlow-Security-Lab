@@ -1,8 +1,8 @@
-# SecureFlow v1.0 Management Report
+# SecureFlow v1.0.1 Management Report
 
 ## Executive summary
 
-SecureFlow is a local-first security engineering and assurance portfolio that
+SecureFlow is a local-first security engineering reference implementation that
 demonstrates an end-to-end lifecycle rather than a collection of disconnected
 security tools. The project designs and builds an ASP.NET Core service, applies
 DevSecOps controls, performs an authorised assessment, remediates every
@@ -63,7 +63,7 @@ constitute production RPO or RTO commitments.
 
 ## Decision and release status
 
-SecureFlow is suitable for publication as portfolio release v1.0. The release
+SecureFlow is suitable for publication as SecureFlow v1.0.1. The release
 contains final reports, a validation record, six deterministic evidence images,
 a machine-readable evidence manifest and checksums.
 
@@ -75,5 +75,5 @@ a machine-readable evidence manifest and checksums.
 - [Controlled incident](../incident-response/IR-P5-001-CONTROLLED-SUSPICIOUS-SEQUENCE.md)
 - [Risk register](../governance/RISK_REGISTER.md)
 - [Recovery report](../recovery/PHASE6_RECOVERY_EXERCISE_REPORT.md)
-- [Final evidence index](../evidence/final/README.md)
+- [Release evidence index](../evidence/final/README.md)
 - [Final validation](../docs/FINAL_VALIDATION.md)

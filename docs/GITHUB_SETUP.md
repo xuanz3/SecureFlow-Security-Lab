@@ -4,7 +4,7 @@
 
 - Name: `SecureFlow-Security-Lab`
 - Visibility: Public
-- Description: `Local-first AppSec, DevSecOps, vulnerability management, detection, GRC and recovery portfolio lab.`
+- Description: `Local-first AppSec, DevSecOps, vulnerability management, detection, GRC and recovery project lab.`
 - Do not initialise the remote with a README, licence or `.gitignore`; these already exist locally.
 
 ## Milestones

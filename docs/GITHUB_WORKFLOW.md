@@ -10,7 +10,7 @@ SecureFlow uses an issue-driven workflow so that design, implementation, assessm
 4. Open a Pull Request that explains the change, risk, tests and remaining limitations.
 5. Confirm automated checks and manual evidence before merging.
 6. Close the linked Issue and update the relevant finding or report.
-7. Create a release at major portfolio milestones.
+7. Create a release at major project milestones.
 
 ## Branch naming
 

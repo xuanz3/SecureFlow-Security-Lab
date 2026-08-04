@@ -855,7 +855,7 @@ def main():
         "- The assessment did not target public systems or third-party services.",
         "- Authentication accounts and ticket records are fictional.",
         "- The passive ZAP baseline from Phase 3 remains separate from these manual/API checks.",
-        "- Finding severity is a portfolio risk estimate and should be recalibrated for a real production deployment.",
+        "- Finding severity is a project risk estimate and should be recalibrated for a real production deployment.",
         "",
     ])
 

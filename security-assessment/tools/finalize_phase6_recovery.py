@@ -30,7 +30,7 @@ def regenerate_risk_markdown(register: dict, path: Path) -> None:
         "",
         "## Scope and method",
         "",
-        "This is a project-level portfolio risk self-assessment. It is not an",
+        "This is a project-level project risk self-assessment. It is not an",
         "enterprise risk assessment, certification, regulatory compliance statement",
         "or substitute for production threat, business-impact and legal analysis.",
         "",

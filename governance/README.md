@@ -12,7 +12,7 @@ framework and action-plan views.
 
 ## Claim boundary
 
-These files are a portfolio self-assessment. They do not claim NIST
+These files are a project self-assessment. They do not claim NIST
 certification, regulatory compliance, ASD assessment completion or an
 Essential Eight maturity level.
 

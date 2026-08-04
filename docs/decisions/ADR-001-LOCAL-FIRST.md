@@ -5,7 +5,7 @@
 
 ## Context
 
-The existing Enterprise SOC Lab already uses three Azure virtual machines. Additional Azure compute would increase cost, quota pressure and implementation risk. SecureFlow needs to expand portfolio coverage into AppSec, DevSecOps, vulnerability management, governance and recovery without duplicating the SOC lab.
+The existing Enterprise SOC Lab already uses three Azure virtual machines. Additional Azure compute would increase cost, quota pressure and implementation risk. SecureFlow needs to expand project coverage into AppSec, DevSecOps, vulnerability management, governance and recovery without duplicating the SOC lab.
 
 ## Decision
 
@@ -19,7 +19,7 @@ Use Docker Compose on the developer workstation as the primary runtime. Use GitH
 - Fast reset of application, database and assessment data
 - Reproducible local security testing
 - Clear separation from the Azure SOC project
-- GitHub Actions becomes visible portfolio evidence
+- GitHub Actions becomes visible release evidence
 
 ### Negative
 

@@ -98,7 +98,7 @@ def login(base_url,email,password):
 
 def failed_login(base_url,email):
     client=Client(base_url); page=client.get('/Account/Login')
-    response=client.post_form('/Account/Login',{'__RequestVerificationToken':token(page),'Email':email,'Password':'Incorrect-Portfolio-Password!2026','RememberMe':'false','ReturnUrl':''})
+    response=client.post_form('/Account/Login',{'__RequestVerificationToken':token(page),'Email':email,'Password':'Incorrect-project-Password!2026','RememberMe':'false','ReturnUrl':''})
     if 'Invalid sign-in attempt.' not in response['body'].decode('utf-8',errors='replace'):
         raise RuntimeError('Controlled failed login was not rejected.')
     return response['status']

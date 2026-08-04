@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "project": "SecureFlow Security Lab",
-  "release": "v1.0.0",
+  "release": "v1.0.1",
   "playwright_version": "1.55.0",
   "viewport": {
     "width": 1600,
@@ -13,48 +13,48 @@
       "path": "evidence/final/01-application-overview.png",
       "width": 1600,
       "height": 900,
-      "size_bytes": 365578,
-      "sha256": "93244fe90720020bd172cae216496112ad506da9fdf699558c7ec992b34c29d0",
+      "size_bytes": 365543,
+      "sha256": "8441ed11bb9c756fa929f0dee5df2eaf31922af0c887edaabf9c9af0a58a1de6",
       "source": "hardened local application"
     },
     {
       "path": "evidence/final/02-security-pipeline.png",
       "width": 1600,
       "height": 900,
-      "size_bytes": 202107,
-      "sha256": "b327932f0e40a3700dd2dfad4208537f39c77c10bbd3fef6b3ead3560ccaa054",
+      "size_bytes": 203113,
+      "sha256": "291899c824c588ba2026466cb56d9beec247807480537c80ed258c5233cb4c87",
       "source": "workflow and technical-report evidence"
     },
     {
       "path": "evidence/final/03-assessment-findings.png",
       "width": 1600,
       "height": 900,
-      "size_bytes": 213461,
-      "sha256": "3bc3420e01a04a18051bd4b5abd47fb5296d464fe4aa2c2c03c302f5bf2d4938",
+      "size_bytes": 214142,
+      "sha256": "8bd0b35f9f5184a002d2b34db8e4f877667f62b64c6276fc49294375c4458f25",
       "source": "Phase 4 vulnerability register"
     },
     {
       "path": "evidence/final/04-remediation-retest.png",
       "width": 1600,
       "height": 900,
-      "size_bytes": 184380,
-      "sha256": "a101f390345a0f2935f6f33c0796e88391de89634bf3a4d4f78d757b7a7e94be",
+      "size_bytes": 185083,
+      "sha256": "a0cf2fe2d6dbea8ab1d3434954f7c4d31ebab8045e123cb996f15d797f66404e",
       "source": "Phase 5 remediation matrix"
     },
     {
       "path": "evidence/final/05-detection-investigation.png",
       "width": 1600,
       "height": 900,
-      "size_bytes": 199412,
-      "sha256": "a42cb5dbd1641f7925a1cd4d30a8e033606d1f4ce51589984b2de6ec144190db",
+      "size_bytes": 200162,
+      "sha256": "f36d00d221f5164ca94615f1e0926eb58742cb83928c4577be87f8356ac606b7",
       "source": "detection evaluation evidence"
     },
     {
       "path": "evidence/final/06-governance-recovery.png",
       "width": 1600,
       "height": 900,
-      "size_bytes": 217314,
-      "sha256": "947c85914dcd89e7065c36e1f4283521397b35361f60aed25382b58f640fa5b2",
+      "size_bytes": 218024,
+      "sha256": "59741346d3d51ff0b951177936ffaa33e8b2727eea04ce1202c09129bbb40072",
       "source": "Phase 6 governance and recovery validation"
     }
   ]

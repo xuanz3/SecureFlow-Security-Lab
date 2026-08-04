@@ -1,6 +1,6 @@
 # Contributing Workflow
 
-This is a single-author portfolio project, but changes follow a lightweight professional workflow.
+This is a single-author reference implementation, but changes follow a lightweight professional workflow.
 
 1. Create or select a GitHub Issue.
 2. Create a focused branch such as `feat/ticket-authorisation` or `security/fix-upload-validation`.

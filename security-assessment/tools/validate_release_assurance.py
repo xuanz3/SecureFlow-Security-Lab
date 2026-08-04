@@ -148,7 +148,7 @@ def main() -> None:
     manifest = {
         "schema_version": "1.0",
         "project": "SecureFlow Security Lab",
-        "release": "v1.0.0",
+        "release": "v1.0.1",
         "playwright_version": "1.55.0",
         "viewport": {"width": 1600, "height": 900},
         "image_count": len(images),
@@ -209,7 +209,7 @@ def main() -> None:
         readme = (root / "README.md").read_text(encoding="utf-8")
         first_section = "\n".join(readme.splitlines()[:35])
         for phrase in [
-            "Status: v1.0 complete",
+            "Status: v1.0.1",
             "34 tests",
             "8 assessment findings",
             "5 Sigma rules",
@@ -217,7 +217,7 @@ def main() -> None:
         ]:
             if phrase not in first_section:
                 errors.append(
-                    f"README 30-second overview is missing: {phrase}"
+                    f"README Project overview is missing: {phrase}"
                 )
         for name in IMAGE_NAMES:
             if f"evidence/final/{name}" not in readme:
@@ -336,7 +336,7 @@ def main() -> None:
 
     result = {
         "status": "PASS" if not errors else "FAIL",
-        "release": "v1.0.0",
+        "release": "v1.0.1",
         "image_count": len(images),
         "image_dimensions": "1600x900",
         "findings_closed": 8,
@@ -375,7 +375,7 @@ def main() -> None:
         f'- Restored tables: **{result["restored_tables"]}**',
         f'- Local recovery / rollback: **{result["measured_recovery_time_seconds"]}s / {result["rollback_duration_seconds"]}s**',
         "",
-        "The validation confirms internal portfolio traceability and deterministic",
+        "The validation confirms internal release traceability and deterministic",
         "evidence. It does not establish certification, organisational compliance",
         "or a production recovery SLA.",
         "",
@@ -388,7 +388,7 @@ def main() -> None:
     output_md.write_text("\n".join(lines), encoding="utf-8")
 
     print(
-        f'Final portfolio validation {result["status"]}: '
+        f'Release assurance validation {result["status"]}: '
         f'{result["image_count"]} images, '
         f'{result["findings_closed"]}/8 findings, '
         f'{result["automated_tests"]} tests'
@@ -405,7 +405,7 @@ if __name__ == "__main__":
         main()
     except Exception as error:
         print(
-            f"Final portfolio validation failed: {error}",
+            f"Release assurance validation failed: {error}",
             file=sys.stderr,
         )
         sys.exit(1)

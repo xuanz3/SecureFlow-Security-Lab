@@ -137,7 +137,7 @@ def write_registers(results_dir, findings):
         "",
         "- Findings remain open until a remediation PR is merged and a retest is recorded.",
         "- Deliberately insecure Terraform fixtures are training evidence and are not application findings.",
-        "- Severity is a portfolio estimate for the local reference environment.",
+        "- Severity is a project estimate for the local reference environment.",
         "",
     ])
 
